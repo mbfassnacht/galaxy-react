@@ -1,0 +1,13 @@
+@import "../../_globals.scss";
+
+.close {
+	height: 30px;
+	width: 30px;
+	cursor: pointer;
+	visibility: hidden;
+	svg{
+		height: 30px;
+		width: 30px;
+		fill: $grey;
+	}
+}
