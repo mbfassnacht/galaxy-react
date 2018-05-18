@@ -8,6 +8,12 @@
     height: 30px;
 }
 
+.video-packager-content {
+    &.hidden {
+        display: none;
+    }
+}
+
 .video-packager-mid-container {
     display: flex;
 

@@ -1,5 +1,8 @@
+require('styles/components/Footer/footer.scss');
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Button from '../Button/button';
 
 class Footer extends React.Component {
 
@@ -10,7 +13,8 @@ class Footer extends React.Component {
 	render() {
 		return (
 			<div className="footer">
-				im the footer that has cancel and save button
+				<Button text="Cancel"></Button>
+				<Button text="Save"></Button>
 			</div>
 		);
 	}

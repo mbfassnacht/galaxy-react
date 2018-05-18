@@ -1,0 +1,19 @@
+@import "../../_globals.scss";
+
+.button {
+	background-color: $color2;
+	color: $color1;
+	width: 100px;
+	min-height: 30px;
+	line-height: 30px;
+    text-align: center;
+    padding: 20px;
+	margin: 20px 10px;
+	cursor: pointer;
+	&:hover {
+		color: $color2;
+		background-color: $color1;
+		border: 1px $color2 solid;
+		height: 28px;
+	}
+}

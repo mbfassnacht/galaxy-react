@@ -15,28 +15,9 @@ class Close extends React.Component {
 		}.bind(this));
 	}
 
-	handleMouseDown() {
-        if (typeof this.props.onClicked === 'function') {
-            this.props.onClicked();
-        }
-	}
-
-	handleMouseEnter() {
-
-	}
-
-	handleMouseLeave() {
-	}
-
-	animateIn() {
-	}
-
-	animateOut() {
-	}
-
 	render() {
 		return (
-			<div className="close" onMouseDown={this.handleMouseDown.bind(this)} onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)}>
+			<div className="close" onClick={this.props.action}>
 			</div>
 		);
 	}

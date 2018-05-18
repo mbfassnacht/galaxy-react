@@ -11,15 +11,29 @@ import Footer from './components/Footer/footer';
 
 class VideoPackager extends React.Component {
 
-    componentDidMount() {
+    constructor(props) {
+        super(props);
+        this.state = {hidden: true};
+    }
 
+    componentDidMount() {
+        const opener = document.getElementById('react-video-packager-opener');
+        opener.addEventListener('click', this.openClose.bind(this));
+    }
+
+    openClose() {
+        if (this.state.hidden){
+            this.setState({hidden: false});
+        } else {
+            this.setState({hidden: true});
+        }
     }
 
     render() {
         return (
-            <div className="video-packager-content">
+            <div className={'video-packager-content ' + (this.state.hidden ? 'hidden' :'')}>
                 <div className="video-packager-header-container video-packager-container">
-                    <Close></Close>
+                    <Close action={this.openClose.bind(this)}></Close>
                 </div>
                 <div className="video-packager-body-container video-packager-container">
                     <div className="video-packager-mid-container video-packager-container">
@@ -30,7 +44,7 @@ class VideoPackager extends React.Component {
                         </div>
                         <div className="video-packager-right-container video-packager-container">
                             <CurrentVideoAction></CurrentVideoAction>
-                        </div>        
+                        </div>
                     </div>
                     <Timeline></Timeline>
                 </div>

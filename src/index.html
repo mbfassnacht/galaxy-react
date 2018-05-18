@@ -4,9 +4,30 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>REACT VIDEO PACKAGER</title>
+        <style>
+            .test-container {
+                width: 800px;
+                margin: 40px auto;
+            }
+            .test-button {
+                background-color: black;
+                color: white;
+                width: 200px;
+                padding: 20px;
+                cursor: pointer;
+            }
+            .test-button:hover {
+                background-color: white;
+                color: black;
+            }
+        </style>
     </head>
+
     <body>
-        <div id="react-video-packager"></div>
+        <div class="test-container">
+            <div class="test-button" id="react-video-packager-opener">OPEN VIDEO PACKAGER</div>
+            <div class="video-packager" id="react-video-packager"></div>
+        </div>
         <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
         <script type="text/javascript" src="assets/videoPackager.js"></script>
     </body>
