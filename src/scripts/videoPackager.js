@@ -1,14 +1,15 @@
 import React from 'react';
 require('normalize.css/normalize.css');
-require('styles/App.scss');
+require('styles/VideoPackager.scss');
 import Close from './components/Close/close';
 import Video from './components/Video/video';
 import VideoControls from './components/VideoControls/videoControls';
-import VideoActionsContainer from './components/VideoActionsContainer/videoActionsContainer';
+import VideoAddActions from './components/VideoAddActions/videoAddActions';
+import CurrentVideoAction from './components/CurrentVideoAction/currentVideoAction';
 import Timeline from './components/Timeline/timeline';
 import Footer from './components/Footer/footer';
 
-class App extends React.Component {
+class VideoPackager extends React.Component {
 
     componentDidMount() {
 
@@ -20,7 +21,8 @@ class App extends React.Component {
             <Close></Close>
             <Video></Video>
             <VideoControls></VideoControls>
-            <VideoActionsContainer></VideoActionsContainer>
+            <VideoAddActions></VideoAddActions>
+            <CurrentVideoAction></CurrentVideoAction>
             <Timeline></Timeline>
             <Footer></Footer>
             </div>
@@ -28,8 +30,8 @@ class App extends React.Component {
     }
 }
 
-App.defaultProps = {
+VideoPackager.defaultProps = {
 
 };
 
-export default App;
+export default VideoPackager;
