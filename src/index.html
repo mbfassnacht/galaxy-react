@@ -21,6 +21,7 @@
                 color: black;
             }
         </style>
+        <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
     </head>
 
     <body>
@@ -28,7 +29,7 @@
             <div class="test-button" id="react-video-packager-opener">OPEN VIDEO PACKAGER</div>
             <div class="video-packager" id="react-video-packager"></div>
         </div>
+        <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
         <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
-        <script type="text/javascript" src="assets/videoPackager.js"></script>
     </body>
 </html>

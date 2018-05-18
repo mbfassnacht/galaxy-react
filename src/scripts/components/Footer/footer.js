@@ -1,5 +1,3 @@
-require('styles/components/Footer/footer.scss');
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '../Button/button';

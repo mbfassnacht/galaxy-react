@@ -1,18 +1,13 @@
-require('styles/components/Close/close.scss');
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import loadsvg from 'load-svg';
-
 var model = require('./close-model');
-
+var icon = require('svg-inline-loader?classPrefix!./' + model.closeIcon);
 class Close extends React.Component {
 
 	componentDidMount() {
 		this.container = ReactDOM.findDOMNode(this);
-		loadsvg(model.closeIcon, function (err, svg) {
-		    this.container.appendChild(svg);
-		}.bind(this));
+		this.container.appendChild(icon);
 	}
 
 	render() {
