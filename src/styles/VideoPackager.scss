@@ -1,4 +1,5 @@
-
+@import "./_globals.scss";
+@import "./fonts.scss";
 .video-packager-container {
     border: 1px solid black;
 }
@@ -12,6 +13,8 @@
     &.hidden {
         display: none;
     }
+
+    font-family: $basic-font;
 }
 
 .video-packager-mid-container {
