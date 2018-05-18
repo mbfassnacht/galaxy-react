@@ -17,14 +17,26 @@ class VideoPackager extends React.Component {
 
     render() {
         return (
-            <div>
-            <Close></Close>
-            <Video></Video>
-            <VideoControls></VideoControls>
-            <VideoAddActions></VideoAddActions>
-            <CurrentVideoAction></CurrentVideoAction>
-            <Timeline></Timeline>
-            <Footer></Footer>
+            <div className="video-packager-content">
+                <div className="video-packager-header-container video-packager-container">
+                    <Close></Close>
+                </div>
+                <div className="video-packager-body-container video-packager-container">
+                    <div className="video-packager-mid-container video-packager-container">
+                        <div className="video-packager-left-container video-packager-container">
+                            <Video></Video>
+                            <VideoControls></VideoControls>
+                            <VideoAddActions></VideoAddActions>
+                        </div>
+                        <div className="video-packager-right-container video-packager-container">
+                            <CurrentVideoAction></CurrentVideoAction>
+                        </div>        
+                    </div>
+                    <Timeline></Timeline>
+                </div>
+                <div className="video-packager-footer-container video-packager-container">
+                    <Footer></Footer>
+                </div>
             </div>
         );
     }

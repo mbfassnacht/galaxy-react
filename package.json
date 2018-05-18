@@ -81,6 +81,7 @@
     "react-addons-transition-group": "^15.6.0",
     "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",
+    "react-player-controls": "^0.5.20",
     "sass-loader": "^6.0.6",
     "superagent": "^3.8.1",
     "webpack": "^1.15.0"

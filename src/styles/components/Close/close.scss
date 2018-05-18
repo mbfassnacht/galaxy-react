@@ -2,12 +2,13 @@
 
 .close {
 	height: 30px;
-	width: 30px;
-	cursor: pointer;
-	visibility: hidden;
+    width: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
 	svg{
 		height: 30px;
 		width: 30px;
-		fill: $grey;
+		fill: $color3;
 	}
 }

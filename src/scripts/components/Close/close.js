@@ -37,7 +37,6 @@ class Close extends React.Component {
 	render() {
 		return (
 			<div className="close" onMouseDown={this.handleMouseDown.bind(this)} onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)}>
-				im the close button
 			</div>
 		);
 	}

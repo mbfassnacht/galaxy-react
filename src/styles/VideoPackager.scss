@@ -1,15 +1,17 @@
-html {
-    margin: 0;
-    height: 100%;
-    width: 100%;
+
+.video-packager-container {
+    border: 1px solid black;
 }
 
-body {
-    margin: 0;
-    height: 100%;
-    width: 100%;
+.video-packager-header-container {
+    position: relative;
+    height: 30px;
 }
 
-.hidden-container {
-    display: none;
+.video-packager-mid-container {
+    display: flex;
+
+    .video-packager-container {
+        width: 50%;
+    }
 }
