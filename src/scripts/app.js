@@ -1,7 +1,12 @@
 import React from 'react';
-import Menu from './components/Menu/menu';
 require('normalize.css/normalize.css');
 require('styles/App.scss');
+import Close from './components/Close/close';
+import Video from './components/Video/video';
+import VideoControls from './components/VideoControls/videoControls';
+import VideoActionsContainer from './components/VideoActionsContainer/videoActionsContainer';
+import Timeline from './components/Timeline/timeline';
+import Footer from './components/Footer/footer';
 
 class App extends React.Component {
 
@@ -10,11 +15,14 @@ class App extends React.Component {
     }
 
     render() {
-        var props = this.props;
         return (
             <div>
-                <Menu></Menu>
-                {this.props.children}
+            <Close></Close>
+            <Video></Video>
+            <VideoControls></VideoControls>
+            <VideoActionsContainer></VideoActionsContainer>
+            <Timeline></Timeline>
+            <Footer></Footer>
             </div>
         );
     }

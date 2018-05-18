@@ -33,5 +33,6 @@ bower_components/
 .idea
 
 .DS_Store
+.bash_history
 
 dist/*
