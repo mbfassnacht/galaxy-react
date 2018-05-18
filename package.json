@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf dist/*",
-    "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./src/CNAME ./dist",
+    "copy": "copyfiles -f ./src/index.html ./dist",
     "assets": "cp -R ./src/images ./dist",
     "dist": "npm run copy & webpack --env=dist & npm run assets",
     "lint": "eslint ./src",
