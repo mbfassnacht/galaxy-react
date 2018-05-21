@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import loadsvg from 'load-svg';
-var model = require('./close-model');
-var icon = require('svg-inline-loader?classPrefix!./' + model.closeIcon);
+import SVGInline from "react-svg-inline"
+import icon from '../../../assets/images/close.svg';
+
 class Close extends React.Component {
 
 	componentDidMount() {
 		this.container = ReactDOM.findDOMNode(this);
-		this.container.appendChild(icon);
 	}
 
 	render() {
 		return (
 			<div className="close" onClick={this.props.action}>
+				<SVGInline svg={icon} />
 			</div>
 		);
 	}
