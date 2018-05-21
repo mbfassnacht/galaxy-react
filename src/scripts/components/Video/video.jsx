@@ -16,8 +16,8 @@ class Video extends React.Component {
 					<source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg"></source>
 					<object width="640" height="360" type="application/x-shockwave-flash" data="player.swf">
 						<param name="movie" value="player.swf"></param>
-						<param name="flashvars" value="autostart=true&amp;controlbar=over&amp;image=poster.jpg&amp;file=http://clips.vorwaerts-gmbh.de/VfE_flash.mp4"></param>
-						<img src="poster.jpg" width="640" height="360" alt="Big Buck Bunny" title="No video playback capabilities, please download the video below"></img>
+						<param name="flashvars" value="autostart=true&amp;controlbar=over&amp;image=images/poster.jpg&amp;file=http://clips.vorwaerts-gmbh.de/VfE_flash.mp4"></param>
+						<img src="images/poster.jpg" width="640" height="360" alt="Big Buck Bunny" title="No video playback capabilities, please download the video below"></img>
 					</object>
 				</video>
 			</div>
