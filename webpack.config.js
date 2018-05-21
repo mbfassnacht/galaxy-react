@@ -16,7 +16,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use:  [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
+                use:  [  'style-loader','postcss-loader', 'sass-loader']
             },
             {
                 test: /\.(woff|woff2|eot|ttf)$/,
@@ -48,6 +48,6 @@ module.exports = {
     ],
     output: {
         path: path.resolve(__dirname, "dist/"),
-        filename: 'assets/js/[name].js'
+        filename: 'js/videoPackager.js'
     },
 };
