@@ -1,6 +1,4 @@
 import React from 'react';
-require('normalize.css/normalize.css');
-require('styles/VideoPackager.scss');
 import Close from './components/Close/close';
 import Video from './components/Video/video';
 import VideoControls from './components/VideoControls/videoControls';

@@ -1,5 +1,3 @@
-require('styles/components/Button/button.scss');
-
 import React from 'react';
 
 class Button extends React.Component {

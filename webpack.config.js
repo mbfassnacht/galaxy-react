@@ -1,32 +1,47 @@
-'use strict';
-
 const path = require('path');
-const args = require('minimist')(process.argv.slice(2));
-
-// List of allowed environments
-const allowedEnvs = ['dev', 'dist', 'test'];
-
-// Set the correct environment
-let env;
-if (args._.length > 0 && args._.indexOf('start') !== -1) {
-  env = 'test';
-} else if (args.env) {
-  env = args.env;
-} else {
-  env = 'dev';
-}
-process.env.REACT_WEBPACK_ENV = env;
-
-/**
- * Build the webpack configuration
- * @param  {String} wantedEnv The wanted environment
- * @return {Object} Webpack config
- */
-function buildConfig(wantedEnv) {
-  let isValid = wantedEnv && wantedEnv.length > 0 && allowedEnvs.indexOf(wantedEnv) !== -1;
-  let validEnv = isValid ? wantedEnv : 'dev';
-  let config = require(path.join(__dirname, 'cfg/' + validEnv));
-  return config;
-}
-
-module.exports = buildConfig(env);
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+module.exports = {
+    entry: { main: './src/scripts/index.js' },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            },
+            {
+                test: /\.scss$/,
+                use:  [  'style-loader','postcss-loader', 'sass-loader']
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf)$/,
+                use: {
+                    loader: 'file-loader'
+                }
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
+            }
+        ]
+    },
+    plugins: [
+        new CleanWebpackPlugin('dist', {} ),
+        new HtmlWebpackPlugin({
+            inject: false,
+            hash: true,
+            template: './src/index.html',
+            filename: 'index.html'
+        }),
+        new WebpackMd5Hash()
+    ],
+    output: {
+        path: path.resolve(__dirname, "dist/"),
+        filename: 'js/videoPackager.js'
+    },
+};
