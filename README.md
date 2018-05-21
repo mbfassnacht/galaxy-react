@@ -9,14 +9,10 @@ npm install
 The following commands are available in your project:
 ```bash
 # Start for development
-npm start # or
-npm run serve
-
-# Start the dev-server with the dist version
-npm run serve:dist
+npm start
 
 # Just build the dist version and copy static files
-npm run dist
+npm run build
 
 # Run unit tests
 npm test
@@ -24,12 +20,13 @@ npm test
 # Auto-run unit tests on file changes
 npm run test:watch
 
+# To debug in chrome
+
+# Place a debugger; statement in any of your tests, and then, in your project's directory, run:
+node --inspect-brk node_modules/.bin/jest --runInBand [any other arguments here]
+
+# To debug in Google Chrome (or any Chromium-based browser), simply open your browser and go to chrome://inspect and click on "Open Dedicated DevTools for Node",
+
 # Lint all files in src (also automatically done AFTER tests are run)
 npm run lint
-
-# Clean up the dist directory
-npm run clean
-
-# Just copy the static assets
-npm run copy
 ```

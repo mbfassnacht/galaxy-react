@@ -1,11 +1,11 @@
 import React from 'react';
-import Close from './components/Close/close';
-import Video from './components/Video/video';
-import VideoControls from './components/VideoControls/videoControls';
-import VideoAddActions from './components/VideoAddActions/videoAddActions';
-import CurrentVideoAction from './components/CurrentVideoAction/currentVideoAction';
-import Timeline from './components/Timeline/timeline';
-import Footer from './components/Footer/footer';
+import Close from './components/Close/close.jsx';
+import Video from './components/Video/video.jsx';
+import VideoControls from './components/VideoControls/videoControls.jsx';
+import VideoAddActions from './components/VideoAddActions/videoAddActions.jsx';
+import CurrentVideoAction from './components/CurrentVideoAction/currentVideoAction.jsx';
+import Timeline from './components/Timeline/timeline.jsx';
+import Footer from './components/Footer/footer.jsx';
 
 class VideoPackager extends React.Component {
 

@@ -34,5 +34,6 @@ bower_components/
 
 .DS_Store
 .bash_history
+__snapshots__
 
 dist/*

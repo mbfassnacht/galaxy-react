@@ -11,12 +11,12 @@
     "fonts": "cp -R ./fonts ./dist/",
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production  && npm run assets && npm run fonts",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "test:watch": "jest --watch"
   },
   "jest": {
     "transform": {
-      "^.+\\.js?$": "babel-jest"
+      "^.+\\.jsx?$": "babel-jest"
     },
     "moduleNameMapper": {
       "\\.(s?css|less)$": "identity-obj-proxy"
@@ -30,8 +30,11 @@
     "babel-eslint": "^6.1.2",
     "babel-jest": "^22.4.4",
     "babel-loader": "^7.1.4",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.0.15",
+    "babel-preset-stage-0": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
