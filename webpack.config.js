@@ -21,10 +21,7 @@ module.exports = {
             {
                 test: /\.(woff|woff2|eot|ttf)$/,
                 use: {
-                    loader: 'file-loader',
-                    options: {
-                        limit: 100000
-                    }
+                    loader: 'file-loader'
                 }
             },
             {
@@ -35,9 +32,6 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin('dist', {} ),
-        new MiniCssExtractPlugin({
-            filename: 'style.[contenthash].css',
-        }),
         new HtmlWebpackPlugin({
             inject: false,
             hash: true,
