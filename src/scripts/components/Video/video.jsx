@@ -5,12 +5,18 @@ class Video extends React.Component {
 
 	componentDidMount() {
 		this.container = ReactDOM.findDOMNode(this);
+		this.video = this.container.getElementsByTagName('video')[0];
+
+
+		this.video.addEventListener('loadedmetadata', () => {
+			this.setState({duration: this.video.duration});
+		});
 	}
 
 	render() {
 		return (
 			<div className="video">
-				<video width="100%" height="360" controls="" autoPlay="true">
+				<video ref="effectiveVideo" width="100%" height="360" controls="" autoPlay="true">
 					<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4"></source>
 					<source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm"></source>
 					<source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg"></source>
