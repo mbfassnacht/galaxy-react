@@ -12,7 +12,7 @@ class VideoPackager extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {hidden: true};
+        this.state = {hidden: false};
     }
 
     componentDidMount() {

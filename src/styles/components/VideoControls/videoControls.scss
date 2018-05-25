@@ -1,7 +1,16 @@
-$icon-size: 30px;
+.video-controls {
+    display: flex;
+    .toggle-button {
+        &.hidden {
+            display: none;
+        }
+    }
+}
 
-$color-hover: $color4;
-$color-active: $color4;
+
+$icon-size: 30px;
+$color-hover: $color3;
+$color-active: $color3;
 
 
 //

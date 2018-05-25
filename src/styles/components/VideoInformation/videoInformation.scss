@@ -2,8 +2,10 @@
     padding: 10px;
 
     .title {
-        height: 30px;
+        font-size: $normal-font-size;
+        height: 40px;
         width: 100%;
         border: 2px solid black;
+        padding: 10px;
     }
 }
