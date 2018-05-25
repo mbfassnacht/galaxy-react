@@ -7,7 +7,6 @@ function getStateFromStore() {
     return ActionsStore.getAll()
 }
 
-
 class ActionsList extends React.Component {
 
 	constructor(props) {

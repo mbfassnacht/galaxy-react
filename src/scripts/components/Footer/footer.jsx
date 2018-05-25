@@ -11,7 +11,6 @@ class Footer extends React.Component {
 	render() {
 		return (
 			<div className="footer">
-				<Button text="Cancel"></Button>
 				<Button text="Save"></Button>
 			</div>
 		);

@@ -1,0 +1,17 @@
+.add-actions {
+    display: flex;
+    padding: 10px;
+    select {
+        height: 60px;
+        border: 2px solid black;
+        font-size: $normal-font-size;
+    }
+
+    .field {
+        flex-grow: 1;
+        flex-basis: 0;
+    }
+    .button {
+        margin: 0px 10px;
+    }
+}

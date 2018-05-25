@@ -1,14 +1,15 @@
 .button {
 	background-color: $color2;
 	color: $color1;
-	width: 100px;
-	min-height: 30px;
-	line-height: 30px;
-    text-align: center;
-    padding: 20px;
-	margin: 20px 10px;
+	min-width: 100px;
+	min-height: 20px;
+	line-height: 20px;
+	text-align: center;
+	padding: 20px;
+	margin: 10px 10px;
 	cursor: pointer;
-
+	display: inline-block;
+	font-size: $normal-font-size;
 	&:hover {
 		color: $color1;
 		background-color: $color3;
