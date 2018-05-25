@@ -17,7 +17,7 @@ class VideoControls extends React.Component {
     }
 
 	componentDidMount() {
-		this.container = ReactDOM.findDOMNode(this);
+		VideoStatusStore.addChangeListener(this.onChange.bind(this));
 	}
 
 	onPlay() {
@@ -28,9 +28,17 @@ class VideoControls extends React.Component {
 		VideoActions.pause();
 	}
 
+	onChange() {
+		var status = getStateFromStore();
+		this.setState(status);
+	}
+
+	componentWillUnmount() {
+		VideoStatusStore.removeChangeListener(this.onChange.bind(this));
+	}
+
 	toggleMute() {
-		this.setState({isMuted: ! this.state.isMuted });
-		var state = this.state.isMuted;
+		var state = !this.state.mute;
 		VideoActions.mute({
 			mute: state
 		});
@@ -44,16 +52,15 @@ class VideoControls extends React.Component {
 					  	onClick = {() => alert('Go to previous')}
 					/>
 
-				<div className = {!this.state.playing ? 'toggle-button hidden' : 'toggle-button'}>
+				<div className = {this.state.playing ? 'toggle-button hidden' : 'toggle-button'}>
 					<PlayButton
 						isEnabled = {true}
-						onClick = {this.onPlay}
+						onClick = {this.onPlay.bind(this)}
 					/>
 				</div>
-					<div className = {this.state.playing ? 'toggle-button hidden' : 'toggle-button'}>
-
+					<div className = {!this.state.playing ? 'toggle-button hidden' : 'toggle-button'}>
 					<PauseButton
-						onClick = {this.onPause}
+						onClick = {this.onPause.bind(this)}
 					/>
 				</div>
 				<NextButton

@@ -14,21 +14,33 @@ class Video extends React.Component {
 		this.state = status;
 	}
 
+	setVideoStatus() {
+		this.video.muted = this.state.mute;
+		if (this.state.playing) {
+			this.video.play();
+		} else {
+			this.video.pause();
+		}
+	}
+
 	componentDidMount() {
 		VideoStatusStore.addChangeListener(this.onChange.bind(this));
 		this.container = ReactDOM.findDOMNode(this);
 		this.video = this.container.getElementsByTagName('video')[0];
 
 		this.video.addEventListener('loadedmetadata', () => {
-			this.video.muted = this.state.mute;
+			this.setVideoStatus();
 			this.setState({duration: this.video.duration});
 		});
 	}
 
+	componentDidUpdate() {
+		this.setVideoStatus();
+	}
+
 	onChange() {
 		var status = getStateFromStore();
-		this.setState({status});
-		this.video.muted= status.mute;
+		this.setState(status);
 	}
 
 	componentWillUnmount() {
@@ -36,9 +48,10 @@ class Video extends React.Component {
 	}
 
 	render() {
+
 		return (
 			<div className="video">
-				<video ref="effectiveVideo" width="100%" controls="" autoPlay="false">
+				<video ref="effectiveVideo" width="100%" controls="">
 					<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4"></source>
 					<source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm"></source>
 					<source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg"></source>

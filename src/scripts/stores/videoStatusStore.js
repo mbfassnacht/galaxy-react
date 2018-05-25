@@ -3,7 +3,7 @@ import { EventEmitter } from 'events';
 import assign from 'object-assign';
 
 var statusStore = {
-    playing: false,
+    playing: true,
     mute: true
 };
 
