@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import VideoStatusStore from '../../stores/videoStatusStore';
+import VideoActions from '../../actions/viewActions/videoActions';
 
 function getStateFromStore() {
     return VideoStatusStore.getStatus()
@@ -21,6 +22,7 @@ class Video extends React.Component {
 		} else {
 			this.video.pause();
 		}
+		this.setVideoCurrentTime(this.state.time);
 	}
 
 	componentDidMount() {
@@ -30,8 +32,18 @@ class Video extends React.Component {
 
 		this.video.addEventListener('loadedmetadata', () => {
 			this.setVideoStatus();
-			this.setState({duration: this.video.duration});
+			VideoActions.setDuration( this.video.duration);
+
+			this.video.addEventListener("timeupdate", () => {
+				VideoActions.setTime(this.video.currentTime);
+			});
 		});
+	}
+
+	setVideoCurrentTime(newTime) {
+		if (!isNaN(newTime)) {
+			this.video.currentTime = newTime;
+		}
 	}
 
 	componentDidUpdate() {

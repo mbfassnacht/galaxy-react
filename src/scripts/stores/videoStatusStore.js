@@ -4,7 +4,9 @@ import assign from 'object-assign';
 
 var statusStore = {
     playing: true,
-    mute: true
+    mute: true,
+    time: 0,
+    duration: 0
 };
 
 var VideoStatusStore = assign({}, EventEmitter.prototype, {
@@ -39,6 +41,20 @@ AppDispatcher.register(function(action) {
             break;
         case "MUTE_ACTION":
             statusStore.mute = action.mute;
+            VideoStatusStore.emitChange();
+            break;
+        case "SET_DURATION_ACTION":
+            statusStore.duration = action.duration;
+            break;
+        case "SET_TIME_ACTION":
+            statusStore.time = action.time;
+            break;
+        case "DECREASE_ACTION":
+            statusStore.time = Math.max(0, statusStore.time - 1);
+            VideoStatusStore.emitChange();
+            break;
+        case "INCREASE_ACTION":
+            statusStore.time = Math.min(statusStore.duration, statusStore.time + 1);
             VideoStatusStore.emitChange();
             break;
         default:

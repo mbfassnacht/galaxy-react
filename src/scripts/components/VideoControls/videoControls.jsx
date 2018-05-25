@@ -28,6 +28,14 @@ class VideoControls extends React.Component {
 		VideoActions.pause();
 	}
 
+	onIncrease() {
+		VideoActions.increase();
+	}
+
+	onDecrease() {
+		VideoActions.decrease();
+	}
+
 	onChange() {
 		var status = getStateFromStore();
 		this.setState(status);
@@ -47,11 +55,10 @@ class VideoControls extends React.Component {
 	render() {
 		return (
 			<div className = "video-controls">
-					<PrevButton
-					  	isEnabled = {true}
-					  	onClick = {() => alert('Go to previous')}
-					/>
-
+				<PrevButton
+				  	isEnabled = {true}
+				  	onClick = {this.onDecrease.bind(this)}
+				/>
 				<div className = {this.state.playing ? 'toggle-button hidden' : 'toggle-button'}>
 					<PlayButton
 						isEnabled = {true}
@@ -65,7 +72,7 @@ class VideoControls extends React.Component {
 				</div>
 				<NextButton
 				  	isEnabled = {true}
-				  	onClick = {() => alert('Go to previous')}
+				  	onClick = {this.onIncrease.bind(this)}
 				/>
 				<MuteToggleButton
 					isEnabled = {true}
