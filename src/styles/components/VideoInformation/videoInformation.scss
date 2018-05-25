@@ -1,11 +1,17 @@
 .video-information {
-    padding: 10px;
 
     .title {
         font-size: $normal-font-size;
         height: 40px;
         width: 100%;
-        border: 2px solid black;
+        border: 2px solid $color3;
+        color: $color3;
         padding: 10px;
+        cursor: pointer;
+
+        &:hover {
+            color: $color2;
+            border: 2px solid $color2;
+        }
     }
 }

@@ -1,6 +1,7 @@
 .add-actions {
     display: flex;
-    padding: 10px;
+    margin-bottom: 10px;
+
     select {
         height: 60px;
         border: 2px solid black;
@@ -12,6 +13,6 @@
         flex-basis: 0;
     }
     .button {
-        margin: 0px 10px;
+        margin-left: 10px;
     }
 }

@@ -6,10 +6,11 @@
 	line-height: 20px;
 	text-align: center;
 	padding: 20px;
-	margin: 10px 10px;
 	cursor: pointer;
 	display: inline-block;
 	font-size: $normal-font-size;
+	transition: $transition-time;
+	
 	&:hover {
 		color: $color1;
 		background-color: $color3;

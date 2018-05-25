@@ -1,18 +1,26 @@
 .video-packager-container {
-    border: 1px solid black;
+
 }
 
 .video-packager-header-container {
     position: relative;
     height: 30px;
+    margin-bottom: 10px;
 }
 
 .video-packager-content {
+    padding: 15px;
+    border: 1px solid black;
+
     &.hidden {
         display: none;
     }
 
     font-family: $basic-font;
+}
+
+.video-packager-right-container {
+    padding-left: 10px;
 }
 
 .video-packager-mid-container {

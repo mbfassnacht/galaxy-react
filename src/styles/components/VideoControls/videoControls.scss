@@ -1,5 +1,7 @@
 .video-controls {
+    margin: 10px auto;
     display: flex;
+
     .toggle-button {
         &.hidden {
             display: none;
