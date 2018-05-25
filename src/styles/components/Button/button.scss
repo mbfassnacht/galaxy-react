@@ -8,10 +8,9 @@
     padding: 20px;
 	margin: 20px 10px;
 	cursor: pointer;
+
 	&:hover {
-		color: $color2;
-		background-color: $color1;
-		border: 1px $color2 solid;
-		height: 28px;
+		color: $color1;
+		background-color: $color3;
 	}
 }
