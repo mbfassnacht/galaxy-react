@@ -2,4 +2,106 @@
     border: 2px solid $color2;
     margin-top: 10px;
     margin-bottom: 10px;
+
+    .action-header {
+        display: flex;
+
+        .action-title {
+            width: 50%;
+            input {
+                width: 100%;
+                border-right: 2px solid $color2;
+                border-bottom: 2px solid $color2;
+                border-left-width: 0px;
+                border-top-width: 0px;
+                height: 30px;
+                font-size: $normal-font-size;
+            }
+        }
+        .action-duration {
+            border-bottom: 2px solid $color2;
+            width: 50%;
+            line-height: 28px
+        }
+    }
+
+    .action-top-info {
+        padding: 10px;
+
+        input {
+            margin-left: 10px;
+            margin-right: 10px;
+            height: 30px;
+            font-size: $normal-font-size;
+            width: 20%;
+        }
+    }
+
+    .action-content {
+        padding: 10px;
+        .input-container {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        label {
+        }
+
+        input {
+            margin-left: 10px;
+            width: calc(100% - 83px);
+            height: 30px;
+            font-size: $normal-font-size;
+        }
+    }
+
+    .action-bottom-container {
+        display: flex;
+        padding: 10px;
+
+        .bottom-item {
+            &.x-small {
+                width: 10%;
+            }
+
+            &.text {
+                text-align: center;
+                line-height: 60px;
+            }
+
+            &.small {
+                width: 30%;
+            }
+
+            &.normal {
+                width: 60%;
+            }
+
+            position: relative;
+            .button {
+                display: block;
+            }
+
+            &:hover {
+        		svg {
+        			fill: $color3;
+        		}
+        	}
+
+            svg {
+                cursor: pointer;
+                fill: $color2;
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+
+
+
+    }
 }
