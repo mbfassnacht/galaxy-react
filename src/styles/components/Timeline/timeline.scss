@@ -20,4 +20,16 @@
         }
 
     }
+    .timeline-footer {
+        padding-top: 10px;
+        height: 30px;
+
+        .start {
+            float: left;
+        }
+        .end {
+            float: right;
+        }
+    }
+
 }

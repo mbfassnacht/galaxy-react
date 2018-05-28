@@ -19,7 +19,6 @@ class AddActions extends React.Component {
 	}
 
 	onAddAction() {
-		console.log("add action: " + this.state.selectedAction);
 		ActionsActions.add({
 			type: this.state.selectedAction
 		});

@@ -5,8 +5,8 @@ import assign from 'object-assign';
 var actions = [];
 var currentTime = 0;
 var currentSelectedAction = {
-    markIn: '00:00:00',
-    markOut: '00:00:00',
+    markIn: 0,
+    markOut: 0,
     title: '',
     input1: '',
     input2: '',
@@ -55,7 +55,6 @@ AppDispatcher.register(function(action) {
             };
             currentSelectedAction = newAction;
             actions.push(newAction);
-            console.log(actions);
             ActionsStore.emitChange();
             break;
 
@@ -70,7 +69,6 @@ AppDispatcher.register(function(action) {
                 placeholder: false,
                 id: -1
             };
-            console.log(actions);
             ActionsStore.emitChange();
             break;
 
@@ -82,7 +80,6 @@ AppDispatcher.register(function(action) {
         case "UPDATE_ACTION":
             actions[action.action.action.id] = action.action.action;
             currentSelectedAction = action.action.action;
-            console.log(actions);
             ActionsStore.emitChange();
             break;
 
@@ -98,7 +95,6 @@ AppDispatcher.register(function(action) {
                 placeholder: false,
                 id: -1
             };
-            console.log(actions);
             ActionsStore.emitChange();
             break;
 

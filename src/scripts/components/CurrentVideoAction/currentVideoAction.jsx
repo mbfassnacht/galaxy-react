@@ -15,20 +15,35 @@ class CurrentVideoAction extends React.Component {
 	constructor(props) {
 		super(props);
 		var action = getCurrentActionFromStore();
-		this.state = {action: action, actionSelected: false};
+		this.state = {
+			action: action,
+			actionSelected: false,
+			userMarkIn: '00:00:00',
+			userMarkOut: '00:00:00',
+			duration: '00:00:00'
+		};
 	}
 
 	onChange() {
 		var action = getCurrentActionFromStore();
-		if (action.id != -1) {
-			this.setState({action: action, actionSelected: true});
-		} else {
-			this.setState({action: action, actionSelected: false});
-		}
+		var duration = action.markOut - action.markIn;
+		this.setState({
+			action: action,
+			actionSelected: (action.id != -1) ? true : false,
+			userMarkIn: this.formatTimeForDom(action.markIn),
+			userMarkOut: this.formatTimeForDom(action.markOut),
+			duration: this.formatTimeForDom(duration)
+		});
 
 	}
 
-	secondsToTime(secs){
+	setDuration() {
+		var duration = this.state.action.markOut - this.state.action.markIn;
+		this.formatTimeForDom(duration);
+		this.setState({duration: this.formatTimeForDom(duration)});
+	}
+
+	secondsToTime(secs) {
 	    var hours = Math.floor(secs / (60 * 60));
 
 	    var divisor_for_minutes = secs % (60 * 60);
@@ -45,7 +60,43 @@ class CurrentVideoAction extends React.Component {
 	    return obj;
 	}
 
-	formatTimeForDom(time){
+	fromFormattedTimeToSeconds(formattedTime) {
+
+	    var frameFraction = 0;
+
+	    var timesArr = formattedTime.split(':');
+
+	    if (timesArr.length === 4) {
+	        frameFraction = parseInt(timesArr.pop(), 10);
+
+	        if (isNaN(frameFraction))
+	        {
+	            return false;
+	        }
+	    }
+
+	    if (timesArr.length === 3) {
+	        //check length of each string and is number
+	        for (var i=0;i<timesArr.length;i++) {
+	            if (timesArr[i].length != 2) {
+	                return false;//err
+	            }
+	            if(isNaN( Number(timesArr[i]) ) ){
+	                return false;//err
+	            }
+	            if ( 'number' !== typeof Number(timesArr[i]) ) {
+	                return false;//err
+	            }
+	        }
+	    } else {
+	        return false;
+	    }
+
+	    var seconds = (+timesArr[0]) * 60 * 60 + (+timesArr[1]) * 60 + (+timesArr[2]) + frameFraction;
+	    return seconds;
+	}
+
+	formatTimeForDom(time) {
 	    var formatted = this.secondsToTime(Math.floor(time));
 	    var time_string = formatted.h + ':' + formatted.m + ':' + formatted.s;
 	    return time_string;
@@ -53,10 +104,6 @@ class CurrentVideoAction extends React.Component {
 
 	componentDidMount() {
 		ActionsStore.addChangeListener(this.onChange.bind(this));
-	}
-
-	actionUpdated() {
-		ActionsActions.update(this.state.action);
 	}
 
 	updateTitle(e) {
@@ -69,18 +116,22 @@ class CurrentVideoAction extends React.Component {
 	}
 
 	updateMarkIn(e) {
+		var markIn = this.fromFormattedTimeToSeconds(e.currentTarget.value);
 		var updatedAction = {
-			action: Object.assign({}, this.state.action, {markIn: e.currentTarget.value})
+			action: Object.assign({}, this.state.action, {markIn: markIn})
 		};
 		this.setState(updatedAction);
+		this.setDuration();
 		ActionsActions.update(updatedAction);
 	}
 
 	updateMarkOut(e) {
+		var markOut = this.fromFormattedTimeToSeconds(e.currentTarget.value);
 		var updatedAction = {
-			action: Object.assign({}, this.state.action, {markOut: e.currentTarget.value})
+			action: Object.assign({}, this.state.action, {markOut: markOut})
 		};
 		this.setState(updatedAction);
+		this.setDuration();
 		ActionsActions.update(updatedAction);
 	}
 
@@ -128,15 +179,14 @@ class CurrentVideoAction extends React.Component {
 						<input className="title" placeholder = "Enter action name..." value={this.state.action.title} onChange={this.updateTitle.bind(this)}/>
 					</div>
 					<div className="action-duration">
-						<span className="duration-title">Duration:</span>
-						<span className="duration"></span>
+						<span className="duration-title">Duration: {this.state.duration}</span>
 					</div>
 				</div>
 				<div className="action-top-info">
 					<label htmlFor="mark-in">Mark in</label>
-					<input input="mark-in" className="mark-in" value={this.state.action.markIn} onChange={this.updateMarkIn.bind(this)}/>
+					<input input="mark-in" className="mark-in" value={this.state.userMarkIn} onChange={this.updateMarkIn.bind(this)}/>
 					<label htmlFor="mark-out">Mark out</label>
-					<input input="mark-out" className="mark-out" value={this.state.action.markOut} onChange={this.updateMarkOut.bind(this)}/>
+					<input input="mark-out" className="mark-out" value={this.state.userMarkOut} onChange={this.updateMarkOut.bind(this)}/>
 				</div>
 				<div className="action-content">
 					<div className="input-container">

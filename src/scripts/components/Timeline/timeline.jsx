@@ -45,6 +45,29 @@ class Timeline extends React.Component {
 		return items;
 	}
 
+	formatTimeForDom(time) {
+		var formatted = this.secondsToTime(Math.floor(time));
+		var time_string = formatted.h + ':' + formatted.m + ':' + formatted.s;
+		return time_string;
+	}
+
+	secondsToTime(secs) {
+	    var hours = Math.floor(secs / (60 * 60));
+
+	    var divisor_for_minutes = secs % (60 * 60);
+	    var minutes = Math.floor(divisor_for_minutes / 60);
+
+	    var divisor_for_seconds = divisor_for_minutes % 60;
+	    var seconds = Math.ceil(divisor_for_seconds);
+
+	    var obj = {
+	        "h": hours < 10 ? '0'+ hours : hours,
+	        "m": minutes < 10 ? '0'+minutes : minutes,
+	        "s": seconds < 10 ? '0'+seconds : seconds
+	    };
+	    return obj;
+	}
+
 	onItemClick(event) {
 		ActionsActions.selectAction(event.items[0]);
 	}
@@ -58,7 +81,7 @@ class Timeline extends React.Component {
 	onChangeTime() {
 		var videoStatus = getVideoStatusFromStore();
 		this.setState({duration: videoStatus.duration});
-		this.setState({time: videoStatus.time});
+		this.setState({time: parseFloat(videoStatus.time)});
 	}
 
 	componentDidMount() {
@@ -77,9 +100,16 @@ class Timeline extends React.Component {
 			width: '100%',
   			height: '200px',
 			start: 0,
-			end: this.state.duration,
+			end: parseFloat(this.state.duration),
 			min: 0,
-			max: this.state.duration
+			max: parseFloat(this.state.duration),
+			editable: {
+				add: false,
+				updateTime: true,
+				updateGroup: true,
+				remove: false,
+				overrideItems: false
+			}
 		};
 
 		const customTimes = {
@@ -89,6 +119,10 @@ class Timeline extends React.Component {
 		return (
 			<div className="timeline">
 				<TimelineComponent  customTimes={customTimes} select={this.onItemClick} ref="timeline" items={this.state.items} options={options}></TimelineComponent>
+				<div className="timeline-footer">
+					<div className="start">00:00:00</div>
+					<div className="end">{this.formatTimeForDom(this.state.duration)}</div>
+				</div>
 			</div>
 		);
 	}

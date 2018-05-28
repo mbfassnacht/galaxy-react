@@ -32,6 +32,7 @@ class VideoPackager extends React.Component {
         return (
             <div className={'video-packager-content ' + (this.state.hidden ? 'hidden' :'')}>
                 <div className="video-packager-header-container video-packager-container">
+                    <div className="video-packager-version">Video Packager 1.0</div>
                     <Close action={this.openClose.bind(this)}></Close>
                 </div>
                 <div className="video-packager-body-container video-packager-container">
