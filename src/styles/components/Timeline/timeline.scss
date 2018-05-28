@@ -1,0 +1,23 @@
+.timeline {
+    .vis-item {
+
+        &.subtitle {
+            color: white;
+            background-color: violet;
+            border-color: darkred;
+        }
+
+        &.lettering {
+            color: white;
+            background-color: red;
+            border-color: darkred;
+        }
+
+        &.watermank {
+            color: white;
+            background-color: yellow;
+            border-color: darkred;
+        }
+
+    }
+}
