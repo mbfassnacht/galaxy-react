@@ -4,7 +4,7 @@ import SVGInline from "react-svg-inline"
 import icon from '../../../assets/images/erase.svg';
 import Button from '../Button/button.jsx';
 import ActionsStore from '../../stores/actionsStore';
-import ActionsActions from '../../actions/viewActions/actions';
+import ActionsActions from '../../actions/viewActions/actionsActions';
 
 function getCurrentActionFromStore() {
     return ActionsStore.getCurrentAction()
@@ -62,9 +62,8 @@ class CurrentVideoAction extends React.Component {
 	}
 
 	updatePlaceholder(e) {
-		e.currentTarget.value = !this.state.action.placeholder;
 		var updatedAction = {
-			action: Object.assign({}, this.state.action, {placeholder: e.currentTarget.value})
+			action: Object.assign({}, this.state.action, {placeholder: e.currentTarget.checked})
 		};
 		this.setState(updatedAction);
 		ActionsActions.update(updatedAction);
@@ -128,7 +127,7 @@ class CurrentVideoAction extends React.Component {
 					</div>
 					<div className="bottom-item text normal">
 						<label className="custom-checkbox container">Placeholder Action
-							<input value={this.state.action.placeholder} onChange={this.updatePlaceholder.bind(this)} id="placeholder" type="checkbox" />
+							<input checked={this.state.action.placeholder} onChange={this.updatePlaceholder.bind(this)} id="placeholder" type="checkbox" />
 							<span className="checkmark"></span>
 						</label>
 					</div>

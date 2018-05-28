@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '../Button/button.jsx';
-import ActionsActions from '../../actions/viewActions/actions';
+import ActionsActions from '../../actions/viewActions/actionsActions';
 
 class AddActions extends React.Component {
 
