@@ -27,6 +27,15 @@ export default {
         AppDispatcher.dispatch(action);
     },
 
+    changingTime: function(time) {
+        var action = {
+            actionType: "CHANGING_TIME_ACTION",
+            time: time
+        };
+
+        AppDispatcher.dispatch(action);
+    },
+
     setTime: function(time) {
         var action = {
             actionType: "SET_TIME_ACTION",

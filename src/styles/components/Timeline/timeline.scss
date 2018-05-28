@@ -1,22 +1,26 @@
 .timeline {
     .vis-item {
-
+        cursor: pointer;
         &.subtitle:not(.vis-selected) {
             color: white;
             background-color: green;
-            border-color: darkred;
+            border-color: $color2;
         }
 
         &.lettering:not(.vis-selected) {
             color: white;
             background-color: red;
-            border-color: darkred;
+            border-color: $color2;
         }
 
         &.watermark:not(.vis-selected) {
             color: white;
             background-color: blue;
-            border-color: darkred;
+            border-color: $color2;
+        }
+
+        &:hover {
+            opacity: 0.6;
         }
 
     }

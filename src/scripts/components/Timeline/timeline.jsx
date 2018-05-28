@@ -88,6 +88,12 @@ class Timeline extends React.Component {
 		ActionsStore.addChangeListener(this.onChangeActions.bind(this));
 		VideoStatusStore.addTimeChangeListener(this.onChangeTime.bind(this));
 		this.refs.timeline.$el.addEventListener('select', this.onItemClick);
+		this.refs.timeline.$el.addEventListener('timechange', this.draggingTimeBar);
+
+	}
+
+	draggingTimeBar(event) {
+		VideoActions.changingTime(event.time.getTime());
 	}
 
 	componentWillUnmount() {
@@ -102,14 +108,8 @@ class Timeline extends React.Component {
 			start: 0,
 			end: parseFloat(this.state.duration),
 			min: 0,
-			max: parseFloat(this.state.duration),
-			editable: {
-				add: false,
-				updateTime: true,
-				updateGroup: true,
-				remove: false,
-				overrideItems: false
-			}
+			showMajorLabels: false,
+			max: parseFloat(this.state.duration)
 		};
 
 		const customTimes = {
