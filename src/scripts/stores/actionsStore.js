@@ -3,6 +3,7 @@ import { EventEmitter } from 'events';
 import assign from 'object-assign';
 
 var actions = [];
+var currentTime = 0;
 var currentSelectedAction = {
     markIn: '00:00:00',
     markOut: '00:00:00',
@@ -43,8 +44,8 @@ AppDispatcher.register(function(action) {
     switch(action.actionType) {
         case "ADD_ACTION":
             var newAction =  {
-                markIn: '00:00:00',
-                markOut: '00:00:00',
+                markIn: currentTime,
+                markOut: currentTime + 1,
                 title: '',
                 input1: '',
                 input2: '',
@@ -73,6 +74,11 @@ AppDispatcher.register(function(action) {
             ActionsStore.emitChange();
             break;
 
+        case "SELECT_ACTION":
+            currentSelectedAction =  actions[action.id];
+            ActionsStore.emitChange();
+            break;
+
         case "UPDATE_ACTION":
             actions[action.action.action.id] = action.action.action;
             currentSelectedAction = action.action.action;
@@ -96,6 +102,9 @@ AppDispatcher.register(function(action) {
             ActionsStore.emitChange();
             break;
 
+        case "SET_TIME_ACTION":
+            currentTime = action.time;
+            break;
         default:
     }
 });

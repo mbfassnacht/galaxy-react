@@ -28,6 +28,15 @@ export default {
         AppDispatcher.dispatch(action);
     },
 
+    selectAction: function(id) {
+        var action = {
+            actionType: "SELECT_ACTION",
+            id: id
+        };
+
+        AppDispatcher.dispatch(action);
+    },
+
     remove: function(actionId) {
         var action = {
             actionType: "REMOVE_ACTION",

@@ -1,21 +1,21 @@
 .timeline {
     .vis-item {
 
-        &.subtitle {
+        &.subtitle:not(.vis-selected) {
             color: white;
-            background-color: violet;
+            background-color: green;
             border-color: darkred;
         }
 
-        &.lettering {
+        &.lettering:not(.vis-selected) {
             color: white;
             background-color: red;
             border-color: darkred;
         }
 
-        &.watermank {
+        &.watermark:not(.vis-selected) {
             color: white;
-            background-color: yellow;
+            background-color: blue;
             border-color: darkred;
         }
 
