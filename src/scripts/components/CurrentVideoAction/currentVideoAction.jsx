@@ -93,6 +93,10 @@ class CurrentVideoAction extends React.Component {
 		ActionsActions.removeSelection();
 	}
 
+	onRemoveAction() {
+		ActionsActions.remove(this.state.action.id);
+	}
+
 	render() {
 		return (
 			<div className={'current-video-action ' + (this.state.actionSelected ? '' :'hidden')}>
@@ -122,7 +126,7 @@ class CurrentVideoAction extends React.Component {
 					</div>
 				</div>
 				<div className="action-bottom-container">
-					<div className="bottom-item x-small">
+					<div onClick={this.onRemoveAction.bind(this)} className="bottom-item x-small">
 						<SVGInline svg={icon} />
 					</div>
 					<div className="bottom-item text normal">

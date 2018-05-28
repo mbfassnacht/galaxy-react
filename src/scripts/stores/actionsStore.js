@@ -81,7 +81,18 @@ AppDispatcher.register(function(action) {
             break;
 
         case "REMOVE_ACTION":
-            actions.push(action.type);
+            actions.splice(action.id, 1);
+            currentSelectedAction =  {
+                markIn: '00:00:00',
+                markOut: '00:00:00',
+                title: '',
+                input1: '',
+                input2: '',
+                type: '',
+                placeholder: false,
+                id: -1
+            };
+            console.log(actions);
             ActionsStore.emitChange();
             break;
 
