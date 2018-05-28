@@ -3,6 +3,10 @@
     margin-top: 10px;
     margin-bottom: 10px;
 
+    &.hidden {
+        display: none;
+    }
+
     .action-header {
         display: flex;
 
@@ -10,6 +14,7 @@
             width: 50%;
             input {
                 width: 100%;
+                padding-left: 10px;
                 border-right: 2px solid $color2;
                 border-bottom: 2px solid $color2;
                 border-left-width: 0px;
@@ -19,6 +24,7 @@
             }
         }
         .action-duration {
+            padding-left: 10px;
             border-bottom: 2px solid $color2;
             width: 50%;
             line-height: 28px
@@ -70,16 +76,18 @@
             }
 
             &.small {
-                width: 30%;
+                width: 20%;
             }
 
             &.normal {
-                width: 60%;
+                width: 70%;
             }
 
             position: relative;
+
             .button {
                 display: block;
+                min-width: auto;
             }
 
             &:hover {
