@@ -1,11 +1,10 @@
 // videoControls.test.js
-jest.dontMock('../../../src/scripts/actions/viewActions/VideoActions.js');
+jest.dontMock('../../../src/scripts/actions/viewActions/VideoPackagerActions.js');
 jest.dontMock('../../../src/scripts/stores/videoStatusStore.js');
 jest.mock('../../../src/scripts/dispatcher.jsx');
 
 import React from 'react';
 import VideoControls from '../../../src/scripts/components/VideoControls/videoControls.jsx';
-import VideoActions from '../../../src/scripts/actions/viewActions/VideoActions.js';
 import { shallow, mount, render } from 'enzyme';
 
 describe('TESTING VIDEOCONTROLS COMPONENT', () => {

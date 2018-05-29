@@ -15,10 +15,6 @@ class VideoInformation extends React.Component {
 		this.state = status;
 	}
 
-	componentDidMount() {
-		this.container = ReactDOM.findDOMNode(this);
-	}
-
 	updateTitle(e) {
 		this.setState({title: e.currentTarget.value})
 		VideoPackagerActions.updateTitle(e.currentTarget.value);
