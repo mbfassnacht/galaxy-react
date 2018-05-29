@@ -4,10 +4,6 @@ import Button from '../Button/button.jsx';
 
 class Footer extends React.Component {
 
-	componentDidMount() {
-		this.container = ReactDOM.findDOMNode(this);
-	}
-
 	render() {
 		return (
 			<div className="footer">
