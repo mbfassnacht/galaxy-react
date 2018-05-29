@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '../../../src/scripts/components/Button/button.jsx';
 import { shallow, mount, render } from 'enzyme';
 
-describe('TESTING BUTTON', function() {
+describe('TESTING BUTTON COMPONENT', function() {
 
 	it('should be selectable by class "button"', function() {
 		expect(shallow(<Button />).is('.button')).toBe(true);

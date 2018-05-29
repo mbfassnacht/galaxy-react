@@ -5,21 +5,17 @@ import icon from '../../../assets/images/close.svg';
 
 class Close extends React.Component {
 
-	componentDidMount() {
-		this.container = ReactDOM.findDOMNode(this);
-	}
-
 	render() {
 		return (
 			<div className="close" onClick={this.props.action}>
-				<SVGInline svg={icon} />
+				<SVGInline svg={this.props.icon} />
 			</div>
 		);
 	}
 }
 
 Close.defaultProps = {
-
+	icon: icon
 };
 
 export default Close;
