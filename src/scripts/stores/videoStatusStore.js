@@ -61,7 +61,7 @@ AppDispatcher.register(function(action) {
             break;
         case "CHANGING_TIME_ACTION":
             statusStore.playing = false;
-            statusStore.time = action.time;
+            statusStore.time = typeof(action.time !== 'undefined') ? action.time : statusStore.time;
             VideoStatusStore.emitChange();
             break;
         case "SET_TIME_ACTION":

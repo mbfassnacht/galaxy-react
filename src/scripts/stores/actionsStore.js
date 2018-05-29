@@ -29,6 +29,18 @@ var ActionsStore = assign({}, EventEmitter.prototype, {
         this.removeListener('change', callback);
     },
 
+    emitActionSelection: function() {
+        this.emit('action:selected');
+    },
+
+    addActionSelectionListener: function(callback) {
+        this.on('action:selected', callback);
+    },
+
+    removeActionSelectionListener: function(callback) {
+        this.removeListener('action:selected', callback);
+    },
+
     getAll: function() {
         return actions;
     },
@@ -74,12 +86,12 @@ AppDispatcher.register(function(action) {
 
         case "SELECT_ACTION":
             currentSelectedAction =  actions[action.id];
-            ActionsStore.emitChange();
+            ActionsStore.emitActionSelection();
             break;
 
         case "UPDATE_ACTION":
-            actions[action.action.action.id] = action.action.action;
-            currentSelectedAction = action.action.action;
+            actions[action.action.id] = action.action;
+            currentSelectedAction = action.action;
             ActionsStore.emitChange();
             break;
 

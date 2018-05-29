@@ -35,9 +35,16 @@ class Timeline extends React.Component {
 			var item = {
 				className: actions[i].type,
 				id: actions[i].id,
-				start: parseFloat(actions[i].markIn),
-				end: parseFloat(actions[i].markOut),
-				content: actions[i].title
+				start: (actions[i].markIn instanceof Date) ? actions[i].markIn : parseFloat(actions[i].markIn),
+				end: (actions[i].markOut instanceof Date) ? actions[i].markOut : parseFloat(actions[i].markOut),
+				content: actions[i].title,
+                editable: {
+                    add: false,
+                    updateTime: true,
+                    updateGroup: false,
+                    remove: false,
+                    overrideItems: false
+                }
 			};
 
 			items.push(item);
@@ -68,14 +75,28 @@ class Timeline extends React.Component {
 	    return obj;
 	}
 
-	onItemClick(event) {
-		ActionsActions.selectAction(event.items[0]);
+	onActionClicked(event) {
+        if (event.items.length > 0) {
+            this.selectActionId = event.items[0];
+            ActionsActions.selectAction(this.selectActionId);
+            this.draggingTimeBar();
+        } else {
+            ActionsActions.removeSelection();
+        }
 	}
 
 	onChangeActions() {
 		var actions = getAllActionsFromStore();
 		var items = this.buildItems(actions);
 		this.setState({items: items});
+	}
+
+    onActionMoving(event) {
+        var currentAction = getAllActionsFromStore()[event.id];
+        var actionDuration = currentAction.markOut - currentAction.markIn;
+        currentAction.markIn = event.start;
+        currentAction.markOut = event.end;
+        ActionsActions.update(currentAction);
 	}
 
 	onChangeTime() {
@@ -87,13 +108,16 @@ class Timeline extends React.Component {
 	componentDidMount() {
 		ActionsStore.addChangeListener(this.onChangeActions.bind(this));
 		VideoStatusStore.addTimeChangeListener(this.onChangeTime.bind(this));
-		this.refs.timeline.$el.addEventListener('select', this.onItemClick);
+		this.refs.timeline.$el.addEventListener('select', this.onActionClicked.bind(this));
 		this.refs.timeline.$el.addEventListener('timechange', this.draggingTimeBar);
-
 	}
 
 	draggingTimeBar(event) {
-		VideoActions.changingTime(event.time.getTime());
+        if (typeof event !== 'undefined') {
+            VideoActions.changingTime(event.time.getTime());
+        } else {
+            VideoActions.changingTime();
+        }
 	}
 
 	componentWillUnmount() {
@@ -109,7 +133,8 @@ class Timeline extends React.Component {
 			end: parseFloat(this.state.duration),
 			min: 0,
 			showMajorLabels: false,
-			max: parseFloat(this.state.duration)
+			max: parseFloat(this.state.duration),
+            onMove: this.onActionMoving.bind(this)
 		};
 
 		const customTimes = {

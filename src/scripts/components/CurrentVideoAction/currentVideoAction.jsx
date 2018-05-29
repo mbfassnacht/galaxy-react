@@ -26,7 +26,11 @@ class CurrentVideoAction extends React.Component {
 
 	onChange() {
 		var action = getCurrentActionFromStore();
-		var duration = action.markOut - action.markIn;
+        var duration = this.state.duration;
+        if (typeof action.markOut !== 'undefined' && typeof action.markIn !== 'undefined') {
+            duration = action.markOut - action.markIn;
+        }
+
 		this.setState({
 			action: action,
 			actionSelected: (action.id != -1) ? true : false,
@@ -104,58 +108,47 @@ class CurrentVideoAction extends React.Component {
 
 	componentDidMount() {
 		ActionsStore.addChangeListener(this.onChange.bind(this));
+        ActionsStore.addActionSelectionListener(this.onChange.bind(this));
 	}
 
 	updateTitle(e) {
-		var updatedAction = {
-			action: Object.assign({}, this.state.action, {title: e.currentTarget.value})
-		};
-
-		this.setState(updatedAction);
+		var updatedAction = Object.assign({}, this.state.action, {title: e.currentTarget.value})
+		this.setState({updatedAction});
 		ActionsActions.update(updatedAction);
 	}
 
 	updateMarkIn(e) {
 		var markIn = this.fromFormattedTimeToSeconds(e.currentTarget.value);
-		var updatedAction = {
-			action: Object.assign({}, this.state.action, {markIn: markIn})
-		};
-		this.setState(updatedAction);
+        var updatedAction = Object.assign({}, this.state.action, {markIn: markIn})
+		this.setState({updatedAction});
 		this.setDuration();
 		ActionsActions.update(updatedAction);
 	}
 
 	updateMarkOut(e) {
 		var markOut = this.fromFormattedTimeToSeconds(e.currentTarget.value);
-		var updatedAction = {
-			action: Object.assign({}, this.state.action, {markOut: markOut})
-		};
-		this.setState(updatedAction);
+		var updatedAction = Object.assign({}, this.state.action, {markOut: markOut});
+
+		this.setState({updatedAction});
 		this.setDuration();
 		ActionsActions.update(updatedAction);
 	}
 
 	updatePlaceholder(e) {
-		var updatedAction = {
-			action: Object.assign({}, this.state.action, {placeholder: e.currentTarget.checked})
-		};
-		this.setState(updatedAction);
+		var updatedAction = Object.assign({}, this.state.action, {placeholder: e.currentTarget.checked});
+		this.setState({updatedAction});
 		ActionsActions.update(updatedAction);
 	}
 
 	updateInput1(e) {
-		var updatedAction = {
-			action: Object.assign({}, this.state.action, {input1: e.currentTarget.value})
-		};
-		this.setState(updatedAction);
+		var updatedAction = Object.assign({}, this.state.action, {input1: e.currentTarget.value});
+		this.setState({updatedAction});
 		ActionsActions.update(updatedAction);
 	}
 
 	updateInput2(e) {
-		var updatedAction = {
-			action: Object.assign({}, this.state.action, {input2: e.currentTarget.value})
-		};
-		this.setState(updatedAction);
+		var updatedAction = Object.assign({}, this.state.action, {input2: e.currentTarget.value});
+		this.setState({updatedAction});
 		ActionsActions.update(updatedAction);
 	}
 
