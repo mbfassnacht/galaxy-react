@@ -4,13 +4,13 @@ import Close from '../../../src/scripts/components/Close/close.jsx';
 import { shallow, mount, render } from 'enzyme';
 var icon = '<svg class="svg-class" version="1.1"</svg>';
 
-describe('TESTING CLOSE COMPONENT', function() {
+describe('TESTING CLOSE COMPONENT', () => {
 
-	it('should be selectable by class "close"', function() {
+	it('should be selectable by class "close"', () => {
 		expect(shallow((<Close icon={icon}></Close>)).is('.close')).toBe(true);
 	});
 
-    it('should has an svg icon inside', function() {
+    it('should has an svg icon inside', () => {
 		expect(mount(<Close icon={icon}></Close>).find('svg')).toBeDefined();
 	});
 

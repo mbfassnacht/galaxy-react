@@ -3,17 +3,17 @@ import React from 'react';
 import Button from '../../../src/scripts/components/Button/button.jsx';
 import { shallow, mount, render } from 'enzyme';
 
-describe('TESTING BUTTON COMPONENT', function() {
+describe('TESTING BUTTON COMPONENT', () => {
 
-	it('should be selectable by class "button"', function() {
+	it('should be selectable by class "button"', () => {
 		expect(shallow(<Button />).is('.button')).toBe(true);
 	});
 
-	it('should mount in a full DOM', function() {
+	it('should mount in a full DOM', () => {
 		expect(mount(<Button />).find('.button').length).toBe(1);
 	});
 
-	it('should render to static HTML', function() {
+	it('should render to static HTML', () => {
 		expect(render(<Button text="button text"/>).text()).toEqual('button text');
 	});
 

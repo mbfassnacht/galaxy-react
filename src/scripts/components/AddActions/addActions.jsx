@@ -10,10 +10,6 @@ class AddActions extends React.Component {
         this.state = {selectedAction: 'lettering'};
     }
 
-	componentDidMount() {
-		this.container = ReactDOM.findDOMNode(this);
-	}
-
 	onSelectedActionChange(e) {
 		this.setState({selectedAction: e.currentTarget.value})
 	}
