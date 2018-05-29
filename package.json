@@ -15,12 +15,13 @@
         "test:watch": "jest --watch"
     },
     "jest": {
+        "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
         "transform": {
             "^.+\\.jsx?$": "babel-jest"
         },
         "moduleNameMapper": {
-            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/assetsTransformer.js",
-            "\\.(s?css|less)$": "<rootDir>/assetsTransformer.js"
+            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/assetsTransformer.js",
+            "\\.(s?css|less)$": "<rootDir>/test/assetsTransformer.js"
         }
     },
     "repository": "",
@@ -38,6 +39,8 @@
         "babel-preset-stage-0": "^6.24.1",
         "clean-webpack-plugin": "^0.1.19",
         "css-loader": "^0.28.11",
+        "enzyme": "^3.3.0",
+        "enzyme-adapter-react-16": "^1.1.1",
         "escope": "^3.6.0",
         "eslint": "^4.19.1",
         "eslint-loader": "^2.0.0",
