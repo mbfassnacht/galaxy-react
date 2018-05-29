@@ -1,8 +1,11 @@
 // timeline.test.js
 import React from 'react';
 import Timeline from '../../../src/scripts/components/Timeline/timeline.jsx';
-import renderer from 'react-test-renderer';
+import { shallow, mount, render } from 'enzyme';
 
-test('Timeline', () => {
+describe('TESTING TIMELINE COMPONENT', () => {
 
+    it('should be selectable by class "timeline"', () => {
+        expect(shallow(<Timeline />, {disableLifecycleMethods: true}).is('.timeline')).toBe(true);
+    });
 });

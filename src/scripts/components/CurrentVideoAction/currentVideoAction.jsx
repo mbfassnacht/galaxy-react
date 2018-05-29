@@ -193,7 +193,7 @@ class CurrentVideoAction extends React.Component {
 				</div>
 				<div className="action-bottom-container">
 					<div onClick={this.onRemoveAction.bind(this)} className="bottom-item x-small">
-						<SVGInline svg={icon} />
+						<SVGInline svg={this.props.icon} />
 					</div>
 					<div className="bottom-item text normal">
 						<label className="custom-checkbox container">Placeholder Action
@@ -211,7 +211,7 @@ class CurrentVideoAction extends React.Component {
 }
 
 CurrentVideoAction.defaultProps = {
-
+    icon: icon
 };
 
 export default CurrentVideoAction;
