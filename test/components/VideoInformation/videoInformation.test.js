@@ -6,8 +6,8 @@ import { shallow, mount, render } from 'enzyme';
 describe('TESTING VIDEOINFORMATION COMPONENT', () => {
 
 
-    it('should be selectable by class "video-information"', () => {
-        expect(shallow(<VideoInformation />).is('.video-information')).toBe(true);
+    it('should be selectable by class "video-packager-video-information"', () => {
+        expect(shallow(<VideoInformation />).is('.video-packager-video-information')).toBe(true);
     });
 
     it('should change status on title input change', () => {

@@ -5,7 +5,7 @@ import { shallow, mount, render } from 'enzyme';
 
 describe('TESTING TIMELINE COMPONENT', () => {
 
-    it('should be selectable by class "timeline"', () => {
-        expect(shallow(<Timeline />, {disableLifecycleMethods: true}).is('.timeline')).toBe(true);
+    it('should be selectable by class "video-packager-timeline"', () => {
+        expect(shallow(<Timeline />, {disableLifecycleMethods: true}).is('.video-packager-timeline')).toBe(true);
     });
 });

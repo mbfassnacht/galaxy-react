@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import VideoStatusStore from '../../stores/videoStatusStore';
 import VideoPackagerStore from '../../stores/videoPackagerStore';
 import VideoActions from '../../actions/viewActions/videoActions';
@@ -12,8 +11,6 @@ function getStateFromStore() {
 function getStateFromVideoPackager() {
     return VideoPackagerStore.getStatus()
 }
-
-
 
 class Video extends React.Component {
 
@@ -46,8 +43,7 @@ class Video extends React.Component {
 		VideoStatusStore.addChangeListener(this.onChange.bind(this));
         VideoPackagerStore.addChangeListener(this.onVideoPackagerStatusChange.bind(this));
 
-		this.container = ReactDOM.findDOMNode(this);
-		this.video = this.container.getElementsByTagName('video')[0];
+		this.video = this.refs.video;
 
 		this.video.addEventListener('loadedmetadata', () => {
 			this.setVideoStatus();
@@ -88,7 +84,7 @@ class Video extends React.Component {
 
 		return (
 			<div className="video-packager-video">
-				<video ref="effectiveVideo" width="100%" controls="">
+				<video ref="video" width="100%" controls="">
 					<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4"></source>
 					<source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm"></source>
 					<source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg"></source>

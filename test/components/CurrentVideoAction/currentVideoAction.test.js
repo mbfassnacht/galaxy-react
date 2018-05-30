@@ -6,7 +6,7 @@ var icon = '<svg class="svg-class" version="1.1"</svg>';
 
 describe('TESTING CURRENTVIDEOACTION COMPONENT', () => {
 
-    it('should be selectable by class "current-video-action"', () => {
-        expect(shallow(<CurrentVideoAction icon={icon} />).is('.current-video-action')).toBe(true);
+    it('should be selectable by class "video-packager-current-video-action"', () => {
+        expect(shallow(<CurrentVideoAction icon={icon} />).is('.video-packager-current-video-action')).toBe(true);
     });
 });

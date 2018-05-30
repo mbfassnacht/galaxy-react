@@ -6,11 +6,11 @@ import { shallow, mount, render } from 'enzyme';
 describe('TESTING BUTTON COMPONENT', () => {
 
 	it('should be selectable by class "button"', () => {
-		expect(shallow(<Button />).is('.button')).toBe(true);
+		expect(shallow(<Button />).is('.video-packager-button')).toBe(true);
 	});
 
 	it('should mount in a full DOM', () => {
-		expect(mount(<Button />).find('.button').length).toBe(1);
+		expect(mount(<Button />).find('.video-packager-button').length).toBe(1);
 	});
 
 	it('should render to static HTML', () => {

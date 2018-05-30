@@ -6,8 +6,8 @@ var icon = '<svg class="svg-class" version="1.1"</svg>';
 
 describe('TESTING CLOSE COMPONENT', () => {
 
-	it('should be selectable by class "close"', () => {
-		expect(shallow((<Close icon={icon}></Close>)).is('.close')).toBe(true);
+	it('should be selectable by class "video-packager-close"', () => {
+		expect(shallow((<Close icon={icon}></Close>)).is('.video-packager-close')).toBe(true);
 	});
 
     it('should has an svg icon inside', () => {

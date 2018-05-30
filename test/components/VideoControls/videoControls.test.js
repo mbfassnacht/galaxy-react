@@ -42,12 +42,12 @@ describe('TESTING VIDEOCONTROLS COMPONENT', () => {
         statusStore = VideoStore.getStatus();
     });
 
-    it('should be selectable by class "video"', () => {
-        expect(shallow(<VideoControls />).is('.video-controls')).toBe(true);
+    it('should be selectable by class "video-packager-video-controls"', () => {
+        expect(shallow(<VideoControls />).is('.video-packager-video-controls')).toBe(true);
     });
 
     it('should has a HTML5 video tag element inside', () => {
-		expect(mount(<VideoControls />).find('.video-controls').length).toBe(1);
+		expect(mount(<VideoControls />).find('.video-packager-video-controls').length).toBe(1);
 	});
 
     it('should have default values defined in VideoStatusStore', () => {

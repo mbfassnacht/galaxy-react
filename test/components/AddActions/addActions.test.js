@@ -5,12 +5,12 @@ import { shallow, mount, render } from 'enzyme';
 
 describe('TESTING ADDACTIONS COMPONENT', () => {
 
-	it('should be selectable by class "add-actions"', () => {
-		expect(shallow((<AddActions></AddActions>)).is('.add-actions')).toBe(true);
+	it('should be selectable by class "video-packager-add-actions"', () => {
+		expect(shallow((<AddActions></AddActions>)).is('.video-packager-add-actions')).toBe(true);
 	});
 
     it('should has a Button component inside', () => {
-		expect(mount(<AddActions></AddActions>).find('.button').length).toBe(1);
+		expect(mount(<AddActions></AddActions>).find('.video-packager-button').length).toBe(1);
 	});
 
     it('should has a select tag inside', () => {
