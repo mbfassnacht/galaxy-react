@@ -12,7 +12,7 @@ class VideoPackager extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {hidden: false};
+        this.state = {hidden: true};
     }
 
     componentDidMount() {
@@ -30,27 +30,29 @@ class VideoPackager extends React.Component {
 
     render() {
         return (
-            <div className={'video-packager-content ' + (this.state.hidden ? 'hidden' :'')}>
-                <div className="video-packager-header-container video-packager-container">
-                    <div className="video-packager-version">Video Packager 1.0</div>
-                    <Close action={this.openClose.bind(this)}></Close>
-                </div>
-                <div className="video-packager-body-container video-packager-container">
-                    <div className="video-packager-mid-container video-packager-container">
-                        <div className="video-packager-left-container video-packager-container">
-                            <Video></Video>
-                            <VideoControls></VideoControls>
-                            <AddActions></AddActions>
-                        </div>
-                        <div className="video-packager-right-container video-packager-container">
-                            <VideoInformation></VideoInformation>
-                            <CurrentVideoAction></CurrentVideoAction>
-                        </div>
+            <div id='video-packager-overlay' className={(this.state.hidden ? 'hidden' :'')}>
+                <div className='video-packager-content'>
+                    <div className="video-packager-header-container video-packager-col-container">
+                        <div className="video-packager-version">Video Packager 1.0</div>
+                        <Close action={this.openClose.bind(this)}></Close>
                     </div>
-                    <Timeline></Timeline>
-                </div>
-                <div className="video-packager-footer-container video-packager-container">
-                    <Footer></Footer>
+                    <div className="video-packager-body-container video-packager-col-container">
+                        <div className="video-packager-mid-container video-packager-col-container">
+                            <div className="video-packager-left-container video-packager-col-container">
+                                <Video></Video>
+                                <VideoControls></VideoControls>
+                                <AddActions></AddActions>
+                            </div>
+                            <div className="video-packager-right-container video-packager-col-container">
+                                <VideoInformation></VideoInformation>
+                                <CurrentVideoAction></CurrentVideoAction>
+                            </div>
+                        </div>
+                        <Timeline></Timeline>
+                    </div>
+                    <div className="video-packager-footer-container video-packager-col-container">
+                        <Footer></Footer>
+                    </div>
                 </div>
             </div>
         );

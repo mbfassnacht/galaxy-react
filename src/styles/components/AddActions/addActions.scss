@@ -1,4 +1,4 @@
-.add-actions {
+.video-packager-add-actions {
     display: flex;
     margin-bottom: 10px;
 
@@ -8,11 +8,11 @@
         font-size: $normal-font-size;
     }
 
-    .field {
+    .video-packager-field {
         flex-grow: 1;
         flex-basis: 0;
     }
-    .button {
+    .video-packager-button {
         margin-left: 10px;
     }
 }

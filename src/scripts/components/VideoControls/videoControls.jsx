@@ -54,18 +54,18 @@ class VideoControls extends React.Component {
 
 	render() {
 		return (
-			<div className = "video-controls">
+			<div className = "video-packager-video-controls">
 				<PrevButton
 				  	isEnabled = {true}
 				  	onClick = {this.onDecrease.bind(this)}
 				/>
-				<div className = {this.state.playing ? 'toggle-button hidden' : 'toggle-button'}>
+				<div className = {this.state.playing ? 'video-packager-toggle-button video-packager-hidden' : 'video-packager-toggle-button'}>
 					<PlayButton
 						isEnabled = {true}
 						onClick = {this.onPlay.bind(this)}
 					/>
 				</div>
-					<div className = {!this.state.playing ? 'toggle-button hidden' : 'toggle-button'}>
+					<div className = {!this.state.playing ? 'video-packager-toggle-button video-packager-hidden' : 'video-packager-toggle-button'}>
 					<PauseButton
 						onClick = {this.onPause.bind(this)}
 					/>

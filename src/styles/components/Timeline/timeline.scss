@@ -1,4 +1,4 @@
-.timeline {
+.video-packager-timeline {
     .vis-item {
         cursor: pointer;
         &.subtitle:not(.vis-selected) {
@@ -28,10 +28,10 @@
         padding-top: 10px;
         height: 30px;
 
-        .start {
+        .video-packager-start {
             float: left;
         }
-        .end {
+        .video-packager-end {
             float: right;
         }
     }

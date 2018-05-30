@@ -6,7 +6,7 @@ class Footer extends React.Component {
 
 	render() {
 		return (
-			<div className="footer">
+			<div className="video-packager-footer">
 				<Button text="Save"></Button>
 			</div>
 		);

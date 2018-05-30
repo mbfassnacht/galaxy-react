@@ -1,4 +1,4 @@
-.button {
+.video-packager-button {
 	background-color: $color2;
 	color: $color1;
 	min-width: 100px;
@@ -10,7 +10,7 @@
 	display: inline-block;
 	font-size: $normal-font-size;
 	transition: $transition-time;
-	
+
 	&:hover {
 		color: $color1;
 		background-color: $color3;

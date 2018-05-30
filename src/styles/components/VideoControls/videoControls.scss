@@ -1,9 +1,9 @@
-.video-controls {
+.video-packager-video-controls {
     margin: 10px auto;
     display: flex;
 
-    .toggle-button {
-        &.hidden {
+    .video-packager-toggle-button {
+        &.video-packager-hidden {
             display: none;
         }
     }

@@ -166,42 +166,42 @@ class CurrentVideoAction extends React.Component {
 
 	render() {
 		return (
-			<div className={'current-video-action ' + (this.state.actionSelected ? '' :'hidden')}>
-				<div className="action-header">
-					<div className="action-title">
-						<input className="title" placeholder = "Enter action name..." value={this.state.action.title} onChange={this.updateTitle.bind(this)}/>
+			<div className={'video-packager-current-video-action ' + (this.state.actionSelected ? '' :'hidden')}>
+				<div className="video-packager-action-header">
+					<div className="video-packager-action-title">
+						<input className="video-packager-title" placeholder = "Enter action name..." value={this.state.action.title} onChange={this.updateTitle.bind(this)}/>
 					</div>
-					<div className="action-duration">
-						<span className="duration-title">Duration: {this.state.duration}</span>
-					</div>
-				</div>
-				<div className="action-top-info">
-					<label htmlFor="mark-in">Mark in</label>
-					<input input="mark-in" className="mark-in" value={this.state.userMarkIn} onChange={this.updateMarkIn.bind(this)}/>
-					<label htmlFor="mark-out">Mark out</label>
-					<input input="mark-out" className="mark-out" value={this.state.userMarkOut} onChange={this.updateMarkOut.bind(this)}/>
-				</div>
-				<div className="action-content">
-					<div className="input-container">
-						<label htmlFor="input-1">Input 1</label>
-						<input input="input-1" className="input-1" value={this.state.action.input1} onChange={this.updateInput1.bind(this)}/>
-					</div>
-					<div className="input-container">
-						<label htmlFor="input-2">Input 2</label>
-						<input input="input-2" className="input-2" value={this.state.action.input2} onChange={this.updateInput2.bind(this)}/>
+					<div className="video-packager-action-duration">
+						<span className="video-packager-duration-title">Duration: {this.state.duration}</span>
 					</div>
 				</div>
-				<div className="action-bottom-container">
-					<div onClick={this.onRemoveAction.bind(this)} className="bottom-item x-small">
+				<div className="video-packager-action-top-info">
+					<label htmlFor="video-packager-mark-in">Mark in</label>
+					<input input="video-packager-mark-in" className="video-packager-mark-in" value={this.state.userMarkIn} onChange={this.updateMarkIn.bind(this)}/>
+					<label htmlFor="video-packager-mark-out">Mark out</label>
+					<input input="video-packager-mark-out" className="video-packager-mark-out" value={this.state.userMarkOut} onChange={this.updateMarkOut.bind(this)}/>
+				</div>
+				<div className="video-packager-action-content">
+					<div className="video-packager-input-container">
+						<label htmlFor="video-packager-input-1">Input 1</label>
+						<input input="video-packager-input-1" className="video-packager-input-1" value={this.state.action.input1} onChange={this.updateInput1.bind(this)}/>
+					</div>
+					<div className="video-packager-input-container">
+						<label htmlFor="video-packager-input-2">Input 2</label>
+						<input input="video-packager-input-2" className="input-2" value={this.state.action.input2} onChange={this.updateInput2.bind(this)}/>
+					</div>
+				</div>
+				<div className="video-packager-action-bottom-container">
+					<div onClick={this.onRemoveAction.bind(this)} className="video-packager-bottom-item video-packager-x-small">
 						<SVGInline svg={this.props.icon} />
 					</div>
-					<div className="bottom-item text normal">
-						<label className="custom-checkbox container">Placeholder Action
+					<div className="video-packager-bottom-item video-packager-text video-packager-normal">
+						<label className="video-packager-custom-checkbox video-packager-container">Placeholder Action
 							<input checked={this.state.action.placeholder} onChange={this.updatePlaceholder.bind(this)} id="placeholder" type="checkbox" />
-							<span className="checkmark"></span>
+							<span className="video-packager-checkmark"></span>
 						</label>
 					</div>
-					<div className="bottom-item small">
+					<div className="video-packager-bottom-item video-packager-small">
 						<Button clickHandler={this.onCloseAction.bind(this)} text="Close"></Button>
 					</div>
 				</div>

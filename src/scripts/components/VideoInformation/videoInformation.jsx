@@ -22,8 +22,8 @@ class VideoInformation extends React.Component {
 
 	render() {
 		return (
-			<div className="video-information">
-				 <input placeholder="Enter video title..." className="title" value={this.state.title} onChange={this.updateTitle.bind(this)}/>
+			<div className="video-packager-video-information">
+				 <input placeholder="Enter video title..." className="video-packager-title" value={this.state.title} onChange={this.updateTitle.bind(this)}/>
 			</div>
 		);
 	}

@@ -7,7 +7,7 @@ class Close extends React.Component {
 
 	render() {
 		return (
-			<div className="close" onClick={this.props.action}>
+			<div className="video-packager-close" onClick={this.props.action}>
 				<SVGInline svg={this.props.icon} />
 			</div>
 		);

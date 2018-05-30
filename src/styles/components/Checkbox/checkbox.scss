@@ -1,5 +1,5 @@
-.custom-checkbox {
-    &.container {
+.video-packager-custom-checkbox {
+    &.video-packager-container {
         display: block;
         position: relative;
         cursor: pointer;
@@ -13,7 +13,7 @@
         }
     }
 
-    .checkmark {
+    .video-packager-checkmark {
         position: absolute;
         top: 0;
         height: 25px;
@@ -27,28 +27,28 @@
     }
 
     /* On mouse-over, add a grey background color */
-    &.container:hover input ~ .checkmark {
+    &.video-packager-container:hover input ~ .video-packager-checkmark {
         background-color: $color3;
     }
 
-    &.container input:checked ~ .checkmark {
+    &.video-packager-container input:checked ~ .video-packager-checkmark {
         background-color: $color2;
     }
 
     /* Create the checkmark/indicator (hidden when not checked) */
-    .checkmark:after {
+    .video-packager-checkmark:after {
         content: "";
         position: absolute;
         display: none;
     }
 
     /* Show the checkmark when checked */
-    &.container input:checked ~ .checkmark:after {
+    &.video-packager-container input:checked ~ .video-packager-checkmark:after {
         display: block;
     }
 
     /* Style the checkmark/indicator */
-    &.container .checkmark:after {
+    &.video-packager-container .video-packager-checkmark:after {
         left: 9px;
         top: 5px;
         width: 5px;

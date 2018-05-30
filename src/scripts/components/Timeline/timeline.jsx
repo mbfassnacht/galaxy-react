@@ -142,11 +142,11 @@ class Timeline extends React.Component {
 		}
 
 		return (
-			<div className="timeline">
+			<div className="video-packager-timeline">
 				<TimelineComponent  customTimes={customTimes} select={this.onItemClick} ref="timeline" items={this.state.items} options={options}></TimelineComponent>
 				<div className="timeline-footer">
-					<div className="start">00:00:00</div>
-					<div className="end">{this.formatTimeForDom(this.state.duration)}</div>
+					<div className="video-packager-start">00:00:00</div>
+					<div className="video-packager-end">{this.formatTimeForDom(this.state.duration)}</div>
 				</div>
 			</div>
 		);

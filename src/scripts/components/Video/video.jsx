@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import VideoStatusStore from '../../stores/videoStatusStore';
+import VideoPackagerStore from '../../stores/videoPackagerStore';
 import VideoActions from '../../actions/viewActions/videoActions';
+import ApiServices from '../../ApiServices';
 
 function getStateFromStore() {
     return VideoStatusStore.getStatus()
 }
+
+function getStateFromVideoPackager() {
+    return VideoPackagerStore.getStatus()
+}
+
+
 
 class Video extends React.Component {
 
@@ -13,6 +21,15 @@ class Video extends React.Component {
 		super(props);
 		var status = getStateFromStore();
 		this.state = status;
+        this.loadVideo();
+	}
+
+    loadVideo() {
+        ApiServices.getVideo(61, this.onVideoLoaded.bind(this));
+	}
+
+    onVideoLoaded(data) {
+        console.log("callback")
 	}
 
 	setVideoStatus() {
@@ -27,6 +44,8 @@ class Video extends React.Component {
 
 	componentDidMount() {
 		VideoStatusStore.addChangeListener(this.onChange.bind(this));
+        VideoPackagerStore.addChangeListener(this.onVideoPackagerStatusChange.bind(this));
+
 		this.container = ReactDOM.findDOMNode(this);
 		this.video = this.container.getElementsByTagName('video')[0];
 
@@ -55,14 +74,20 @@ class Video extends React.Component {
 		this.setState(status);
 	}
 
+    onVideoPackagerStatusChange() {
+		var status = getStateFromVideoPackager();
+		this.setState(status);
+	}
+
 	componentWillUnmount() {
 		VideoStatusStore.removeChangeListener(this.onChange.bind(this));
+        VideoPackagerStore.removeChangeListener(this.onVideoPackagerStatusChange.bind(this));
 	}
 
 	render() {
 
 		return (
-			<div className="video">
+			<div className="video-packager-video">
 				<video ref="effectiveVideo" width="100%" controls="">
 					<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4"></source>
 					<source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm"></source>
