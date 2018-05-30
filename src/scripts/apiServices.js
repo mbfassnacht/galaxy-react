@@ -3,7 +3,7 @@ import LoadServerActions from './actions/serverActions/loadActions';
 
 export default {
 
-    endpoint: 'http://app.xoz.one/',
+    endpoint: '/',
 
     save: function() {
         var that = this;
