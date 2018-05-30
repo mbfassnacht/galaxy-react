@@ -197,7 +197,7 @@ class CurrentVideoAction extends React.Component {
 					</div>
 					<div className="video-packager-bottom-item video-packager-text video-packager-normal">
 						<label className="video-packager-custom-checkbox video-packager-container">Placeholder Action
-							<input checked={this.state.action.placeholder} onChange={this.updatePlaceholder.bind(this)} id="placeholder" type="checkbox" />
+							<input className="no-ui-tranform" checked={this.state.action.placeholder} onChange={this.updatePlaceholder.bind(this)} id="placeholder" type="checkbox" />
 							<span className="video-packager-checkmark"></span>
 						</label>
 					</div>
