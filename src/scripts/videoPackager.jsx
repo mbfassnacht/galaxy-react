@@ -20,7 +20,7 @@ class VideoPackager extends React.Component {
         opener.addEventListener('click', this.openClose.bind(this));
 
         setTimeout(() => {
-            this.setState({ delayed: true; });
+            this.setState({ delayed: true });
         }, 5000);
     }
 
