@@ -1,6 +1,7 @@
 #video-packager-overlay {
     background-color: rgba(0,0,0,.6);
     width: 100%;
+    font-size: $normal-font-size;
     position: fixed;
     top: 0;
     left: 0;
@@ -22,7 +23,7 @@
 
     .video-packager-content {
         overflow: auto;
-        max-height: 80vh;
+        max-height: 90vh;
         width: 80%;
         max-width: 1000px;
         background-color: $color1;
