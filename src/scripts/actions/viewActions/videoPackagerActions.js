@@ -9,5 +9,16 @@ export default {
         };
 
         AppDispatcher.dispatch(action);
+    },
+
+    setOriginalVideoId: function(id) {
+        var action = {
+            actionType: "ORIGINAL_VIDEO_ID_SET",
+            id: id
+        };
+
+        AppDispatcher.dispatch(action);
     }
+
+
 };

@@ -7,11 +7,14 @@ import VideoInformation from './components/VideoInformation/videoInformation.jsx
 import CurrentVideoAction from './components/CurrentVideoAction/currentVideoAction.jsx';
 import Timeline from './components/Timeline/timeline.jsx';
 import Footer from './components/Footer/footer.jsx';
+import VideoPackagerActions from './actions/viewActions/videoPackagerActions';
 
 class VideoPackager extends React.Component {
 
     constructor(props) {
         super(props);
+        var originalVideoId = document.getElementById('react-video-packager').getAttribute("data-video-id");
+        VideoPackagerActions.setOriginalVideoId(originalVideoId);
         this.state = {hidden: true};
     }
 

@@ -10,9 +10,10 @@ export default {
         AppDispatcher.dispatch(action);
     },
 
-    loadVideoEnded: function() {
+    loadVideoEnded: function(data) {
         var action = {
-            actionType: "VIDEO_LOAD_ENDED"
+            actionType: "VIDEO_LOAD_ENDED",
+            data: data
         };
 
         AppDispatcher.dispatch(action);
