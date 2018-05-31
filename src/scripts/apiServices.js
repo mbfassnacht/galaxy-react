@@ -1,23 +1,37 @@
 import SaveServerActions from './actions/serverActions/saveActions';
 import LoadServerActions from './actions/serverActions/loadActions';
+import ActionsStore from './stores/actionsStore';
+import VideoPackagerStore from './stores/videoPackagerStore';
 import request from 'browser-request';
+
+function getStateFromActionsStore() {
+    return ActionsStore.getAll()
+}
+
+function getStateFromVideoPackagerStore() {
+    return VideoPackagerStore.getStatus()
+}
 
 export default {
 
-    save: function() {
+    save: function(data) {
         var that = this;
-        var videos = this.buildVideoData();
-        var isPlaceholder = this.$placeholder.is(':checked') ? 1 : 0;
+        var videoPackagerData = getStateFromVideoPackagerStore();
+        var actionsData = getStateFromActionsStore();
 
-        if (this.$clipsTitle.val() === "") {
-            return;
-        }
+        var videos = this.buildVideoData(actionsData);
 
         var clipData = {
-            "title": this.$clipsTitle.val() != "" ? this.$clipsTitle.val() : "no title",
+            "title": (videoPackagerData.title !== "") ? videoPackagerData.title : "no title",
             "properties": {
                 "filterList": {
-                    "languages": this.languagePicker.selectedLanguages
+                    "languages": [
+                      {
+                        "id": 1,
+                        "title": "Deutsch",
+                        "isoCode": "de"
+                      }
+                    ]
                 },
                 "videos": videos,
                 "placeholder": isPlaceholder
@@ -33,78 +47,57 @@ export default {
         }
     },
 
-    buildVideoData: function () {
+    buildVideoData: function (dataActions) {
         var videos = [];
-        var isHardSubtitles = this.$hardSubtitles.is(':checked') ? 1 : 0;
         var fadeTimeInSeconds = 1;
+        var actions = [];
 
-        for(var i=0; i<this.clips.length; i++){
-            var clip = this.clips[i];
-            var actions = [];
+        for (var actionIndex in dataActions) {
+            var action = dataActions[actionIndex];
+            var actionObj;
+            if (action.type === 'lettering' || action.type === 'watermark' ) {
+                action.template = " ";
 
-            for(var j=0;j<clip.actions.length;j++){
-                var action = clip.actions[j];
-                if(action.type !== 'schnitt'){
-                    var obj;
-                    if(action.type === 'bauchbinde'){
+                if (!action.template) {
+                    this.showAlertError(Translator.trans('please choose a template'));
+                    return;
+                }
 
-                        if(!action.template){
-                            this.showAlertError(Translator.trans('please choose a template'));
-                            return;
-                        }
+                actionObj = {
+                    "type" : 'lettering',
+                    "text" : action.title,
+                    "template" : action.template, //action template
+                    "in" : action.markIn,
+                    "out" : action.markOut,
+                    "fadeIn" : action.markIn,
+                    "fadeOut" : action.markOut
+                }
+            } else {
+                action.position = "top";
 
-                        obj = {
-                            "type" : 'lettering',
-                            "text" : action.$title.val(),
-                            "template" : action.template,
-                            "in" : action.st,
-                            "out" : action.et,
-                            "fadeIn" : action.st,
-                            "fadeOut" : action.et
-                        }
-                    }
-                    if(action.type === 'wasserzeichen'){
-
-                        if(!action.template){
-                            this.showAlertError(Translator.trans('please choose a template'));
-                            return;
-                        }
-
-                        obj = {
-                            "type" : 'lettering',
-                            "text" : action.$title.val(),
-                            "template" : action.template,
-                            "in" : action.st,
-                            "out" : action.et,
-                            "fadeIn" : action.st,
-                            "fadeOut" : action.et
-                        }
-                    }
-                    if(action.type === 'untertitel'){
-                        obj = {
-                            "type" : 'subtitle',
-                            "text" : action.$title.val(),
-                            "in" : action.st,
-                            "out" : action.et,
-                            "position" : action.position,
-                            "hard" : isHardSubtitles,
-                            "language" : action.language
-                        }
-                    }
-
-                    actions.push(obj);
+                actionObj = {
+                    "type" : 'subtitle',
+                    "text" : action.title,
+                    "in" : action.markIn,
+                    "out" : action.markOut,
+                    "position" : action.position,
+                    "hard" : true,
+                    "language" : 1
                 }
             }
+            actions.push(actionObj);
 
-            videos.push({
-                "title": clip.$title.val(),
-                "id": clip.id,
-                "in": clip.st,
-                "out": clip.et,
-                "actions": actions,
-                "activeLanguage": this.languagePicker.activeLanguage
-            });
         }
+
+        videos.push({
+            "title": 'title',
+            "id": 'id',
+            "in": 0,
+            "out": 0,
+            "actions": actions,
+            "activeLanguage": 1
+        });
+
 
         return videos;
     },
@@ -113,13 +106,17 @@ export default {
         var that = this;
         var path = 'admin/clip-editor/clips';
 
-        $.ajax({
-            url  : path ,
-            type : 'POST' + exozet_clip_editor_get_video,
-            data : data
-        }).done(function(d) {
-            SaveServerActions.videoSaveEnded(d.id);
-        }).fail(function (jqXHR) {
+        SaveServerActions.videoSaveStarted();
+
+        request({method: 'POST', url: path, body: data}, function(er, res) {
+            if(!er) {
+                if (res.response) {
+                    var response = JSON.parse(res.response);
+                    SaveServerActions.videoSaveEnded(response);
+                    return;
+                }
+            }
+
             SaveServerActions.videoSaveError();
         });
     },
@@ -128,13 +125,17 @@ export default {
         var that = this;
         var path = 'admin/clip-editor/clips/' + id;
 
-        $.ajax({
-            url  : path ,
-            type : 'PUT',
-            data : data
-        }).done(function(d) {
-            SaveServerActions.videoSaveEnded();
-        }).fail(function (jqXHR) {
+        SaveServerActions.videoSaveStarted();
+
+        request.put({uri: path, body: data}, function(er, res) {
+            if(!er) {
+                if (res.response) {
+                    var response = JSON.parse(res.response);
+                    SaveServerActions.videoSaveEnded(response);
+                    return;
+                }
+            }
+
             SaveServerActions.videoSaveError();
         });
     },
@@ -164,6 +165,8 @@ export default {
         // }, 3000);
 
 
+        
+        LoadServerActions.loadVideoStarted();
 
         request(path, function(er, res) {
             if(!er) {
