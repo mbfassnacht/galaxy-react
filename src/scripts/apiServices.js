@@ -1,9 +1,8 @@
 import SaveServerActions from './actions/serverActions/saveActions';
 import LoadServerActions from './actions/serverActions/loadActions';
+import request from 'browser-request';
 
 export default {
-
-    endpoint: 'http://app.xoz.one/',
 
     save: function() {
         var that = this;
@@ -112,7 +111,7 @@ export default {
 
     saveVideo: function(data) {
         var that = this;
-        var path = this.endpoint + 'admin/clip-editor/clips';
+        var path = 'admin/clip-editor/clips';
 
         $.ajax({
             url  : path ,
@@ -127,7 +126,7 @@ export default {
 
     updateVideo: function(id, data) {
         var that = this;
-        var path = this.endpoint + 'admin/clip-editor/clips/' + id;
+        var path = 'admin/clip-editor/clips/' + id;
 
         $.ajax({
             url  : path ,
@@ -142,16 +141,14 @@ export default {
 
     getVideo: function(id) {
         var that = this;
-        var path = this.endpoint + 'admin/clip-editor/videos/' + id;
+        var path = '/admin/clip-editor/videos/' + id;
 
-        LoadServerActions.loadVideoStarted();
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", path, true);
-        xhttp.send();
-
-        // request.get(path, function (error, response, body)  {
-        //     debugger;
-        //     LoadServerActions.loadVideoEnded(body);
-        // });
+        request(path, function(er, res) {
+            if(!er) {
+                LoadServerActions.loadVideoEnded();
+                return;
+            }
+             LoadServerActions.loadVideoError();
+        });
     }
 };
