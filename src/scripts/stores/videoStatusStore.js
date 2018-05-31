@@ -9,6 +9,8 @@ var statusStore = {
     duration: 0
 };
 
+var frameRate = 1;
+
 var VideoStatusStore = assign({}, EventEmitter.prototype, {
 
     emitChange: function() {
@@ -68,12 +70,15 @@ AppDispatcher.register(function(action) {
             statusStore.time = action.time;
             VideoStatusStore.emitTimeChange();
             break;
+        case "VIDEO_LOAD_ENDED":
+            frameRate = action.data.videoFrames;
+            break;
         case "DECREASE_ACTION":
-            statusStore.time = Math.max(0, statusStore.time - 1);
+            statusStore.time = Math.max(0, statusStore.time - (1 / frameRate));
             VideoStatusStore.emitChange();
             break;
         case "INCREASE_ACTION":
-            statusStore.time = Math.min(statusStore.duration, statusStore.time + 1);
+            statusStore.time = Math.min(statusStore.duration, statusStore.time + (1 / frameRate));
             VideoStatusStore.emitChange();
             break;
         default:

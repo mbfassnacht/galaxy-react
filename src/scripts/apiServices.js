@@ -34,7 +34,7 @@ export default {
                     ]
                 },
                 "videos": videos,
-                "placeholder": isPlaceholder
+                "placeholder": true
             }
         };
 
@@ -144,40 +144,40 @@ export default {
         var that = this;
         var path = 'admin/clip-editor/videos/' + id;
 
-        // var response = {
-        //     "id" : 61,
-        //     "videoLanguage" : {
-        //         "id" : 1,
-        //         "title" : "Deutsch",
-        //         "isoCode" : "de"
-        //     },
-        //     "hardSubtitleLanguage" : null,
-        //     "title" : "Content-Lieferant | Freigegeben",
-        //     "sourceImageThumbUrl" : "https://app.xoz.one/storage/default/0001/01/thumb_143_default_thumbnail.jpeg",
-        //     "sourceVideoUrl" : "https://app.xoz.one/storage/default/0001/01/a6204fe54eed50038ed43c7836b0d8f2e8ff7f4e.mp4",
-        //     "previewVideoUrl" : "https://app.xoz.one/storage/default/0001/01/2ba17f8fff510dac1d883820556ae61ad5af55ba.mp4",
-        //     "videoDuration" : "0:45",
-        //     "videoFrames" : 25
-        // };
+        var response = {
+            "id" : 61,
+            "videoLanguage" : {
+                "id" : 1,
+                "title" : "Deutsch",
+                "isoCode" : "de"
+            },
+            "hardSubtitleLanguage" : null,
+            "title" : "Content-Lieferant | Freigegeben",
+            "sourceImageThumbUrl" : "https://app.xoz.one/storage/default/0001/01/thumb_143_default_thumbnail.jpeg",
+            "sourceVideoUrl" : "https://app.xoz.one/storage/default/0001/01/a6204fe54eed50038ed43c7836b0d8f2e8ff7f4e.mp4",
+            "previewVideoUrl" : "https://app.xoz.one/storage/default/0001/01/2ba17f8fff510dac1d883820556ae61ad5af55ba.mp4",
+            "videoDuration" : "0:45",
+            "videoFrames" : 25
+        };
+
+        setTimeout(function(){
+            LoadServerActions.loadVideoEnded(response);
+        }, 3000);
+
+
+        // 
+        // LoadServerActions.loadVideoStarted();
         //
-        // setTimeout(function(){
-        //     LoadServerActions.loadVideoEnded(response);
-        // }, 3000);
-
-
-        
-        LoadServerActions.loadVideoStarted();
-
-        request(path, function(er, res) {
-            if(!er) {
-                if (res.response) {
-                    var response = JSON.parse(res.response);
-                    LoadServerActions.loadVideoEnded(response);
-                    return;
-                }
-            }
-
-            LoadServerActions.loadVideoError();
-        });
+        // request(path, function(er, res) {
+        //     if(!er) {
+        //         if (res.response) {
+        //             var response = JSON.parse(res.response);
+        //             LoadServerActions.loadVideoEnded(response);
+        //             return;
+        //         }
+        //     }
+        //
+        //     LoadServerActions.loadVideoError();
+        // });
     }
 };

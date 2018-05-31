@@ -4,23 +4,31 @@ import SVGInline from "react-svg-inline"
 import icon from '../../../assets/images/erase.svg';
 import Button from '../Button/button.jsx';
 import ActionsStore from '../../stores/actionsStore';
+import OriginalVideoStore from '../../stores/originalVideoStore';
 import ActionsActions from '../../actions/viewActions/actionsActions';
 
 function getCurrentActionFromStore() {
     return ActionsStore.getCurrentAction()
 }
 
+function getOriginalVideoStatusFromStore() {
+    return OriginalVideoStore.getStatus()
+}
+
+
 class CurrentVideoAction extends React.Component {
 
 	constructor(props) {
 		super(props);
 		var action = getCurrentActionFromStore();
+
 		this.state = {
 			action: action,
 			actionSelected: false,
-			userMarkIn: '00:00:00',
-			userMarkOut: '00:00:00',
-			duration: '00:00:00'
+			userMarkIn: '00:00:00:00',
+			userMarkOut: '00:00:00:00',
+			duration: '00:00:00:00',
+            frameRate: 0
 		};
 	}
 
@@ -40,6 +48,11 @@ class CurrentVideoAction extends React.Component {
 		});
 
 	}
+
+    onOriginalVideoLoaded() {
+        var originalVideo = getOriginalVideoStatusFromStore().originalVideo;
+        this.setState({frameRate: originalVideo.videoFrames});
+    }
 
 	setDuration() {
 		var duration = this.state.action.markOut - this.state.action.markIn;
@@ -71,7 +84,7 @@ class CurrentVideoAction extends React.Component {
 	    var timesArr = formattedTime.split(':');
 
 	    if (timesArr.length === 4) {
-	        frameFraction = parseInt(timesArr.pop(), 10);
+	        frameFraction = parseInt(timesArr.pop(), 10) / this.state.frameRate;
 
 	        if (isNaN(frameFraction))
 	        {
@@ -101,14 +114,29 @@ class CurrentVideoAction extends React.Component {
 	}
 
 	formatTimeForDom(time) {
-	    var formatted = this.secondsToTime(Math.floor(time));
-	    var time_string = formatted.h + ':' + formatted.m + ':' + formatted.s;
-	    return time_string;
+
+        var formatted = this.secondsToTime(Math.floor(time));
+        var time_string = formatted.h + ':' + formatted.m + ':' + formatted.s;
+        var frame_string;
+
+        if (typeof this.state.frameRate === 'number' && this.state.frameRate >= 0) {
+            frame_string = '' + Math.floor((time - Math.floor(time)) * this.state.frameRate);
+            if (frame_string.length < 2) {
+                frame_string = '0' + frame_string;
+            }
+            time_string += ':' + frame_string;
+        }
+
+        return time_string;
 	}
 
 	componentDidMount() {
-		ActionsStore.addChangeListener(this.onChange.bind(this));
-        ActionsStore.addActionSelectionListener(this.onChange.bind(this));
+        this._onChange = this.onChange.bind(this);
+        this._onOriginalVideoLoaded = this.onOriginalVideoLoaded.bind(this);
+
+		ActionsStore.addChangeListener(this._onChange);
+        ActionsStore.addActionSelectionListener(this._onChange);
+        OriginalVideoStore.addChangeListener(this._onOriginalVideoLoaded);
 	}
 
 	updateTitle(e) {
@@ -153,7 +181,9 @@ class CurrentVideoAction extends React.Component {
 	}
 
 	componentWillUnmount() {
-		ActionsStore.removeChangeListener(this.onChange.bind(this));
+		ActionsStore.removeChangeListener(this._onChange);
+        OriginalVideoStore.removeChangeListener(this._onOriginalVideoLoaded);
+        ActionsStore.removeTimeChangeListener(this._onChange);
 	}
 
 	onCloseAction() {

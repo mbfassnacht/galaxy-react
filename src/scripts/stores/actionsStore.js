@@ -72,8 +72,8 @@ AppDispatcher.register(function(action) {
 
         case "REMOVE_ACTION_SELECTION":
             currentSelectedAction =  {
-                markIn: '00:00:00',
-                markOut: '00:00:00',
+                markIn: '00:00:00:00',
+                markOut: '00:00:00:00',
                 title: '',
                 input1: '',
                 input2: '',
@@ -98,8 +98,8 @@ AppDispatcher.register(function(action) {
         case "REMOVE_ACTION":
             actions.splice(action.id, 1);
             currentSelectedAction =  {
-                markIn: '00:00:00',
-                markOut: '00:00:00',
+                markIn: '00:00:00:00',
+                markOut: '00:00:00:00',
                 title: '',
                 input1: '',
                 input2: '',

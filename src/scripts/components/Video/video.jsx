@@ -47,7 +47,7 @@ class Video extends React.Component {
 			this.setVideoStatus();
 			VideoActions.setDuration( this.video.duration);
 
-			this.video.addEventListener("timeupdate", () => {
+			this.video.addEventListener("timeupdate", (e) => {
 				VideoActions.setTime(this.video.currentTime);
 			});
 		});

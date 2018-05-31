@@ -5,6 +5,7 @@ import ActionsStore from '../../stores/actionsStore';
 import ActionsActions from '../../actions/viewActions/actionsActions';
 import VideoStatusStore from '../../stores/videoStatusStore';
 import VideoActions from '../../actions/viewActions/videoActions';
+import OriginalVideoStore from '../../stores/originalVideoStore';
 
 function getAllActionsFromStore() {
     return ActionsStore.getAll()
@@ -14,6 +15,10 @@ function getVideoStatusFromStore() {
     return VideoStatusStore.getStatus()
 }
 
+function getOriginalVideoStatusFromStore() {
+    return OriginalVideoStore.getStatus()
+}
+
 class Timeline extends React.Component {
 
 	constructor(props) {
@@ -21,7 +26,13 @@ class Timeline extends React.Component {
 		var actions = getAllActionsFromStore();
 		var videoStatus = getVideoStatusFromStore();
 		var items = this.buildItems(actions);
-		this.state = {items: items, duration: videoStatus.duration, time: videoStatus.time };
+
+		this.state = {
+            items: items,
+            duration: videoStatus.duration,
+            time: videoStatus.time,
+            frameRate: 0
+        };
 	}
 
 	buildItems(actions) {
@@ -35,8 +46,8 @@ class Timeline extends React.Component {
 			var item = {
 				className: actions[i].type,
 				id: actions[i].id,
-				start: (actions[i].markIn instanceof Date) ? actions[i].markIn : parseFloat(actions[i].markIn),
-				end: (actions[i].markOut instanceof Date) ? actions[i].markOut : parseFloat(actions[i].markOut),
+				start: (actions[i].markIn instanceof Date) ? actions[i].markIn : this.props.currensScale * parseFloat(actions[i].markIn),
+				end: (actions[i].markOut instanceof Date) ? actions[i].markOut : this.props.currensScale * parseFloat(actions[i].markOut),
 				content: actions[i].title,
                 editable: {
                     add: false,
@@ -52,10 +63,21 @@ class Timeline extends React.Component {
 		return items;
 	}
 
-	formatTimeForDom(time) {
-		var formatted = this.secondsToTime(Math.floor(time));
-		var time_string = formatted.h + ':' + formatted.m + ':' + formatted.s;
-		return time_string;
+    formatTimeForDom(time) {
+
+        var formatted = this.secondsToTime(Math.floor(time));
+        var time_string = formatted.h + ':' + formatted.m + ':' + formatted.s;
+        var frame_string;
+
+        if (typeof this.state.frameRate === 'number' && this.state.frameRate >= 0) {
+            frame_string = '' + Math.floor((time - Math.floor(time)) * this.state.frameRate);
+            if (frame_string.length < 2) {
+                frame_string = '0' + frame_string;
+            }
+            time_string += ':' + frame_string;
+        }
+
+        return time_string;
 	}
 
 	secondsToTime(secs) {
@@ -105,24 +127,35 @@ class Timeline extends React.Component {
 		this.setState({time: parseFloat(videoStatus.time)});
 	}
 
+    onOriginalVideoLoaded() {
+        var originalVideo = getOriginalVideoStatusFromStore().originalVideo;
+        this.setState({frameRate: originalVideo.videoFrames});
+    }
+
 	componentDidMount() {
-		ActionsStore.addChangeListener(this.onChangeActions.bind(this));
-		VideoStatusStore.addTimeChangeListener(this.onChangeTime.bind(this));
+        this._onChangeActions = this.onChangeActions.bind(this);
+		this._onChangeTime = this.onChangeTime.bind(this);
+        this._onOriginalVideoLoaded = this.onOriginalVideoLoaded.bind(this);
+
+		ActionsStore.addChangeListener(this._onChangeActions);
+		VideoStatusStore.addTimeChangeListener(this._onChangeTime);
+        OriginalVideoStore.addChangeListener(this._onOriginalVideoLoaded);
 		this.refs.timeline.$el.addEventListener('select', this.onActionClicked.bind(this));
-		this.refs.timeline.$el.addEventListener('timechange', this.draggingTimeBar);
+		this.refs.timeline.$el.addEventListener('timechange', this.draggingTimeBar.bind(this));
 	}
 
 	draggingTimeBar(event) {
         if (typeof event !== 'undefined') {
-            VideoActions.changingTime(event.time.getTime());
+            VideoActions.changingTime(event.time.getTime() / (this.props.currensScale));
         } else {
             VideoActions.changingTime();
         }
 	}
 
 	componentWillUnmount() {
-		ActionsStore.removeChangeListener(this.onChangeActions.bind(this));
-		VideoStatusStore.removeTimeChangeListener(this.onChangeTime.bind(this));
+		ActionsStore.removeChangeListener(this._onChangeActions);
+		VideoStatusStore.removeTimeChangeListener(this._onChangeTime);
+        OriginalVideoStore.removeChangeListener(this._onOriginalVideoLoaded);
 	}
 
 	render() {
@@ -133,19 +166,21 @@ class Timeline extends React.Component {
 			end: parseFloat(this.state.duration),
 			min: 0,
 			showMajorLabels: false,
-			max: parseFloat(this.state.duration),
-            onMove: this.onActionMoving.bind(this)
+            showMinorLabels: false,
+            onMove: this.onActionMoving.bind(this),
+            zoomMin: this.props.currensScale * this.state.duration
 		};
 
+        console.log(this.state.time);
 		const customTimes = {
-			timeBar: this.state.time
+			timeBar: this.state.time * this.props.currensScale
 		}
 
 		return (
 			<div className="video-packager-timeline">
 				<TimelineComponent  customTimes={customTimes} select={this.onItemClick} ref="timeline" items={this.state.items} options={options}></TimelineComponent>
 				<div className="timeline-footer">
-					<div className="video-packager-start">00:00:00</div>
+					<div className="video-packager-start">{this.formatTimeForDom(this.state.time)}</div>
 					<div className="video-packager-end">{this.formatTimeForDom(this.state.duration)}</div>
 				</div>
 			</div>
@@ -154,7 +189,7 @@ class Timeline extends React.Component {
 }
 
 Timeline.defaultProps = {
-
+    currensScale: 1000 * 60 * 60
 };
 
 export default Timeline;
