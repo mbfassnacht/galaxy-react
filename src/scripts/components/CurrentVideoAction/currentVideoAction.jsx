@@ -168,14 +168,8 @@ class CurrentVideoAction extends React.Component {
 		ActionsActions.update(updatedAction);
 	}
 
-	updateInput1(e) {
-		var updatedAction = Object.assign({}, this.state.action, {input1: e.currentTarget.value});
-		this.setState({updatedAction});
-		ActionsActions.update(updatedAction);
-	}
-
-	updateInput2(e) {
-		var updatedAction = Object.assign({}, this.state.action, {input2: e.currentTarget.value});
+	updateContent(e) {
+		var updatedAction = Object.assign({}, this.state.action, {content: e.currentTarget.value});
 		this.setState({updatedAction});
 		ActionsActions.update(updatedAction);
 	}
@@ -194,9 +188,32 @@ class CurrentVideoAction extends React.Component {
 		ActionsActions.remove(this.state.action.id);
 	}
 
+    onActionTemplateChanged(e) {
+        var updatedAction = Object.assign({}, this.state.action, {template: e.currentTarget.value});
+        this.setState({updatedAction});
+	}
+
 	render() {
+
+        var label = "";
+
+        if (this.state.action.type == 'lettering') {
+            label = "Lettering";
+        } else {
+            if (this.state.action.type == 'subtitle') {
+                label = "Subtitle";
+            } else {
+                if (this.state.action.type == 'watermark') {
+                    label = "Watermark";
+                }
+            }
+        }
+
+        const actionLabel = (<div className="video-packager-action-type">{label}</div>);
+
 		return (
 			<div className={'video-packager-current-video-action ' + (this.state.actionSelected ? '' :'hidden')}>
+                {actionLabel}
 				<div className="video-packager-action-header">
 					<div className="video-packager-action-title">
 						<input className="video-packager-title" placeholder = "Enter action name..." value={this.state.action.title} onChange={this.updateTitle.bind(this)}/>
@@ -206,26 +223,31 @@ class CurrentVideoAction extends React.Component {
 					</div>
 				</div>
 				<div className="video-packager-action-top-info">
-					<label htmlFor="video-packager-mark-in">Mark in</label>
-					<input input="video-packager-mark-in" className="video-packager-mark-in" value={this.state.userMarkIn} onChange={this.updateMarkIn.bind(this)}/>
-					<label htmlFor="video-packager-mark-out">Mark out</label>
-					<input input="video-packager-mark-out" className="video-packager-mark-out" value={this.state.userMarkOut} onChange={this.updateMarkOut.bind(this)}/>
-				</div>
+                    <div className="video-packager-mark-container">
+					    <label htmlFor="video-packager-mark-in">Mark in</label>
+					    <input input="video-packager-mark-in" className="video-packager-mark-in" value={this.state.userMarkIn} onChange={this.updateMarkIn.bind(this)}/>
+                    </div>
+                    <div className="video-packager-mark-container">
+                        <label htmlFor="video-packager-mark-out">Mark out</label>
+					    <input input="video-packager-mark-out" className="video-packager-mark-out" value={this.state.userMarkOut} onChange={this.updateMarkOut.bind(this)}/>
+                    </div>
+                    <select value={this.state.selectedAction} onChange={this.onActionTemplateChanged.bind(this)} className={'video-packager-action-template-type'  + ((this.state.action.type === 'watermark' || this.state.action.type === 'lettering') ? '' :' field-hidden')}>
+        				<option value="template-1">Template 1</option>
+        				<option value="template-2">Template 2</option>
+        				<option value="template-3">Template 3</option>
+        			</select>
+                </div>
 				<div className="video-packager-action-content">
-					<div className="video-packager-input-container">
-						<label htmlFor="video-packager-input-1">Input 1</label>
-						<input input="video-packager-input-1" className="video-packager-input-1" value={this.state.action.input1} onChange={this.updateInput1.bind(this)}/>
-					</div>
-					<div className="video-packager-input-container">
-						<label htmlFor="video-packager-input-2">Input 2</label>
-						<input input="video-packager-input-2" className="input-2" value={this.state.action.input2} onChange={this.updateInput2.bind(this)}/>
+					<div className={'video-packager-input-container' + (this.state.action.type !== 'watermark' ? '' :' field-hidden')}>
+						<label htmlFor="video-packager-content-input">Content</label>
+						<textarea input="video-packager-content-input" className="video-packager-content-input" value={this.state.action.content} onChange={this.updateContent.bind(this)}></textarea>
 					</div>
 				</div>
 				<div className="video-packager-action-bottom-container">
 					<div onClick={this.onRemoveAction.bind(this)} className="video-packager-bottom-item video-packager-x-small">
 						<SVGInline svg={this.props.icon} />
 					</div>
-					<div className="video-packager-bottom-item video-packager-text video-packager-normal">
+					<div className={'video-packager-bottom-item video-packager-text video-packager-normal' + (this.state.action.type === 'subtitle' ? '' :' field-hidden')}>
 						<label className="video-packager-custom-checkbox video-packager-container">Placeholder Action
 							<input className="no-ui-tranform" checked={this.state.action.placeholder} onChange={this.updatePlaceholder.bind(this)} id="placeholder" type="checkbox" />
 							<span className="video-packager-checkmark"></span>

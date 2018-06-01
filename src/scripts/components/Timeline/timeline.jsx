@@ -39,7 +39,8 @@ class Timeline extends React.Component {
 		var items = [{
 			start: -1,
 			end: -1,
-			content: ''
+			content: '',
+            className: 'not-visible'
 		}];
 		for (var i = 0; i < actions.length; i++) {
 
@@ -116,8 +117,8 @@ class Timeline extends React.Component {
     onActionMoving(event) {
         var currentAction = getAllActionsFromStore()[event.id];
         var actionDuration = currentAction.markOut - currentAction.markIn;
-        currentAction.markIn = event.start;
-        currentAction.markOut = event.end;
+        currentAction.markIn = event.start.getTime() / (this.props.currensScale);
+        currentAction.markOut = event.end.getTime() / (this.props.currensScale);
         ActionsActions.update(currentAction);
 	}
 
@@ -163,7 +164,7 @@ class Timeline extends React.Component {
 			width: '100%',
   			height: '200px',
 			start: 0,
-			end: parseFloat(this.state.duration),
+			end: this.state.duration,
 			min: 0,
 			showMajorLabels: false,
             showMinorLabels: false,
@@ -171,7 +172,7 @@ class Timeline extends React.Component {
             zoomMin: this.props.currensScale * this.state.duration
 		};
 
-        console.log(this.state.time);
+        console.log(this.state.duration);
 		const customTimes = {
 			timeBar: this.state.time * this.props.currensScale
 		}

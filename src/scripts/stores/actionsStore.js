@@ -8,11 +8,11 @@ var currentSelectedAction = {
     markIn: 0,
     markOut: 0,
     title: '',
-    input1: '',
-    input2: '',
+    content: '',
     type: 'lettering',
     id: -1,
-    placeholder: false
+    placeholder: false,
+    template: ""
 };
 
 var ActionsStore = assign({}, EventEmitter.prototype, {
@@ -59,11 +59,11 @@ AppDispatcher.register(function(action) {
                 markIn: currentTime,
                 markOut: currentTime + 1,
                 title: '',
-                input1: '',
-                input2: '',
+                content: '',
                 placeholder: false,
                 type: action.type.type,
-                id: actions.length
+                id: actions.length,
+                template: ""
             };
             currentSelectedAction = newAction;
             actions.push(newAction);
@@ -75,11 +75,11 @@ AppDispatcher.register(function(action) {
                 markIn: '00:00:00:00',
                 markOut: '00:00:00:00',
                 title: '',
-                input1: '',
-                input2: '',
+                content: '',
                 type: '',
                 placeholder: false,
-                id: -1
+                id: -1,
+                template: ""
             };
             ActionsStore.emitChange();
             break;
@@ -101,11 +101,11 @@ AppDispatcher.register(function(action) {
                 markIn: '00:00:00:00',
                 markOut: '00:00:00:00',
                 title: '',
-                input1: '',
-                input2: '',
+                content: '',
                 type: '',
                 placeholder: false,
-                id: -1
+                id: -1,
+                template: ""
             };
             ActionsStore.emitChange();
             break;

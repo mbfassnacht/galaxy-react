@@ -7,6 +7,16 @@
         display: none;
     }
 
+    .field-hidden {
+        visibility: hidden;
+    }
+
+    .video-packager-action-type {
+        border-bottom: 2px solid $color2;
+        padding: 10px;
+    }
+
+
     .video-packager-action-header {
         display: flex;
 
@@ -31,15 +41,27 @@
         }
     }
 
+    select {
+        height: 51px;
+        border: 2px solid $color2;
+        width: 33.33%;
+        font-size: $normal-font-size;
+    }
+
     .video-packager-action-top-info {
         padding: 10px;
-
+        display: flex;
+        .video-packager-mark-container {
+            width: 33.333%;
+            text-align: center;
+        }
         input {
             margin-left: 10px;
             margin-right: 10px;
             height: 30px;
             font-size: $normal-font-size;
-            width: 20%;
+            width: calc(100% - 20px);
+            text-align: center;
         }
     }
 
@@ -50,11 +72,12 @@
             margin-bottom: 10px;
         }
 
-        input {
+        textarea {
             margin-left: 10px;
-            width: calc(100% - 83px);
-            height: 30px;
             font-size: $normal-font-size;
+            height: 100px;
+            width: calc(100% - 10px);
+            max-width: calc(100% - 10px);
         }
     }
 

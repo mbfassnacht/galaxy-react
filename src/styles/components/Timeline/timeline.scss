@@ -7,6 +7,10 @@
             border-color: $color2;
         }
 
+        &.not-visible {
+            display: none;;
+        }
+        
         &.lettering:not(.vis-selected) {
             color: white;
             background-color: red;
