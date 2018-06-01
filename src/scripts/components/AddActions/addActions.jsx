@@ -25,9 +25,9 @@ class AddActions extends React.Component {
 		return (
 			<div className="video-packager-add-actions">
 			<select value={this.state.selectedAction} onChange={this.onSelectedActionChange.bind(this)} className="video-packager-field no-ui-tranform action-select">
-				<option value="lettering">Lettering</option>
-				<option value="subtitle">Subtitle</option>
-				<option value="watermark">Watermark</option>
+				<option value="lettering">{Translator.trans(this.props.locale, 'lettering')}</option>
+				<option value="subtitle">{Translator.trans(this.props.locale, 'subtitle')}</option>
+				<option value="watermark">{Translator.trans(this.props.locale, 'watermark')}</option>
 			</select>
 			<Button clickHandler={this.onAddAction.bind(this)} text={Translator.trans(this.props.locale, 'addAction')}></Button>
 			</div>

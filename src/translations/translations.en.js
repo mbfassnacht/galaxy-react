@@ -1,4 +1,7 @@
 export default {
     hello: "Hello",
-    addAction: "Add Action"
+    addAction: "Add Action",
+    subtitle: "Subtitle",
+    lettering: "Lettering",
+    watermark: "Watermark"
 }
