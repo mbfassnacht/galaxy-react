@@ -16,8 +16,7 @@ class VideoPackager extends React.Component {
         var originalVideoId = document.getElementById('react-video-packager').getAttribute("data-video-id");
         var locale = document.getElementById('react-video-packager').getAttribute("data-locale") || "en" ;
         VideoPackagerActions.setOriginalVideoId(originalVideoId);
-        VideoPackagerActions.setLocale(locale);
-        this.state = {hidden: true};
+        this.state = {hidden: true, locale: locale};
     }
 
     componentDidMount() {
@@ -39,24 +38,24 @@ class VideoPackager extends React.Component {
                 <div className='video-packager-content'>
                     <div className="video-packager-header-container video-packager-col-container">
                         <div className="video-packager-version">Video Packager 1.0</div>
-                        <Close action={this.openClose.bind(this)}></Close>
+                        <Close locale={this.state.locale} action={this.openClose.bind(this)}></Close>
                     </div>
                     <div className="video-packager-body-container video-packager-col-container">
                         <div className="video-packager-mid-container video-packager-col-container">
                             <div className="video-packager-left-container video-packager-col-container">
-                                <Video></Video>
-                                <VideoControls></VideoControls>
-                                <AddActions></AddActions>
+                                <Video locale={this.state.locale}></Video>
+                                <VideoControls locale={this.state.locale}></VideoControls>
+                                <AddActions locale={this.state.locale}></AddActions>
                             </div>
                             <div className="video-packager-right-container video-packager-col-container">
-                                <VideoInformation></VideoInformation>
-                                <CurrentVideoAction></CurrentVideoAction>
+                                <VideoInformation locale={this.state.locale}></VideoInformation>
+                                <CurrentVideoAction locale={this.state.locale}></CurrentVideoAction>
                             </div>
                         </div>
-                        <Timeline></Timeline>
+                        <Timeline locale={this.state.locale}></Timeline>
                     </div>
                     <div className="video-packager-footer-container video-packager-col-container">
-                        <Footer></Footer>
+                        <Footer locale={this.state.locale}></Footer>
                     </div>
                 </div>
             </div>

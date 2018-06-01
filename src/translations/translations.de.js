@@ -1,3 +1,4 @@
 export default {
-    hello: "Hallo"
+    hello: "Hallo",
+    addAction: "Add Aktion"
 }
