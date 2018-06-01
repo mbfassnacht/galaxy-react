@@ -2,6 +2,9 @@
     border: 2px solid $color2;
     margin-top: 10px;
     margin-bottom: 10px;
+    min-height: 346px;
+    position: relative;
+    padding-bottom: 81px;
 
     &.hidden {
         display: none;
@@ -9,6 +12,10 @@
 
     .field-hidden {
         visibility: hidden;
+    }
+
+    .field-not-displayed {
+        display: none;
     }
 
     .video-packager-action-type {
@@ -44,24 +51,31 @@
     select {
         height: 51px;
         border: 2px solid $color2;
-        width: 33.33%;
         font-size: $normal-font-size;
+        width: 100%;
+        margin-bottom: 20px;
     }
 
     .video-packager-action-top-info {
         padding: 10px;
         display: flex;
         .video-packager-mark-container {
-            width: 33.333%;
-            text-align: center;
+            width: 50%;
         }
         input {
-            margin-left: 10px;
-            margin-right: 10px;
             height: 30px;
             font-size: $normal-font-size;
-            width: calc(100% - 20px);
+            width: 100%;
             text-align: center;
+            border: 2px solid $color3;
+        }
+
+        .video-packager-mark-in-container {
+            padding-right: 10px;
+        }
+
+        .video-packager-mark-out-container {
+            padding-left: 10px;
         }
     }
 
@@ -73,17 +87,19 @@
         }
 
         textarea {
-            margin-left: 10px;
             font-size: $normal-font-size;
-            height: 78px;
-            width: calc(100% - 10px);
-            max-width: calc(100% - 10px);
+            height: 83px;
+            width: 100%;
         }
     }
 
     .video-packager-action-bottom-container {
         display: flex;
         padding: 10px;
+        bottom: 0;
+        position: absolute;
+        width: calc(100% - 20px);
+        min-height: 61px;
 
         .video-packager-bottom-item {
             &.video-packager-x-small {
@@ -127,9 +143,5 @@
                 transform: translate(-50%, -50%);
             }
         }
-
-
-
-
     }
 }

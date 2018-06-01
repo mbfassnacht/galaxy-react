@@ -140,6 +140,45 @@ export default {
         });
     },
 
+    getTemplates: function(actionType) {
+        var that = this;
+        var path = 'admin/clip-editor/letterings/templates';
+
+        var response = [
+            {"id":2,"type":"lettering","title":"AMTV Corner Logo"},
+            {"id":4,"type":"lettering","title":"AMTV Lettering"},
+            {"id":1,"type":"lettering","title":"AMTV Nowzeile"},
+            {"id":3,"type":"lettering","title":"AMTV Subtitle"},
+            {"id":6,"type":"lettering","title":"Digital Retail Bauchbinde"},
+            {"id":5,"type":"lettering","title":"Digital Retail Nowzeile"},
+            {"id":2,"type":"lettering","title":"AMTV Corner Logo"},
+            {"id":7,"type":"watermark","title":"Watermark 1"},
+            {"id":8,"type":"watermark","title":"Watermark 2"},
+            {"id":9,"type":"watermark","title":"Watermark 3"}
+
+        ];
+
+        setTimeout(function(){
+            LoadServerActions.loadTemplatesEnded(response);
+        }, 1000);
+
+
+        //
+        // LoadServerActions.loadTemplatesStarted();
+        //
+        // request(path, function(er, res) {
+        //     if(!er) {
+        //         if (res.response) {
+        //             var response = JSON.parse(res.response);
+        //             LoadServerActions.loadTemplatesEnded(response);
+        //             return;
+        //         }
+        //     }
+        //
+        //     LoadServerActions.loadTemplatesError();
+        // });
+    },
+
     getVideo: function(id) {
         var that = this;
         var path = 'admin/clip-editor/videos/' + id;
@@ -165,7 +204,7 @@ export default {
         }, 3000);
 
 
-        // 
+        //
         // LoadServerActions.loadVideoStarted();
         //
         // request(path, function(er, res) {

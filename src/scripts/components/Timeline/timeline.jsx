@@ -6,6 +6,7 @@ import ActionsActions from '../../actions/viewActions/actionsActions';
 import VideoStatusStore from '../../stores/videoStatusStore';
 import VideoActions from '../../actions/viewActions/videoActions';
 import OriginalVideoStore from '../../stores/originalVideoStore';
+import Utils from '../../utils/dateUtil';
 
 function getAllActionsFromStore() {
     return ActionsStore.getAll()
@@ -66,40 +67,6 @@ class Timeline extends React.Component {
 			items.push(item);
 		}
 		return items;
-	}
-
-    formatTimeForDom(time) {
-
-        var formatted = this.secondsToTime(Math.floor(time));
-        var time_string = formatted.h + ':' + formatted.m + ':' + formatted.s;
-        var frame_string;
-
-        if (typeof this.state.frameRate === 'number' && this.state.frameRate >= 0) {
-            frame_string = '' + Math.floor((time - Math.floor(time)) * this.state.frameRate);
-            if (frame_string.length < 2) {
-                frame_string = '0' + frame_string;
-            }
-            time_string += ':' + frame_string;
-        }
-
-        return time_string;
-	}
-
-	secondsToTime(secs) {
-	    var hours = Math.floor(secs / (60 * 60));
-
-	    var divisor_for_minutes = secs % (60 * 60);
-	    var minutes = Math.floor(divisor_for_minutes / 60);
-
-	    var divisor_for_seconds = divisor_for_minutes % 60;
-	    var seconds = Math.ceil(divisor_for_seconds);
-
-	    var obj = {
-	        "h": hours < 10 ? '0'+ hours : hours,
-	        "m": minutes < 10 ? '0'+minutes : minutes,
-	        "s": seconds < 10 ? '0'+seconds : seconds
-	    };
-	    return obj;
 	}
 
 	onActionClicked(event) {
@@ -182,7 +149,6 @@ class Timeline extends React.Component {
             zoomMin: this.props.currensScale * this.state.duration
 		};
 
-        console.log(this.state.duration);
 		const customTimes = {
 			timeBar: this.state.time * this.props.currensScale
 		}
@@ -191,8 +157,8 @@ class Timeline extends React.Component {
 			<div className="video-packager-timeline">
 				<TimelineComponent  customTimes={customTimes} select={this.onItemClick} ref="timeline" items={this.state.items} options={options}></TimelineComponent>
 				<div className="timeline-footer">
-					<div className="video-packager-start">{this.formatTimeForDom(this.state.time)}</div>
-					<div className="video-packager-end">{this.formatTimeForDom(this.state.duration)}</div>
+					<div className="video-packager-start">{Utils.formatTimeForDom(this.state.time, this.state.frameRate)}</div>
+					<div className="video-packager-end">{Utils.formatTimeForDom(this.state.duration, this.state.frameRate)}</div>
 				</div>
 			</div>
 		);

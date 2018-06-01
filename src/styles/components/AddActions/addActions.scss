@@ -2,6 +2,12 @@
     display: flex;
     margin-bottom: 10px;
 
+    @media (min-width:1161px) {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
     select {
         height: 60px;
         border: 2px solid $color2;
