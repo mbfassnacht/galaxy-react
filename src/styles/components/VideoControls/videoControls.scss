@@ -40,11 +40,7 @@ $color-active: $color3;
     cursor: pointer;
 
     &:hover {
-      border-color: $color-hover;
-
-      .Icon-shape {
-        fill: $color-hover;
-      }
+      background-color: $color3;
     }
 
     &:active {
