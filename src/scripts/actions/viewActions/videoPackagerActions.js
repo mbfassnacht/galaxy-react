@@ -18,7 +18,14 @@ export default {
         };
 
         AppDispatcher.dispatch(action);
+    },
+
+    setLocale: function(locale) {
+        var action = {
+            actionType: "SET_LOCALE",
+            locale: locale
+        };
+
+        AppDispatcher.dispatch(action);
     }
-
-
 };
