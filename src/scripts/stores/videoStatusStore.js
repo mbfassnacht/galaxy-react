@@ -21,6 +21,10 @@ var VideoStatusStore = assign({}, EventEmitter.prototype, {
         this.emit('timechange');
     },
 
+    emitDurationSet: function() {
+        this.emit('durationset');
+    },
+
     addChangeListener: function(callback) {
         this.on('change', callback);
     },
@@ -35,6 +39,18 @@ var VideoStatusStore = assign({}, EventEmitter.prototype, {
 
     removeTimeChangeListener: function(callback) {
         this.removeListener('timechange', callback);
+    },
+
+    addDurationSetListener: function(callback) {
+        this.on('durationset', callback);
+    },
+
+    removeDurationSetListener: function(callback) {
+        this.removeListener('durationset', callback);
+    },
+
+    getDuration: function() {
+        return statusStore.duration;
     },
 
     getStatus: function() {
@@ -59,7 +75,7 @@ AppDispatcher.register(function(action) {
             break;
         case "SET_DURATION_ACTION":
             statusStore.duration = action.duration;
-            VideoStatusStore.emitTimeChange();
+            VideoStatusStore.emitDurationSet();
             break;
         case "CHANGING_TIME_ACTION":
             statusStore.playing = false;

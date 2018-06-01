@@ -5,10 +5,15 @@ import icon from '../../../assets/images/erase.svg';
 import Button from '../Button/button.jsx';
 import ActionsStore from '../../stores/actionsStore';
 import OriginalVideoStore from '../../stores/originalVideoStore';
+import VideoStatusStore from '../../stores/videoStatusStore';
 import ActionsActions from '../../actions/viewActions/actionsActions';
 
 function getCurrentActionFromStore() {
     return ActionsStore.getCurrentAction()
+}
+
+function getDurationFromStore() {
+    return VideoStatusStore.getDuration()
 }
 
 function getOriginalVideoStatusFromStore() {
@@ -52,6 +57,11 @@ class CurrentVideoAction extends React.Component {
     onOriginalVideoLoaded() {
         var originalVideo = getOriginalVideoStatusFromStore().originalVideo;
         this.setState({frameRate: originalVideo.videoFrames});
+    }
+
+    onDurationSet() {
+        var duration = getDurationFromStore();
+        this.setState({videoDuration: duration});
     }
 
 	setDuration() {
@@ -133,9 +143,11 @@ class CurrentVideoAction extends React.Component {
 	componentDidMount() {
         this._onChange = this.onChange.bind(this);
         this._onOriginalVideoLoaded = this.onOriginalVideoLoaded.bind(this);
+        this._onDurationSet = this.onDurationSet.bind(this);
 
 		ActionsStore.addChangeListener(this._onChange);
         ActionsStore.addActionSelectionListener(this._onChange);
+        VideoStatusStore.addDurationSetListener(this._onDurationSet);
         OriginalVideoStore.addChangeListener(this._onOriginalVideoLoaded);
 	}
 
@@ -147,20 +159,48 @@ class CurrentVideoAction extends React.Component {
 
 	updateMarkIn(e) {
 		var markIn = this.fromFormattedTimeToSeconds(e.currentTarget.value);
-        var updatedAction = Object.assign({}, this.state.action, {markIn: markIn})
+        var markOut = this.state.action.markOut;
+        markIn = this.getAllowedMarkIn(markIn);
+
+        if (markIn >= markOut) {
+            markOut = markIn + this.props.minActionDuration;
+        }
+
+        var updatedAction = Object.assign({}, this.state.action, {markOut: markOut, markIn: markIn})
 		this.setState({updatedAction});
 		this.setDuration();
 		ActionsActions.update(updatedAction);
 	}
 
-	updateMarkOut(e) {
-		var markOut = this.fromFormattedTimeToSeconds(e.currentTarget.value);
-		var updatedAction = Object.assign({}, this.state.action, {markOut: markOut});
+    updateMarkOut(e) {
+        var markOut = this.fromFormattedTimeToSeconds(e.currentTarget.value);
+        var markIn = this.state.action.markIn;
+        markOut = this.getAllowedMarkOut(markOut);
 
-		this.setState({updatedAction});
-		this.setDuration();
-		ActionsActions.update(updatedAction);
-	}
+        if (markOut <= markIn) {
+            markIn = markOut - this.props.minActionDuration;
+        }
+
+        var updatedAction = Object.assign({}, this.state.action, {markOut: markOut, markIn: markIn});
+
+        this.setState({updatedAction});
+        this.setDuration();
+        ActionsActions.update(updatedAction);
+    }
+
+    getAllowedMarkIn(markIn) {
+        var allowedMarkIn = Math.max(markIn, 0);
+        allowedMarkIn = Math.min(allowedMarkIn, this.state.videoDuration - this.props.minActionDuration);
+
+        return allowedMarkIn;
+    }
+
+    getAllowedMarkOut(markOut) {
+        var allowedMarkOut = Math.min(markOut, this.state.videoDuration);
+        allowedMarkOut = Math.max(allowedMarkOut, 0 + this.props.minActionDuration);
+
+        return allowedMarkOut;
+    }
 
 	updatePlaceholder(e) {
 		var updatedAction = Object.assign({}, this.state.action, {placeholder: e.currentTarget.checked});
@@ -178,6 +218,7 @@ class CurrentVideoAction extends React.Component {
 		ActionsStore.removeChangeListener(this._onChange);
         OriginalVideoStore.removeChangeListener(this._onOriginalVideoLoaded);
         ActionsStore.removeTimeChangeListener(this._onChange);
+        VideoStatusStore.removeDurationSetListener(this._onDurationSet);
 	}
 
 	onCloseAction() {
@@ -263,7 +304,8 @@ class CurrentVideoAction extends React.Component {
 }
 
 CurrentVideoAction.defaultProps = {
-    icon: icon
+    icon: icon,
+    minActionDuration: 1
 };
 
 export default CurrentVideoAction;

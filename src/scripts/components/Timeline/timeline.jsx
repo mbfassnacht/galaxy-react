@@ -11,6 +11,10 @@ function getAllActionsFromStore() {
     return ActionsStore.getAll()
 }
 
+function getDurationFromStore() {
+    return VideoStatusStore.getDuration()
+}
+
 function getVideoStatusFromStore() {
     return VideoStatusStore.getStatus()
 }
@@ -124,8 +128,12 @@ class Timeline extends React.Component {
 
 	onChangeTime() {
 		var videoStatus = getVideoStatusFromStore();
-		this.setState({duration: videoStatus.duration});
 		this.setState({time: parseFloat(videoStatus.time)});
+	}
+
+    onDurationSet() {
+		var duration = getDurationFromStore();
+		this.setState({duration: duration});
 	}
 
     onOriginalVideoLoaded() {
@@ -137,9 +145,11 @@ class Timeline extends React.Component {
         this._onChangeActions = this.onChangeActions.bind(this);
 		this._onChangeTime = this.onChangeTime.bind(this);
         this._onOriginalVideoLoaded = this.onOriginalVideoLoaded.bind(this);
+        this._onDurationSet = this.onDurationSet.bind(this);
 
 		ActionsStore.addChangeListener(this._onChangeActions);
 		VideoStatusStore.addTimeChangeListener(this._onChangeTime);
+        VideoStatusStore.addDurationSetListener(this._onDurationSet);
         OriginalVideoStore.addChangeListener(this._onOriginalVideoLoaded);
 		this.refs.timeline.$el.addEventListener('select', this.onActionClicked.bind(this));
 		this.refs.timeline.$el.addEventListener('timechange', this.draggingTimeBar.bind(this));
