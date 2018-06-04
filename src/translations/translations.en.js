@@ -1,7 +1,13 @@
 export default {
-    hello: "Hello",
-    addAction: "Add Action",
+    save: "Save",
+    addAction: "Add action",
     subtitle: "Subtitle",
     lettering: "Lettering",
-    watermark: "Watermark"
+    watermark: "Watermark",
+    activatePlaceholder: "Activate placeholder",
+    duration: "Duration",
+    close: "Close",
+    content: "Content",
+    enterVideoTitle: "Enter video title",
+    enterActionName: "Enter action name"
 }

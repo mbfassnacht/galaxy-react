@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import VideoPackagerStore from '../../stores/videoPackagerStore';
 import VideoPackagerActions from '../../actions/viewActions/videoPackagerActions';
+import Translator from '../../utils/translatorUtil';
 
 function getCurrentVideoPackagerStatusFromStore() {
     return VideoPackagerStore.getStatus()
@@ -23,7 +24,7 @@ class VideoInformation extends React.Component {
 	render() {
 		return (
 			<div className="video-packager-video-information">
-				 <input placeholder="Enter video title..." className="video-packager-title" value={this.state.title} onChange={this.updateTitle.bind(this)}/>
+				 <input placeholder={Translator.trans(this.props.locale, 'enterVideoTitle')}  className="video-packager-title" value={this.state.title} onChange={this.updateTitle.bind(this)}/>
 			</div>
 		);
 	}

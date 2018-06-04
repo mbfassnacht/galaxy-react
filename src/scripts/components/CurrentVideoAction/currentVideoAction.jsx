@@ -10,6 +10,7 @@ import TemplatesStore from '../../stores/templatesStore';
 import ActionsActions from '../../actions/viewActions/actionsActions';
 import ApiServices from '../../ApiServices';
 import Utils from '../../utils/dateUtil';
+import Translator from '../../utils/translatorUtil';
 
 function getCurrentActionFromStore() {
     return ActionsStore.getCurrentAction()
@@ -203,13 +204,13 @@ class CurrentVideoAction extends React.Component {
         var label = "";
 
         if (this.state.action.type == 'lettering') {
-            label = "Lettering";
+            label = Translator.trans(this.props.locale, 'lettering');
         } else {
             if (this.state.action.type == 'subtitle') {
-                label = "Subtitle";
+                label = Translator.trans(this.props.locale, 'subtitle');
             } else {
                 if (this.state.action.type == 'watermark') {
-                    label = "Watermark";
+                    label = Translator.trans(this.props.locale, 'watermark');
                 }
             }
         }
@@ -221,7 +222,7 @@ class CurrentVideoAction extends React.Component {
                 {actionLabel}
 				<div className="video-packager-action-header">
 					<div className="video-packager-action-title">
-						<input className="video-packager-title" placeholder = "Enter action name..." value={this.state.action.title} onChange={this.updateTitle.bind(this)}/>
+						<input className="video-packager-title" placeholder = {Translator.trans(this.props.locale, 'enterActionName')} value={this.state.action.title} onChange={this.updateTitle.bind(this)}/>
 					</div>
 					<div className="video-packager-action-duration">
 						<span className="video-packager-duration-title">Duration: {this.state.duration}</span>
@@ -242,7 +243,7 @@ class CurrentVideoAction extends React.Component {
                         {this.createSelectTemplateItems()}
                     </select>
 					<div className={'video-packager-input-container' + (this.state.action.type !== 'watermark' ? '' :' field-not-displayed')}>
-						<label htmlFor="video-packager-content-input">Content</label>
+						<label htmlFor="video-packager-content-input">{Translator.trans(this.props.locale, 'content')}</label>
 						<textarea input="video-packager-content-input" className="video-packager-content-input" value={this.state.action.content} onChange={this.updateContent.bind(this)}></textarea>
 					</div>
 				</div>
@@ -251,13 +252,13 @@ class CurrentVideoAction extends React.Component {
 						<SVGInline svg={this.props.icon} />
 					</div>
 					<div className={'video-packager-bottom-item video-packager-text video-packager-normal' + (this.state.action.type === 'subtitle' ? '' :' field-hidden')}>
-						<label className="video-packager-custom-checkbox video-packager-container">Placeholder Action
+						<label className="video-packager-custom-checkbox video-packager-container">{Translator.trans(this.props.locale, 'activatePlaceholder')}
 							<input className="no-ui-tranform" checked={this.state.action.placeholder} onChange={this.updatePlaceholder.bind(this)} id="placeholder" type="checkbox" />
 							<span className="video-packager-checkmark"></span>
 						</label>
 					</div>
 					<div className="video-packager-bottom-item video-packager-small">
-						<Button clickHandler={this.onCloseAction.bind(this)} text="Close"></Button>
+						<Button clickHandler={this.onCloseAction.bind(this)} text={Translator.trans(this.props.locale, 'close')}></Button>
 					</div>
 				</div>
 			</div>
