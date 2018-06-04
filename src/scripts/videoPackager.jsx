@@ -15,7 +15,11 @@ class VideoPackager extends React.Component {
         super(props);
         var originalVideoId = document.getElementById('react-video-packager').getAttribute("data-video-id");
         var locale = document.getElementById('react-video-packager').getAttribute("data-locale") || "en" ;
+        var config = document.getElementById('react-video-packager').getAttribute("data-config");
+
         VideoPackagerActions.setOriginalVideoId(originalVideoId);
+        VideoPackagerActions.setConfig(config);
+
         this.state = {hidden: true, locale: locale};
     }
 

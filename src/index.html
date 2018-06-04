@@ -27,7 +27,7 @@
     <body>
         <div class="test-container">
             <div class="test-button" id="react-video-packager-opener">OPEN VIDEO PACKAGER</div>
-            <div data-locale="de" data-video-id="61" class="video-packager" id="react-video-packager"></div>
+            <div data-config='{ "getVideoUrl": "admin/clip-editor/videos/", "getTemplatesUrl": "admin/clip-editor/letterings/templates", "saveVideoUrl": "admin/clip-editor/clips"}' data-locale="de" data-video-id="61" class="video-packager" id="react-video-packager"></div>
         </div>
         <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
         <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>

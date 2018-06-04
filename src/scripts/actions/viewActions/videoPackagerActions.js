@@ -20,6 +20,15 @@ export default {
         AppDispatcher.dispatch(action);
     },
 
+    setConfig: function(config) {
+        var action = {
+            actionType: "CONFIG_URL_SET",
+            config: config
+        };
+
+        AppDispatcher.dispatch(action);
+    },
+
     setLocale: function(locale) {
         var action = {
             actionType: "SET_LOCALE",

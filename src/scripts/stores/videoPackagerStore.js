@@ -6,7 +6,12 @@ const status = ['inited', 'loading_data', 'ready', 'not_saved', 'saving', 'save_
 
 var videoPackagerStatus = {
     title: '',
-    clipId: -1
+    clipId: -1,
+    config: {
+        getVideoUrl: '',
+        getTemplatesUrl: '',
+        saveVideoUrl: ''
+    }
 };
 
 var VideoPackagerStore = assign({}, EventEmitter.prototype, {
@@ -33,6 +38,10 @@ AppDispatcher.register(function(action) {
     switch(action.actionType) {
         case "TITLE_UPDATE":
             videoPackagerStatus.title = action.title;
+            VideoPackagerStore.emitChange();
+            break;
+        case "CONFIG_URL_SET":
+            videoPackagerStatus.config = JSON.parse(action.config);
             VideoPackagerStore.emitChange();
             break;
         default:
