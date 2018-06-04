@@ -12,8 +12,4 @@ describe('TESTING FOOTER COMPONENT', () => {
     it('should has a Button component inside', () => {
 		expect(mount(<Footer />).find('.video-packager-button').length).toBe(1);
 	});
-
-    it('should has a Button with "Save" label inside', () => {
-		expect(mount(<Footer />).find('.video-packager-button').text()).toBe('Save');
-	});
 });
