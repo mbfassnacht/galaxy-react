@@ -108,7 +108,7 @@ export default {
 
         SaveServerActions.videoSaveStarted();
 
-        request({method: 'POST', url: path, body: data}, function(er, res) {
+        request({method: 'POST', url: path, json: data}, function(er, res) {
             if(!er) {
                 if (res.response) {
                     var response = JSON.parse(res.response);
@@ -127,7 +127,7 @@ export default {
 
         SaveServerActions.videoSaveStarted();
 
-        request.put({uri: path, body: data}, function(er, res) {
+        request.put({uri: path, json: data}, function(er, res) {
             if(!er) {
                 if (res.response) {
                     var response = JSON.parse(res.response);
