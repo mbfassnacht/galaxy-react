@@ -225,7 +225,7 @@ class CurrentVideoAction extends React.Component {
 						<input className="video-packager-title" placeholder = {Translator.trans(this.props.locale, 'enterActionName')} value={this.state.action.title} onChange={this.updateTitle.bind(this)}/>
 					</div>
 					<div className="video-packager-action-duration">
-						<span className="video-packager-duration-title">{Translator.trans(this.props.locale, 'durations')}: {this.state.duration}</span>
+						<span className="video-packager-duration-title">{Translator.trans(this.props.locale, 'duration')}: {this.state.duration}</span>
 					</div>
 				</div>
 				<div className="video-packager-action-top-info">
