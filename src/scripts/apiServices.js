@@ -181,7 +181,7 @@ export default {
 
     getVideo: function(id) {
         var that = this;
-        var path = getStateFromVideoPackagerStore().config.getVideoUrl + id;
+        var path = getStateFromVideoPackagerStore().config.getVideoUrl;
 
         // var response = {
         //     "id" : 61,
