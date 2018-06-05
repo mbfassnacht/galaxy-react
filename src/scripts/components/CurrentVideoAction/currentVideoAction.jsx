@@ -159,6 +159,17 @@ class CurrentVideoAction extends React.Component {
 		ActionsActions.update(updatedAction);
 	}
 
+    updateTemplate(e) {
+		var updatedAction = Object.assign({}, this.state.action, {
+            template: e.currentTarget.value,
+            selectedTemplate: e.currentTarget.selectedIndex
+        });
+
+
+		this.setState({updatedAction});
+		ActionsActions.update(updatedAction);
+	}
+
 	updateContent(e) {
 		var updatedAction = Object.assign({}, this.state.action, {content: e.currentTarget.value});
 		this.setState({updatedAction});
@@ -181,18 +192,14 @@ class CurrentVideoAction extends React.Component {
 		ActionsActions.remove(this.state.action.id);
 	}
 
-    onActionTemplateChanged(e) {
-        var updatedAction = Object.assign({}, this.state.action, {template: e.currentTarget.value});
-        this.setState({updatedAction});
-	}
-
     createSelectTemplateItems() {
         let items = [];
+        items.push(<option key={0} value={0}></option>);
 
         var currentTemplates = this.state.templates[this.state.action.type];
         if (typeof currentTemplates !== 'undefined') {
-            for (let i = 0; i < currentTemplates.length; i++) {
-                 items.push(<option key={i} value={currentTemplates[i].id}>{currentTemplates[i].title}</option>);
+            for (let i = 1; i < currentTemplates.length; i++) {
+                items.push(<option key={i} value={currentTemplates[i-1].id}>{currentTemplates[i-1].title}</option>);
             }
         }
 
@@ -239,7 +246,7 @@ class CurrentVideoAction extends React.Component {
                     </div>
                 </div>
 				<div className="video-packager-action-content">
-                    <select value={this.state.selectedAction} onChange={this.onActionTemplateChanged.bind(this)} className={'video-packager-action-template-type'  + ((this.state.action.type === 'watermark' || this.state.action.type === 'lettering') ? '' :' field-not-displayed')}>
+                    <select value={this.state.action.template} onChange={this.updateTemplate.bind(this)} className={'video-packager-action-template-type'  + ((this.state.action.type === 'watermark' || this.state.action.type === 'lettering') ? '' :' field-not-displayed')}>
                         {this.createSelectTemplateItems()}
                     </select>
 					<div className={'video-packager-input-container' + (this.state.action.type !== 'watermark' ? '' :' field-not-displayed')}>
@@ -251,7 +258,7 @@ class CurrentVideoAction extends React.Component {
 					<div onClick={this.onRemoveAction.bind(this)} className="video-packager-bottom-item video-packager-x-small">
 						<SVGInline svg={this.props.icon} />
 					</div>
-					<div className={'video-packager-bottom-item video-packager-text video-packager-normal' + (this.state.action.type === 'subtitle' ? '' :' field-hidden')}>
+					<div className='video-packager-bottom-item video-packager-text video-packager-normal'>
 						<label className="video-packager-custom-checkbox video-packager-container">{Translator.trans(this.props.locale, 'activatePlaceholder')}
 							<input className="no-ui-tranform" checked={this.state.action.placeholder} onChange={this.updatePlaceholder.bind(this)} id="placeholder" type="checkbox" />
 							<span className="video-packager-checkmark"></span>

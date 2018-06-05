@@ -12,7 +12,8 @@ var currentSelectedAction = {
     type: 'lettering',
     id: -1,
     placeholder: false,
-    template: ""
+    template: "",
+    selectedTemplate: 0
 };
 
 var ActionsStore = assign({}, EventEmitter.prototype, {
@@ -63,7 +64,8 @@ AppDispatcher.register(function(action) {
                 placeholder: false,
                 type: action.type.type,
                 id: actions.length,
-                template: ""
+                template: "",
+                selectedTemplate: 0
             };
             currentSelectedAction = newAction;
             actions.push(newAction);
@@ -79,7 +81,8 @@ AppDispatcher.register(function(action) {
                 type: '',
                 placeholder: false,
                 id: -1,
-                template: ""
+                template: "",
+                selectedTemplate: 0
             };
             ActionsStore.emitChange();
             break;
@@ -105,7 +108,8 @@ AppDispatcher.register(function(action) {
                 type: '',
                 placeholder: false,
                 id: -1,
-                template: ""
+                template: "",
+                selectedTemplate: 0
             };
             ActionsStore.emitChange();
             break;

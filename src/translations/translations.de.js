@@ -4,7 +4,7 @@ export default {
     subtitle: "Untertitel",
     lettering: "Bauchbinde",
     watermark: "Wasserzeichen",
-    activatePlaceholder: "Platzhalter aktivieren",
+    activatePlaceholder: "Platzhalter",
     duration: "Länge",
     close: "Schließen",
     content: "Inhalt",

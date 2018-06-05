@@ -4,7 +4,7 @@ export default {
     subtitle: "Subtitle",
     lettering: "Lettering",
     watermark: "Watermark",
-    activatePlaceholder: "Activate placeholder",
+    activatePlaceholder: "Placeholder",
     duration: "Duration",
     close: "Close",
     content: "Content",
