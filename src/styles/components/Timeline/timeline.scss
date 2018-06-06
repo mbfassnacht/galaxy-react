@@ -1,4 +1,7 @@
 .video-packager-timeline {
+    .vis-timeline {
+        border: 2px solid $color2;
+    }
     .vis-item {
         cursor: pointer;
         &.subtitle:not(.vis-selected) {
@@ -10,7 +13,7 @@
         &.not-visible {
             display: none;;
         }
-        
+
         &.lettering:not(.vis-selected) {
             color: white;
             background-color: red;
