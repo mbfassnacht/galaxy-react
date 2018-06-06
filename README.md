@@ -7,6 +7,7 @@ npm install
 ```
 ### USAGE
 The following commands are available in your project:
+
 ```bash
 # Start for development
 npm start
