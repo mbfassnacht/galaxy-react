@@ -106,6 +106,47 @@ export default {
         var that = this;
         var path = getStateFromVideoPackagerStore().config.saveVideoUrl;
 
+        var mockResponse = {
+            "id":5,
+            "title":"clip title",
+            "properties":{
+                "filterList":{
+                    "languages":[
+                        {
+                            "id":"1",
+                            "title":"Deutsch",
+                            "isoCode":
+                            "de"
+                        }
+                    ]
+                },
+                "videos":[
+                    {
+                        "title":"vms 608",
+                        "id":"85",
+                        "in":"0",
+                        "out":"57.942",
+                        "actions":[
+                            {
+                                "type":"lettering",
+                                "text":"bauchbinde content",
+                                "template":"4",
+                                "in":"10",
+                                "out":"30",
+                                "fadeIn":"10",
+                                "fadeOut":"30"
+                            }
+                        ],
+                        "activeLanguage":"1"
+                    }
+                ],
+                "placeholder":"0"
+            },
+            "previewVideoUrl":null,
+            "audioUrl":null
+        };
+
+
         SaveServerActions.videoSaveStarted();
 
         request({method: 'POST', url: path, json: data}, function(er, res) {
