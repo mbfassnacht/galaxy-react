@@ -90,11 +90,13 @@ class CurrentVideoAction extends React.Component {
 	}
 
     setMarkIn() {
-        this.updateMarkIn(VideoStatusStore.getStatus().time);
+        var timeToSet = typeof VideoStatusStore.getStatus().time !== 'undefined' ? VideoStatusStore.getStatus().time : 0;
+        this.updateMarkIn(timeToSet);
 	}
 
     setMarkOut() {
-        this.updateMarkOut(VideoStatusStore.getStatus().time);
+        var timeToSet = typeof VideoStatusStore.getStatus().time !== 'undefined' ? VideoStatusStore.getStatus().time : 0;
+        this.updateMarkOut(timeToSet);
     }
 
 	componentDidMount() {
