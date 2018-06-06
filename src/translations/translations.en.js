@@ -9,5 +9,8 @@ export default {
     close: "Close",
     content: "Content",
     enterVideoTitle: "Enter video title",
-    enterActionName: "Enter action name"
+    enterActionName: "Enter action name",
+    subtitlePosition: "Position",
+    up: "Up",
+    down: "Down"
 }

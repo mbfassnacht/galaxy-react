@@ -9,5 +9,8 @@ export default {
     close: "Schließen",
     content: "Inhalt",
     enterVideoTitle: "Video Titel eingeben",
-    enterActionName: "Hier Text eingeben"
+    enterActionName: "Hier Text eingeben",
+    subtitlePosition: "Position",
+    up: "Unten",
+    down: "Oben"
 }

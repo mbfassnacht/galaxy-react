@@ -4,6 +4,7 @@ import assign from 'object-assign';
 
 var actions = [];
 var currentTime = 0;
+
 var currentSelectedAction = {
     markIn: 0,
     markOut: 0,
@@ -13,7 +14,8 @@ var currentSelectedAction = {
     id: -1,
     placeholder: false,
     template: "",
-    selectedTemplate: 0
+    selectedTemplate: 0,
+    positionTop: false
 };
 
 var ActionsStore = assign({}, EventEmitter.prototype, {
@@ -61,6 +63,7 @@ AppDispatcher.register(function(action) {
                 markOut: currentTime + 1,
                 title: '',
                 content: '',
+                positionTop: false,
                 placeholder: false,
                 type: action.type.type,
                 id: actions.length,
@@ -80,6 +83,7 @@ AppDispatcher.register(function(action) {
                 content: '',
                 type: '',
                 placeholder: false,
+                positionTop: false,
                 id: -1,
                 template: "",
                 selectedTemplate: 0
@@ -106,6 +110,7 @@ AppDispatcher.register(function(action) {
                 title: '',
                 content: '',
                 type: '',
+                positionTop: false,
                 placeholder: false,
                 id: -1,
                 template: "",

@@ -73,8 +73,6 @@ export default {
                     "placeholder" : action.placeholder
                 }
             } else {
-                action.position = "top";
-
                 actionObj = {
                     "type" : 'subtitle',
                     "text" : action.title,

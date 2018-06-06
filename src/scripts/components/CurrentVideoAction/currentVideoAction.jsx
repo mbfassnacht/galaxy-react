@@ -11,6 +11,7 @@ import ActionsActions from '../../actions/viewActions/actionsActions';
 import ApiServices from '../../ApiServices';
 import Utils from '../../utils/dateUtil';
 import Translator from '../../utils/translatorUtil';
+import Switch from "react-switch";
 
 function getCurrentActionFromStore() {
     return ActionsStore.getCurrentAction()
@@ -214,6 +215,12 @@ class CurrentVideoAction extends React.Component {
 		ActionsActions.removeSelection();
 	}
 
+    onSubtitlePositionChanged(top) {
+        var updatedAction = Object.assign({}, this.state.action, {positionTop: top});
+        this.setState({updatedAction});
+        ActionsActions.update(updatedAction);
+    }
+
 	onRemoveAction() {
 		ActionsActions.remove(this.state.action.id);
 	}
@@ -281,6 +288,21 @@ class CurrentVideoAction extends React.Component {
 						<label htmlFor="video-packager-content-input">{Translator.trans(this.props.locale, 'content')}</label>
 						<textarea input="video-packager-content-input" className="video-packager-content-input" value={this.state.action.content} onChange={this.updateContent.bind(this)}></textarea>
 					</div>
+                    <div className={this.state.action.type === 'subtitle'? '' :' field-not-displayed'}>
+                        <label htmlFor="subtitle-position-switch">{Translator.trans(this.props.locale, 'subtitlePosition')}</label>
+                        <div className='subtitle-switcher-container'>
+                            <p>{Translator.trans(this.props.locale, 'down')}</p>
+                            <Switch
+                                onChange={this.onSubtitlePositionChanged.bind(this)}
+                                checked={this.state.action.positionTop}
+                                id="subtitle-position-switch"
+                                onColor="#000"
+                                offColor="#b3b3b3"
+                                className="effective-switch"
+                            />
+                            <p>{Translator.trans(this.props.locale, 'up')}</p>
+                        </div>
+                    </div>
 				</div>
 				<div className="video-packager-action-bottom-container">
 					<div onClick={this.onRemoveAction.bind(this)} className="video-packager-bottom-item video-packager-x-small">

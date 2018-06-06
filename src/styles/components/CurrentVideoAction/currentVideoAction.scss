@@ -9,6 +9,14 @@
     $iconMargin: 10px;
     $circleIconWidth: $circleIconDimensions + $iconMargin;
 
+    .effective-switch {
+        margin: auto 20px;
+    }
+
+    .subtitle-switcher-container {
+        display: flex;
+    }
+
     .cirle-icon {
         background-color: $color2;
         color: $color1;
@@ -29,15 +37,15 @@
     }
 
     &.hidden {
-        display: none;
+        display: none !important;
     }
 
     .field-hidden {
-        visibility: hidden;
+        visibility: hidden !important;
     }
 
     .field-not-displayed {
-        display: none;
+        display: none !important;
     }
 
     .video-packager-action-type {
