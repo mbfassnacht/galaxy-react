@@ -89,12 +89,26 @@ class CurrentVideoAction extends React.Component {
 		this.setState({duration: Utils.formatTimeForDom(duration, this.state.frameRate)});
 	}
 
+    setMarkIn() {
+        this.updateMarkIn(VideoStatusStore.getStatus().time);
+	}
+
+    setMarkOut() {
+        this.updateMarkOut(VideoStatusStore.getStatus().time);
+    }
+
 	componentDidMount() {
         this._onChange = this.onChange.bind(this);
         this._onOriginalVideoLoaded = this.onOriginalVideoLoaded.bind(this);
         this._onDurationSet = this.onDurationSet.bind(this);
         this._onTemplatesLoaded = this.onTemplatesLoaded.bind(this);
+        this._setMarkIn = this.setMarkIn.bind(this);
+        this._setMarkOut = this.setMarkOut.bind(this);
+        this.markInButton = this.refs.markInButton;
+        this.markOutButton = this.refs.markOutButton;
 
+        this.markInButton.addEventListener('click', this._setMarkIn);
+        this.markOutButton.addEventListener('click', this._setMarkOut);
 		ActionsStore.addChangeListener(this._onChange);
         TemplatesStore.addChangeListener(this._onTemplatesLoaded);
         ActionsStore.addActionSelectionListener(this._onChange);
@@ -108,8 +122,12 @@ class CurrentVideoAction extends React.Component {
 		ActionsActions.update(updatedAction);
 	}
 
-	updateMarkIn(e) {
+    onMarkInChanged(e) {
 		var markIn = Utils.fromFormattedTimeToSeconds(e.currentTarget.value, this.state.frameRate);
+        this.updateMarkIn(markIn);
+    }
+
+	updateMarkIn(markIn) {
         var markOut = this.state.action.markOut;
         markIn = this.getAllowedMarkIn(markIn);
 
@@ -123,8 +141,12 @@ class CurrentVideoAction extends React.Component {
 		ActionsActions.update(updatedAction);
 	}
 
-    updateMarkOut(e) {
-        var markOut = Utils.fromFormattedTimeToSeconds(e.currentTarget.value, this.state.frameRate);
+    onMarkOutChanged(e) {
+		var markOut = Utils.fromFormattedTimeToSeconds(e.currentTarget.value, this.state.frameRate);
+        this.updateMarkOut(markOut);
+    }
+
+    updateMarkOut(markOut) {
         var markIn = this.state.action.markIn;
         markOut = this.getAllowedMarkOut(markOut);
 
@@ -182,6 +204,8 @@ class CurrentVideoAction extends React.Component {
         ActionsStore.removeTimeChangeListener(this._onChange);
         VideoStatusStore.removeDurationSetListener(this._onDurationSet);
         TemplatesStore.removeChangeListener(this._onTemplatesLoaded);
+        this.markInButton.removeEventListener('click', this._setMarkIn);
+        this.markOutButton.removeEventListener('click', this._setMarkOut);
 	}
 
 	onCloseAction() {
@@ -238,11 +262,13 @@ class CurrentVideoAction extends React.Component {
 				<div className="video-packager-action-top-info">
                     <div className="video-packager-mark-container video-packager-mark-in-container">
 					    <label htmlFor="video-packager-mark-in">Mark in</label>
-					    <input input="video-packager-mark-in" className="video-packager-mark-in" value={this.state.userMarkIn} onChange={this.updateMarkIn.bind(this)}/>
+					    <input input="video-packager-mark-in" className="video-packager-mark-in" value={this.state.userMarkIn} onChange={this.onMarkInChanged.bind(this)}/>
+                        <div ref="markInButton" className="cirle-icon">{'{'}</div>
                     </div>
                     <div className="video-packager-mark-container video-packager-mark-out-container">
                         <label htmlFor="video-packager-mark-out">Mark out</label>
-					    <input input="video-packager-mark-out" className="video-packager-mark-out" value={this.state.userMarkOut} onChange={this.updateMarkOut.bind(this)}/>
+					    <input input="video-packager-mark-out" className="video-packager-mark-out" value={this.state.userMarkOut} onChange={this.onMarkOutChanged.bind(this)}/>
+                        <div ref="markOutButton" className="cirle-icon">{'}'} </div>
                     </div>
                 </div>
 				<div className="video-packager-action-content">

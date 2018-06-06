@@ -5,6 +5,28 @@
     min-height: 346px;
     position: relative;
     padding-bottom: 81px;
+    $circleIconDimensions: 35px;
+    $iconMargin: 10px;
+    $circleIconWidth: $circleIconDimensions + $iconMargin;
+
+    .cirle-icon {
+        background-color: $color2;
+        color: $color1;
+        width: $circleIconDimensions;
+        height: $circleIconDimensions;
+        text-align: center;
+        line-height: $circleIconDimensions;
+        border-radius: $circleIconDimensions;
+        font-size: 20px;
+        display: inline-block;
+        margin-left: $iconMargin;
+        cursor: pointer;
+        transition: $transition-time;
+
+        &:hover {
+            background-color: $color3;
+        }
+    }
 
     &.hidden {
         display: none;
@@ -62,10 +84,12 @@
         .video-packager-mark-container {
             width: 50%;
         }
+
         input {
             height: 30px;
             font-size: $normal-font-size;
-            width: 100%;
+            height: 30px;
+            width: calc(100% - #{$circleIconWidth});
             text-align: center;
             border: 2px solid $color3;
         }
