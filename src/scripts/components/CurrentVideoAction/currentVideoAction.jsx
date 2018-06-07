@@ -29,7 +29,6 @@ function getOriginalVideoStatusFromStore() {
     return OriginalVideoStore.getStatus()
 }
 
-
 class CurrentVideoAction extends React.Component {
 
 	constructor(props) {
@@ -270,14 +269,18 @@ class CurrentVideoAction extends React.Component {
 				</div>
 				<div className="video-packager-action-top-info">
                     <div className="video-packager-mark-container video-packager-mark-in-container">
-					    <label htmlFor="video-packager-mark-in">Mark in</label>
-					    <input input="video-packager-mark-in" className="video-packager-mark-in" value={this.state.userMarkIn} onChange={this.onMarkInChanged.bind(this)}/>
-                        <div ref="markInButton" className="cirle-icon">{'{'}</div>
+                        <label htmlFor="video-packager-mark-in">Mark in</label>
+                        <div>
+                            <div ref="markInButton" className="left cirle-icon">{'{'}</div>
+                            <input input="video-packager-mark-in" className="video-packager-mark-in" value={this.state.userMarkIn} onChange={this.onMarkInChanged.bind(this)}/>
+                        </div>
                     </div>
                     <div className="video-packager-mark-container video-packager-mark-out-container">
                         <label htmlFor="video-packager-mark-out">Mark out</label>
-					    <input input="video-packager-mark-out" className="video-packager-mark-out" value={this.state.userMarkOut} onChange={this.onMarkOutChanged.bind(this)}/>
-                        <div ref="markOutButton" className="cirle-icon">{'}'} </div>
+                        <div>
+                            <input input="video-packager-mark-out" className="video-packager-mark-out" value={this.state.userMarkOut} onChange={this.onMarkOutChanged.bind(this)}/>
+                            <div ref="markOutButton" className="right cirle-icon">{'}'} </div>
+                        </div>
                     </div>
                 </div>
 				<div className="video-packager-action-content">

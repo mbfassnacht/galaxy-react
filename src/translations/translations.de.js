@@ -12,5 +12,9 @@ export default {
     enterActionName: "Hier Text eingeben",
     subtitlePosition: "Position",
     up: "Unten",
-    down: "Oben"
+    down: "Oben",
+    alert_addVideoTitle: "Please add a title for the video",
+    alert_addActionTitle: "There is a $type$ without title",
+    alert_addActionContent: "The action '$title$' must have content",
+    alert_addActionTemplate: "The action '$title$' must have a template"
 }

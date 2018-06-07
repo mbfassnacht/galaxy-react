@@ -27,9 +27,17 @@
         border-radius: $circleIconDimensions;
         font-size: 20px;
         display: inline-block;
-        margin-left: $iconMargin;
         cursor: pointer;
         transition: $transition-time;
+
+        &.right {
+            margin-left: $iconMargin;
+        }
+
+        &.left {
+            margin-right: $iconMargin;
+        }
+
 
         &:hover {
             background-color: $color3;

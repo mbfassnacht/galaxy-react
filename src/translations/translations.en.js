@@ -12,5 +12,9 @@ export default {
     enterActionName: "Enter action name",
     subtitlePosition: "Position",
     up: "Up",
-    down: "Down"
+    down: "Down",
+    alert_addVideoTitle: "Please add a title for the video",
+    alert_addActionTitle: "There is a $actionType$ without title",
+    alert_addActionContent: "The action: '$actionTitle$' must have content",
+    alert_addActionTemplate: "The action: '$actionTitle$' must have a template"
 }

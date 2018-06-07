@@ -11,13 +11,23 @@ var videoPackagerStatus = {
         getVideoUrl: '',
         getTemplatesUrl: '',
         saveVideoUrl: ''
-    }
+    },
+    attemptToSave: false,
+    allowedToSave: false
 };
 
 var VideoPackagerStore = assign({}, EventEmitter.prototype, {
 
     emitChange: function() {
         this.emit('change');
+    },
+
+    emitSaveAttempt: function() {
+        this.emit('saveAttempt');
+    },
+
+    emitSaveAllowed: function() {
+        this.emit('saveAllowed');
     },
 
     addChangeListener: function(callback) {
@@ -28,6 +38,22 @@ var VideoPackagerStore = assign({}, EventEmitter.prototype, {
         this.removeListener('change', callback);
     },
 
+    addSaveAttemptListener: function(callback) {
+        this.on('saveAttempt', callback);
+    },
+
+    removeSaveAttemptListener: function(callback) {
+        this.removeListener('saveAttempt', callback);
+    },
+
+    addSaveAllowedListener: function(callback) {
+        this.on('saveAllowed', callback);
+    },
+
+    removeSaveAllowedListener: function(callback) {
+        this.removeListener('saveAllowed', callback);
+    },
+
     getStatus: function() {
         return videoPackagerStatus;
     }
@@ -36,6 +62,14 @@ var VideoPackagerStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
 
     switch(action.actionType) {
+        case "ATTEMPT_TO_SAVE":
+            videoPackagerStatus.attemptToSave = true;
+            VideoPackagerStore.emitSaveAttempt();
+            break;
+        case "ALLOWED_TO_SAVE":
+            videoPackagerStatus.allowedToSave = action.allowed;
+            VideoPackagerStore.emitSaveAllowed();
+            break;
         case "TITLE_UPDATE":
             videoPackagerStatus.title = action.title;
             VideoPackagerStore.emitChange();

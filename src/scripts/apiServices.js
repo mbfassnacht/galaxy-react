@@ -57,11 +57,6 @@ export default {
             var actionObj;
             if (action.type === 'lettering' || action.type === 'watermark' ) {
 
-                if (!action.template) {
-                    this.showAlertError(Translator.trans('please choose a template'));
-                    return;
-                }
-
                 actionObj = {
                     "type" : 'lettering',
                     "text" : action.title,
