@@ -11,7 +11,7 @@ class Footer extends React.Component {
 
 	constructor(props) {
         super(props);
-        this.state = {neverTriedSave: true};
+        this.state = {neverTriedSave: true, allowedToSave: false};
     }
 
 	onSaveAction() {
@@ -20,15 +20,19 @@ class Footer extends React.Component {
 			this.setState({neverTriedSave: false})
 		}
 
-		if (VideoPackagerStore.getStatus().allowedToSave) {
+		if (this.state.allowedToSave) {
 			ApiServices.save();
 		}
+	}
+
+	onAllowedToSaveChanged(value) {
+		this.setState({allowedToSave: value})
 	}
 
 	render() {
 		return (
 			<div className="video-packager-footer">
-				<AlertsContainer locale={this.props.locale}></AlertsContainer>
+				<AlertsContainer allowedToSave={this.onAllowedToSaveChanged.bind(this)} locale={this.props.locale}></AlertsContainer>
 				<Button clickHandler={this.onSaveAction.bind(this)} text={Translator.trans(this.props.locale, 'save')}></Button>
 			</div>
 		);

@@ -37,15 +37,6 @@ export default {
         AppDispatcher.dispatch(action);
     },
 
-    allowedToSave: function(allowed) {
-        var action = {
-            actionType: "ALLOWED_TO_SAVE",
-            allowed: allowed
-        };
-
-        AppDispatcher.dispatch(action);
-    },
-
     setLocale: function(locale) {
         var action = {
             actionType: "SET_LOCALE",

@@ -1,6 +1,6 @@
 import React from 'react';
 import VideoStatusStore from '../../stores/videoStatusStore';
-import OriginalVideoStore from '../../stores/OriginalVideoStore';
+import OriginalVideoStore from '../../stores/originalVideoStore';
 import VideoActions from '../../actions/viewActions/videoActions';
 import ApiServices from '../../ApiServices';
 

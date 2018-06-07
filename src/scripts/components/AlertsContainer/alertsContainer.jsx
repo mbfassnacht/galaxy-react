@@ -69,6 +69,12 @@ class AlertsContainer extends React.Component {
 			message = message.replace("$" + key + "$", value);
 		}
 
+		if (this.error === "") {
+			this.props.allowedToSave(true);
+		} else {
+			this.props.allowedToSave(false);
+		}
+
 		this.setState({alertText: message});
 	}
 
@@ -76,14 +82,6 @@ class AlertsContainer extends React.Component {
 		var videoPackagerStatus = getVideoPackagerStatus();
 		if (videoPackagerStatus.attemptToSave) {
 			this.setState({hidden: false});
-		}
-	}
-
-	componentDidUpdate (){
-		if (this.error === "") {
-			VideoPackagerActions.allowedToSave(true);
-		} else {
-			VideoPackagerActions.allowedToSave(false);
 		}
 	}
 

@@ -13,7 +13,6 @@ var videoPackagerStatus = {
         saveVideoUrl: ''
     },
     attemptToSave: false,
-    allowedToSave: false
 };
 
 var VideoPackagerStore = assign({}, EventEmitter.prototype, {
@@ -65,10 +64,6 @@ AppDispatcher.register(function(action) {
         case "ATTEMPT_TO_SAVE":
             videoPackagerStatus.attemptToSave = true;
             VideoPackagerStore.emitSaveAttempt();
-            break;
-        case "ALLOWED_TO_SAVE":
-            videoPackagerStatus.allowedToSave = action.allowed;
-            VideoPackagerStore.emitSaveAllowed();
             break;
         case "TITLE_UPDATE":
             videoPackagerStatus.title = action.title;
