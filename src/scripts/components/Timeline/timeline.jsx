@@ -88,14 +88,14 @@ class Timeline extends React.Component {
     onActionMoving(event) {
         var currentAction = getAllActionsFromStore()[event.id];
         var actionDuration = currentAction.markOut - currentAction.markIn;
-        currentAction.markIn = event.start.getTime() / (this.props.currensScale);
-        currentAction.markOut = event.end.getTime() / (this.props.currensScale);
+        currentAction.markIn = Math.min(Math.max(event.start.getTime() / (this.props.currensScale), 0), this.state.duration - 1);
+        currentAction.markOut =  Math.max(Math.min(event.end.getTime() / (this.props.currensScale), this.state.duration), 1);
         ActionsActions.update(currentAction);
 	}
 
 	onChangeTime() {
 		var videoStatus = getVideoStatusFromStore();
-		this.setState({time: parseFloat(videoStatus.time)});
+		this.setState({time: Math.min(parseFloat(videoStatus.time), this.state.duration)});
 	}
 
     onDurationSet() {
@@ -124,7 +124,8 @@ class Timeline extends React.Component {
 
 	draggingTimeBar(event) {
         if (typeof event !== 'undefined') {
-            VideoActions.changingTime(event.time.getTime() / (this.props.currensScale));
+            var timeToSet = Math.min(event.time.getTime() / (this.props.currensScale), this.state.duration);
+            VideoActions.changingTime(Math.max(0, timeToSet));
         } else {
             VideoActions.changingTime();
         }

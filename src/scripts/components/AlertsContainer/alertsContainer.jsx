@@ -61,12 +61,15 @@ class AlertsContainer extends React.Component {
 			this.checkActions();
 		}
 
-		var message = Translator.trans(this.props.locale, "alert_" + this.error);
+        var message = "";
+        if (Translator.existKey(this.props.locale, "alert_" + this.error)) {
+            message = Translator.trans(this.props.locale, "alert_" + this.error);
+        }
 
 		if (this.actionWithError != null) {
 			var key = message.split('$')[1];
 			var value = this.actionWithError[key];
-			message = message.replace("$" + key + "$", value);
+			message = message.replace("$" + key + "$", Translator.trans(this.props.locale, value));
 		}
 
 		if (this.error === "") {

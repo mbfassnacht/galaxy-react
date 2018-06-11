@@ -26,6 +26,10 @@ class VideoPackager extends React.Component {
     componentDidMount() {
         const opener = document.getElementById('react-video-packager-opener');
         opener.addEventListener('click', this.openClose.bind(this));
+
+        var backLayer = this.refs.backLayer;
+
+        backLayer.addEventListener('click', this.close.bind(this));
     }
 
     openClose() {
@@ -34,6 +38,10 @@ class VideoPackager extends React.Component {
         } else {
             this.setState({hidden: true});
         }
+    }
+
+    close() {
+        this.setState({hidden: true});
     }
 
     render() {
@@ -62,6 +70,7 @@ class VideoPackager extends React.Component {
                         <Footer locale={this.state.locale}></Footer>
                     </div>
                 </div>
+                <div ref="backLayer" className='video-packager-back-layer'></div>
             </div>
         );
     }
