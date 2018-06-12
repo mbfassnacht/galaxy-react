@@ -1,9 +1,6 @@
-// FONTS
-@import "./fonts.scss";
+// SKIN
+@import "../../node_modules/video-packager-audi-skin/styles/main.scss";
 
-// VARIABLES
-@import "./variables/_all.scss";
-
-// COMPONENTS
-@import "./VideoPackager.scss";
-@import "./components/_all.scss";
+body{
+    display: block;
+}
