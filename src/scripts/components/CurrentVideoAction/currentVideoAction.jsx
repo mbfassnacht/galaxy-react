@@ -284,12 +284,14 @@ class CurrentVideoAction extends React.Component {
                     </div>
                 </div>
 				<div className="video-packager-action-content">
-                    <select value={this.state.action.template} onChange={this.updateTemplate.bind(this)} className={'video-packager-action-template-type'  + ((this.state.action.type === 'watermark' || this.state.action.type === 'lettering') ? '' :' field-not-displayed')}>
-                        {this.createSelectTemplateItems()}
-                    </select>
+                    <div className={'video-packager-select-field video-packager-field video-packager-action-template-type'  + ((this.state.action.type === 'watermark' || this.state.action.type === 'lettering') ? '' :' field-not-displayed')}>
+                        <select value={this.state.action.template} onChange={this.updateTemplate.bind(this)}>
+                            {this.createSelectTemplateItems()}
+                        </select>
+                    </div>
 					<div className={'video-packager-input-container' + (this.state.action.type !== 'watermark' ? '' :' field-not-displayed')}>
 						<label htmlFor="video-packager-content-input">{Translator.trans(this.props.locale, 'content')}</label>
-						<textarea input="video-packager-content-input" className="video-packager-content-input" value={this.state.action.content} onChange={this.updateContent.bind(this)}></textarea>
+						<textarea input="video-packager-content-input" className="video-packager-content-input video-packager-field" value={this.state.action.content} onChange={this.updateContent.bind(this)}></textarea>
 					</div>
                     <div className={this.state.action.type === 'subtitle'? '' :' field-not-displayed'}>
                         <label htmlFor="subtitle-position-switch">{Translator.trans(this.props.locale, 'subtitlePosition')}</label>
