@@ -10,6 +10,7 @@ export default {
     content: "Inhalt",
     enterVideoTitle: "Video Titel eingeben",
     enterActionName: "Hier Text eingeben",
+    selectTemplate: "Hier Template eingeben",
     subtitlePosition: "Position",
     up: "Unten",
     down: "Oben",

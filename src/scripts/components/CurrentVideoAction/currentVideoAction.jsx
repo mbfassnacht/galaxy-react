@@ -226,7 +226,7 @@ class CurrentVideoAction extends React.Component {
 
     createSelectTemplateItems() {
         let items = [];
-        items.push(<option key={0} value={0}></option>);
+        items.push(<option key={0} value={0}>{Translator.trans(this.props.locale, 'selectTemplate')}</option>);
 
         var currentTemplates = this.state.templates[this.state.action.type];
         if (typeof currentTemplates !== 'undefined') {

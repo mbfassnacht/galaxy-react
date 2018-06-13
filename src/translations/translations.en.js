@@ -10,6 +10,7 @@ export default {
     content: "Content",
     enterVideoTitle: "Enter video title",
     enterActionName: "Enter action name",
+    selectTemplate: "Please select a template",
     subtitlePosition: "Position",
     up: "Up",
     down: "Down",
