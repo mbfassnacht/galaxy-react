@@ -260,7 +260,7 @@ class CurrentVideoAction extends React.Component {
 			<div className={'video-packager-current-video-action ' + (this.state.actionSelected ? '' :'hidden')}>
                 {actionLabel}
 				<div className="video-packager-action-header">
-					<div className="video-packager-action-title">
+					<div className="video-packager-action-title video-packager-input-field">
 						<input className="video-packager-title" placeholder = {Translator.trans(this.props.locale, 'enterActionName')} value={this.state.action.title} onChange={this.updateTitle.bind(this)}/>
 					</div>
 					<div className="video-packager-action-duration">
@@ -268,16 +268,16 @@ class CurrentVideoAction extends React.Component {
 					</div>
 				</div>
 				<div className="video-packager-action-top-info">
-                    <div className="video-packager-mark-container video-packager-mark-in-container">
+                    <div className="video-packager-mark-container video-packager-mark-in-container video-packager-input-field">
                         <label htmlFor="video-packager-mark-in">Mark in</label>
-                        <div>
+                        <div className="video-packager-input-field">
                             <div ref="markInButton" className="left cirle-icon">{'{'}</div>
                             <input input="video-packager-mark-in" className="video-packager-mark-in" value={this.state.userMarkIn} onChange={this.onMarkInChanged.bind(this)}/>
                         </div>
                     </div>
-                    <div className="video-packager-mark-container video-packager-mark-out-container">
+                    <div className="video-packager-mark-container video-packager-mark-out-container video-packager-input-field">
                         <label htmlFor="video-packager-mark-out">Mark out</label>
-                        <div>
+                        <div className="video-packager-input-field">
                             <input input="video-packager-mark-out" className="video-packager-mark-out" value={this.state.userMarkOut} onChange={this.onMarkOutChanged.bind(this)}/>
                             <div ref="markOutButton" className="right cirle-icon">{'}'} </div>
                         </div>
@@ -289,7 +289,7 @@ class CurrentVideoAction extends React.Component {
                             {this.createSelectTemplateItems()}
                         </select>
                     </div>
-					<div className={'video-packager-input-container' + (this.state.action.type !== 'watermark' ? '' :' field-not-displayed')}>
+					<div className={'video-packager-input-field video-packager-input-container' + (this.state.action.type !== 'watermark' ? '' :' field-not-displayed')}>
 						<label htmlFor="video-packager-content-input">{Translator.trans(this.props.locale, 'content')}</label>
 						<textarea input="video-packager-content-input" className="video-packager-content-input video-packager-field" value={this.state.action.content} onChange={this.updateContent.bind(this)}></textarea>
 					</div>

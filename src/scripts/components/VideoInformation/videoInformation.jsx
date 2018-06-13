@@ -23,7 +23,7 @@ class VideoInformation extends React.Component {
 
 	render() {
 		return (
-			<div className="video-packager-video-information">
+            <div className="video-packager-video-information video-packager-input-field">
 				 <input placeholder={Translator.trans(this.props.locale, 'enterVideoTitle')}  className="video-packager-title" value={this.state.title} onChange={this.updateTitle.bind(this)}/>
 			</div>
 		);
