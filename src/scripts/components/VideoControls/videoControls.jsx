@@ -20,19 +20,27 @@ class VideoControls extends React.Component {
 		VideoStatusStore.addChangeListener(this.onChange.bind(this));
 	}
 
-	onPlay() {
+	onPlay(event) {
+        event.preventDefault();
+        event.stopPropagation();
 		VideoActions.play();
 	}
 
-	onPause() {
+	onPause(event) {
+        event.preventDefault();
+        event.stopPropagation();
 		VideoActions.pause();
 	}
 
-	onIncrease() {
+	onIncrease(event) {
+        event.preventDefault();
+        event.stopPropagation();
 		VideoActions.increase();
 	}
 
-	onDecrease() {
+	onDecrease(event) {
+        event.preventDefault();
+        event.stopPropagation();
 		VideoActions.decrease();
 	}
 
@@ -45,7 +53,9 @@ class VideoControls extends React.Component {
 		VideoStatusStore.removeChangeListener(this.onChange.bind(this));
 	}
 
-	toggleMute() {
+	toggleMute(event) {
+        event.preventDefault();
+        event.stopPropagation();
 		var state = !this.state.mute;
 		VideoActions.mute({
 			mute: state
