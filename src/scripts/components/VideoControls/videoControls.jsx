@@ -21,26 +21,38 @@ class VideoControls extends React.Component {
 	}
 
 	onPlay(event) {
-        event.preventDefault();
-        event.stopPropagation();
-		VideoActions.play();
+        if (typeof event != "undefined") {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        VideoActions.play();
 	}
 
 	onPause(event) {
-        event.preventDefault();
-        event.stopPropagation();
+        if (typeof event != "undefined") {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
 		VideoActions.pause();
 	}
 
 	onIncrease(event) {
-        event.preventDefault();
-        event.stopPropagation();
+        if (typeof event != "undefined") {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
 		VideoActions.increase();
 	}
 
 	onDecrease(event) {
-        event.preventDefault();
-        event.stopPropagation();
+        if (typeof event != "undefined") {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
 		VideoActions.decrease();
 	}
 
@@ -54,9 +66,11 @@ class VideoControls extends React.Component {
 	}
 
 	toggleMute(event) {
-        event.preventDefault();
-        event.stopPropagation();
-		var state = !this.state.mute;
+        if (typeof event != "undefined") {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        var state = !this.state.mute;
 		VideoActions.mute({
 			mute: state
 		});
@@ -67,27 +81,27 @@ class VideoControls extends React.Component {
 			<div className = "video-packager-video-controls">
 				<PrevButton
 				  	isEnabled = {true}
-				  	onClick = {this.onDecrease.bind(this)}
+				  	onClick = {e.preventDefault() && this.onDecrease.bind(this)}
 				/>
 				<div className = {this.state.playing ? 'video-packager-toggle-button video-packager-hidden' : 'video-packager-toggle-button'}>
 					<PlayButton
 						isEnabled = {true}
-						onClick = {this.onPlay.bind(this)}
+						onClick = {e.preventDefault() && this.onPlay.bind(this)}
 					/>
 				</div>
 					<div className = {!this.state.playing ? 'video-packager-toggle-button video-packager-hidden' : 'video-packager-toggle-button'}>
 					<PauseButton
-						onClick = {this.onPause.bind(this)}
+						onClick = {e.preventDefault() && this.onPause.bind(this)}
 					/>
 				</div>
 				<NextButton
 				  	isEnabled = {true}
-				  	onClick = {this.onIncrease.bind(this)}
+				  	onClick = {e.preventDefault() && this.onIncrease.bind(this)}
 				/>
 				<MuteToggleButton
 					isEnabled = {true}
 					isMuted = {this.state.mute}
-					onMuteChange = {this.toggleMute.bind(this)}
+					onMuteChange = {e.preventDefault() && this.toggleMute.bind(this)}
 				/>
 			</div>
 		);
