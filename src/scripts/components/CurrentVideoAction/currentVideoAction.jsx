@@ -285,7 +285,7 @@ class CurrentVideoAction extends React.Component {
                 </div>
 				<div className="video-packager-action-content">
                     <div className={'video-packager-select-field video-packager-field video-packager-action-template-type'  + ((this.state.action.type === 'watermark' || this.state.action.type === 'lettering') ? '' :' field-not-displayed')}>
-                        <select value={this.state.action.template} onChange={this.updateTemplate.bind(this)}>
+                        <select className="no-ui-tranform" value={this.state.action.template} onChange={this.updateTemplate.bind(this)}>
                             {this.createSelectTemplateItems()}
                         </select>
                     </div>
