@@ -11,7 +11,7 @@ module.exports = {
                 test: /\.jsx$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader"
+                    loader: 'babel-loader'
                 }
             },
             {
@@ -41,7 +41,7 @@ module.exports = {
         new WebpackMd5Hash()
     ],
     output: {
-        path: path.resolve(__dirname, "dist/"),
+        path: path.resolve(__dirname, 'dist/'),
         filename: 'js/videoPackager.js'
-    },
+    }
 };

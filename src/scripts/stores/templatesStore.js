@@ -4,7 +4,7 @@ import assign from 'object-assign';
 
 var templates = {
     lettering: [],
-    watermark: [],
+    watermark: []
 };
 
 var TemplatesStore = assign({}, EventEmitter.prototype, {
@@ -29,11 +29,11 @@ var TemplatesStore = assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(action) {
     switch(action.actionType) {
-        case "TEMPLATES_LOAD_STARTED":
+        case 'TEMPLATES_LOAD_STARTED':
             TemplatesStore.emitChange();
             break;
 
-        case "TEMPLATES_LOAD_ENDED":
+        case 'TEMPLATES_LOAD_ENDED':
             for (var i = 0; i < action.data.length; i++) {
                 if (action.data[i].type === 'lettering') {
                     templates.lettering.push(action.data[i]);
@@ -45,7 +45,7 @@ AppDispatcher.register(function(action) {
             TemplatesStore.emitChange();
             break;
 
-        case "TEMPLATES_LOAD_ERROR":
+        case 'TEMPLATES_LOAD_ERROR':
             TemplatesStore.emitChange();
             break;
         default:

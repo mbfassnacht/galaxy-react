@@ -21,7 +21,7 @@ class Footer extends React.Component {
 		}
 
 		if (this.state.allowedToSave) {
-			ApiServices.save();
+			ApiServices.saveVideo();
 		}
 	}
 

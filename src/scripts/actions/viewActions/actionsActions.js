@@ -4,7 +4,7 @@ export default {
 
     add: function(type) {
         var action = {
-            actionType: "ADD_ACTION",
+            actionType: 'ADD_ACTION',
             type: type
         };
 
@@ -13,16 +13,16 @@ export default {
 
     update: function(actionUpdated) {
         var action = {
-            actionType: "UPDATE_ACTION",
+            actionType: 'UPDATE_ACTION',
             action: actionUpdated
         };
 
         AppDispatcher.dispatch(action);
     },
 
-    removeSelection: function(type) {
+    removeSelection: function() {
         var action = {
-            actionType: "REMOVE_ACTION_SELECTION"
+            actionType: 'REMOVE_ACTION_SELECTION'
         };
 
         AppDispatcher.dispatch(action);
@@ -30,7 +30,7 @@ export default {
 
     selectAction: function(id) {
         var action = {
-            actionType: "SELECT_ACTION",
+            actionType: 'SELECT_ACTION',
             id: id
         };
 
@@ -39,7 +39,7 @@ export default {
 
     remove: function(actionId) {
         var action = {
-            actionType: "REMOVE_ACTION",
+            actionType: 'REMOVE_ACTION',
             id: actionId
         };
 

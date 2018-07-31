@@ -4,7 +4,7 @@ export default {
 
     play: function() {
         var action = {
-            actionType: "PLAY_ACTION"
+            actionType: 'PLAY_ACTION'
         };
 
         AppDispatcher.dispatch(action);
@@ -12,7 +12,7 @@ export default {
 
     pause: function() {
         var action = {
-            actionType: "PAUSE_ACTION",
+            actionType: 'PAUSE_ACTION'
         };
 
         AppDispatcher.dispatch(action);
@@ -20,7 +20,7 @@ export default {
 
     setDuration: function(duration) {
         var action = {
-            actionType: "SET_DURATION_ACTION",
+            actionType: 'SET_DURATION_ACTION',
             duration: duration
         };
 
@@ -29,7 +29,7 @@ export default {
 
     changingTime: function(time) {
         var action = {
-            actionType: "CHANGING_TIME_ACTION",
+            actionType: 'CHANGING_TIME_ACTION',
             time: time
         };
 
@@ -38,7 +38,7 @@ export default {
 
     setTime: function(time) {
         var action = {
-            actionType: "SET_TIME_ACTION",
+            actionType: 'SET_TIME_ACTION',
             time: time
         };
 
@@ -47,7 +47,7 @@ export default {
 
     mute: function(action) {
         var action = {
-            actionType: "MUTE_ACTION",
+            actionType: 'MUTE_ACTION',
             mute: action.mute
         };
 
@@ -56,7 +56,7 @@ export default {
 
     increase: function(action) {
         var action = {
-            actionType: "INCREASE_ACTION"
+            actionType: 'INCREASE_ACTION'
         };
 
         AppDispatcher.dispatch(action);
@@ -64,7 +64,7 @@ export default {
 
     decrease: function(action) {
         var action = {
-            actionType: "DECREASE_ACTION"
+            actionType: 'DECREASE_ACTION'
         };
 
         AppDispatcher.dispatch(action);

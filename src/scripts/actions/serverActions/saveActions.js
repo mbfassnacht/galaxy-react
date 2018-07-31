@@ -4,7 +4,7 @@ export default {
 
     videoSaveStarted: function() {
         var action = {
-            actionType: "VIDEO_SAVE_STARTED"
+            actionType: 'VIDEO_SAVE_STARTED'
         };
 
         AppDispatcher.dispatch(action);
@@ -12,15 +12,16 @@ export default {
 
     videoSaveError: function() {
         var action = {
-            actionType: "VIDEO_SAVE_ERROR"
+            actionType: 'VIDEO_SAVE_ERROR'
         };
 
         AppDispatcher.dispatch(action);
     },
 
-    videoSaveEnded: function() {
+    videoSaveEnded: function(data) {
         var action = {
-            actionType: "VIDEO_SAVE_ENDED"
+            actionType: 'VIDEO_SAVE_ENDED',
+            data: data
         };
 
         AppDispatcher.dispatch(action);

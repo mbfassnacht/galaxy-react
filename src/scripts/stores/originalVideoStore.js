@@ -6,7 +6,7 @@ const status = ['inited', 'loading_data', 'ready', 'not_saved', 'saving', 'save_
 
 var originalVideoStatus =  {
     originalVideo: {
-        previewVideoUrl: "",
+        previewVideoUrl: '',
         id: -1
     },
     state: status[0]
@@ -35,33 +35,21 @@ AppDispatcher.register(function(action) {
 
     switch(action.actionType) {
 
-        case "ORIGINAL_VIDEO_ID_SET":
+        case 'ORIGINAL_VIDEO_ID_SET':
             originalVideoStatus.originalVideo.id = action.id;
             OriginalVideoStore.emitChange();
             break;
-        case "VIDEO_LOAD_STARTED":
+        case 'VIDEO_LOAD_STARTED':
             originalVideoStatus.state = status[1];
             OriginalVideoStore.emitChange();
             break;
-        case "VIDEO_LOAD_ENDED":
+        case 'VIDEO_LOAD_ENDED':
             originalVideoStatus.state = status[2];
             originalVideoStatus.originalVideo = action.data;
             OriginalVideoStore.emitChange();
             break;
-        case "VIDEO_DATA_MODIFIED":
+        case 'VIDEO_DATA_MODIFIED':
             originalVideoStatus.state = status[3];
-            OriginalVideoStore.emitChange();
-            break;
-        case "VIDEO_SAVE_STARTED":
-            originalVideoStatus.state = status[4];
-            OriginalVideoStore.emitChange();
-            break;
-        case "VIDEO_SAVE_ERROR":
-            originalVideoStatus.state = status[5];
-            OriginalVideoStore.emitChange();
-            break;
-        case "VIDEO_SAVE_ENDED":
-            originalVideoStatus.state = status[6];
             OriginalVideoStore.emitChange();
             break;
         default:
