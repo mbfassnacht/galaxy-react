@@ -310,17 +310,17 @@ class CurrentVideoAction extends React.Component {
                     </div>
 				</div>
 				<div className="video-packager-action-bottom-container">
-					<div onClick={this.onRemoveAction.bind(this)} className="video-packager-bottom-item video-packager-x-small">
-						<SVGInline svg={this.props.icon} />
+					<div onClick={this.onRemoveAction.bind(this)} className="video-packager-parent-centered video-packager-bottom-item video-packager-x-small">
+						<SVGInline className="video-packager-child-centered" svg={this.props.icon} />
 					</div>
-					<div className='video-packager-bottom-item video-packager-text video-packager-normal'>
-						<label className="video-packager-custom-checkbox video-packager-container">{Translator.trans(this.props.locale, 'activatePlaceholder')}
+					<div className='video-packager-parent-centered video-packager-bottom-item video-packager-text video-packager-normal'>
+						<label className="video-packager-child-centered video-packager-custom-checkbox video-packager-container">{Translator.trans(this.props.locale, 'activatePlaceholder')}
 							<input className="no-ui-tranform" checked={this.state.action.placeholder} onChange={this.updatePlaceholder.bind(this)} id="placeholder" type="checkbox" />
 							<span className="video-packager-checkmark"></span>
 						</label>
 					</div>
-					<div className="video-packager-bottom-item video-packager-small">
-						<Button clickHandler={this.onCloseAction.bind(this)} text={Translator.trans(this.props.locale, 'close')}></Button>
+					<div className="video-packager-parent-centered video-packager-bottom-item video-packager-small">
+						<Button className="video-packager-child-centered" clickHandler={this.onCloseAction.bind(this)} text={Translator.trans(this.props.locale, 'close')}></Button>
 					</div>
 				</div>
 			</div>
