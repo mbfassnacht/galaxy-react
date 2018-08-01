@@ -4,7 +4,7 @@ export default {
 
     loadVideoStarted: function() {
         var action = {
-            actionType: "VIDEO_LOAD_STARTED"
+            actionType: 'VIDEO_LOAD_STARTED'
         };
 
         AppDispatcher.dispatch(action);
@@ -12,7 +12,7 @@ export default {
 
     loadVideoEnded: function(data) {
         var action = {
-            actionType: "VIDEO_LOAD_ENDED",
+            actionType: 'VIDEO_LOAD_ENDED',
             data: data
         };
 
@@ -21,7 +21,7 @@ export default {
 
     loadVideoError: function() {
         var action = {
-            actionType: "VIDEO_LOAD_ERROR"
+            actionType: 'VIDEO_LOAD_ERROR'
         };
 
         AppDispatcher.dispatch(action);
@@ -29,7 +29,7 @@ export default {
 
     loadTemplatesStarted: function() {
         var action = {
-            actionType: "TEMPLATES_LOAD_STARTED"
+            actionType: 'TEMPLATES_LOAD_STARTED'
         };
 
         AppDispatcher.dispatch(action);
@@ -37,7 +37,7 @@ export default {
 
     loadTemplatesEnded: function(data) {
         var action = {
-            actionType: "TEMPLATES_LOAD_ENDED",
+            actionType: 'TEMPLATES_LOAD_ENDED',
             data: data
         };
 
@@ -46,7 +46,7 @@ export default {
 
     loadTemplatesError: function() {
         var action = {
-            actionType: "TEMPLATES_LOAD_ERROR"
+            actionType: 'TEMPLATES_LOAD_ERROR'
         };
 
         AppDispatcher.dispatch(action);

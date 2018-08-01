@@ -4,7 +4,7 @@ export default {
 
     updateTitle: function(title) {
         var action = {
-            actionType: "TITLE_UPDATE",
+            actionType: 'TITLE_UPDATE',
             title: title
         };
 
@@ -13,7 +13,7 @@ export default {
 
     setOriginalVideoId: function(id) {
         var action = {
-            actionType: "ORIGINAL_VIDEO_ID_SET",
+            actionType: 'ORIGINAL_VIDEO_ID_SET',
             id: id
         };
 
@@ -22,7 +22,7 @@ export default {
 
     setConfig: function(config) {
         var action = {
-            actionType: "CONFIG_URL_SET",
+            actionType: 'CONFIG_URL_SET',
             config: config
         };
 
@@ -31,7 +31,7 @@ export default {
 
     attemptToSave: function() {
         var action = {
-            actionType: "ATTEMPT_TO_SAVE"
+            actionType: 'ATTEMPT_TO_SAVE'
         };
 
         AppDispatcher.dispatch(action);
@@ -39,7 +39,7 @@ export default {
 
     setLocale: function(locale) {
         var action = {
-            actionType: "SET_LOCALE",
+            actionType: 'SET_LOCALE',
             locale: locale
         };
 

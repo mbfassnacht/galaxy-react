@@ -21,7 +21,8 @@ class Footer extends React.Component {
 		}
 
 		if (this.state.allowedToSave) {
-			ApiServices.save();
+			// ApiServices.save();
+			ApiServices.saveDerivative();
 		}
 	}
 

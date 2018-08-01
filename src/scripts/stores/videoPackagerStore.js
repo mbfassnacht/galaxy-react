@@ -10,9 +10,10 @@ var videoPackagerStatus = {
     config: {
         getVideoUrl: '',
         getTemplatesUrl: '',
-        saveVideoUrl: ''
+        saveVideoUrl: '',
+        saveDerivativeUrl: ''
     },
-    attemptToSave: false,
+    attemptToSave: false
 };
 
 var VideoPackagerStore = assign({}, EventEmitter.prototype, {
@@ -61,16 +62,29 @@ var VideoPackagerStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
 
     switch(action.actionType) {
-        case "ATTEMPT_TO_SAVE":
+        case 'ATTEMPT_TO_SAVE':
             videoPackagerStatus.attemptToSave = true;
             VideoPackagerStore.emitSaveAttempt();
             break;
-        case "TITLE_UPDATE":
+        case 'TITLE_UPDATE':
             videoPackagerStatus.title = action.title;
             VideoPackagerStore.emitChange();
             break;
-        case "CONFIG_URL_SET":
+        case 'CONFIG_URL_SET':
             videoPackagerStatus.config = JSON.parse(action.config);
+            VideoPackagerStore.emitChange();
+            break;
+        case 'VIDEO_SAVE_STARTED':
+            videoPackagerStatus.state = status[4];
+            VideoPackagerStore.emitChange();
+            break;
+        case 'VIDEO_SAVE_ERROR':
+            videoPackagerStatus.state = status[5];
+            VideoPackagerStore.emitChange();
+            break;
+        case 'VIDEO_SAVE_ENDED':
+            videoPackagerStatus.state = status[6];
+            videoPackagerStatus.clipId = action.data.id;
             VideoPackagerStore.emitChange();
             break;
         default:
