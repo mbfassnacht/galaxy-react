@@ -13,7 +13,7 @@ var currentSelectedAction = {
     type: 'lettering',
     id: -1,
     placeholder: false,
-    template: "",
+    template: '',
     selectedTemplate: 0,
     positionTop: false
 };
@@ -57,7 +57,7 @@ var ActionsStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
 
     switch(action.actionType) {
-        case "ADD_ACTION":
+        case 'ADD_ACTION':
             var newAction =  {
                 markIn: currentTime,
                 markOut: currentTime + 1,
@@ -67,7 +67,7 @@ AppDispatcher.register(function(action) {
                 placeholder: false,
                 type: action.type.type,
                 id: actions.length,
-                template: "",
+                template: '',
                 selectedTemplate: 0
             };
             currentSelectedAction = newAction;
@@ -75,7 +75,7 @@ AppDispatcher.register(function(action) {
             ActionsStore.emitChange();
             break;
 
-        case "REMOVE_ACTION_SELECTION":
+        case 'REMOVE_ACTION_SELECTION':
             currentSelectedAction =  {
                 markIn: '00:00:00:00',
                 markOut: '00:00:00:00',
@@ -85,24 +85,24 @@ AppDispatcher.register(function(action) {
                 placeholder: false,
                 positionTop: false,
                 id: -1,
-                template: "",
+                template: '',
                 selectedTemplate: 0
             };
             ActionsStore.emitChange();
             break;
 
-        case "SELECT_ACTION":
+        case 'SELECT_ACTION':
             currentSelectedAction =  actions[action.id];
             ActionsStore.emitActionSelection();
             break;
 
-        case "UPDATE_ACTION":
+        case 'UPDATE_ACTION':
             actions[action.action.id] = action.action;
             currentSelectedAction = action.action;
             ActionsStore.emitChange();
             break;
 
-        case "REMOVE_ACTION":
+        case 'REMOVE_ACTION':
             actions.splice(action.id, 1);
             currentSelectedAction =  {
                 markIn: '00:00:00:00',
@@ -113,13 +113,13 @@ AppDispatcher.register(function(action) {
                 positionTop: false,
                 placeholder: false,
                 id: -1,
-                template: "",
+                template: '',
                 selectedTemplate: 0
             };
             ActionsStore.emitChange();
             break;
 
-        case "SET_TIME_ACTION":
+        case 'SET_TIME_ACTION':
             currentTime = action.time;
             break;
         default:
