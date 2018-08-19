@@ -1,0 +1,18 @@
+.status-bar {
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    align-content: space-between;
+
+    .info {
+        width: 50%;
+        color: $highlight;
+        font-size: $important-font-size;
+    }
+
+    .high-score {
+        text-align: right;
+    }
+}

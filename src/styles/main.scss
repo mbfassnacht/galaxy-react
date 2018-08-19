@@ -1,5 +1,13 @@
-// AUDI SKIN
-@import "../../node_modules/video-packager-audi-skin/styles/main.scss";
+@import "./normalize.scss";
+// VARIABLES
+@import "./variables/_all.scss";
 
-// IF NOT PREDEFINED STYLE MODULE UNCOMMENT THE FOLLOWED LINE
-//@import "../default-styles/main.scss"
+// GLOBALS
+@import "./globals.scss";
+
+// SCREENS
+@import "./screens/_all.scss";
+
+// COMPONENTS
+@import "./Galaxy.scss";
+@import "./components/_all.scss";

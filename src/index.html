@@ -3,31 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>REACT VIDEO PACKAGER</title>
-        <style>
-            .test-container {
-                width: 80%;
-                margin: 40px auto;
-            }
-            .test-button {
-                background-color: black;
-                color: white;
-                width: 200px;
-                padding: 20px;
-                cursor: pointer;
-                margin-bottom: 40px;
-            }
-            .test-button:hover {
-                background-color: grey;
-            }
-        </style>
+        <title>GALAXY REACT</title>
     </head>
 
     <body>
-        <div class="test-container">
-            <div class="test-button" id="react-video-packager-opener">OPEN VIDEO PACKAGER</div>
-            <div data-config='{ "getVideoUrl": "admin/clip-editor/videos/", "getTemplatesUrl": "admin/clip-editor/letterings/templates", "saveVideoUrl": "admin/clip-editor/clips", "saveDerivativeUrl": "admin/video-derivative/create-by-values"}' data-locale="de" data-video-id="61" class="video-packager" id="react-video-packager"></div>
-        </div>
+        <div id="app-container"></div>
         <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
         <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
     </body>

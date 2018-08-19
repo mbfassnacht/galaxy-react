@@ -1,5 +1,5 @@
-# react-video-packager
-React Video Packager
+# galaxy-react
+Galaxy game in React
 
 ## INSTALLATION DEPENDENCES
 ```javascript
