@@ -21,7 +21,21 @@ module.exports = {
             {
                 test: /\.(woff|woff2|eot|ttf)$/,
                 use: {
-                    loader: 'file-loader'
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: path.resolve(__dirname, 'dist/fonts/'),
+                    }
+                }
+            },
+            {
+                test: /\.(png|jpg|gif)$/i,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: path.resolve(__dirname, 'dist/assets/images/'),
+                    }
                 }
             },
             {

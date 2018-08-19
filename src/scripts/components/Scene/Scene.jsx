@@ -9,6 +9,11 @@ class Scene extends React.Component {
         this.state = {paused: false};
     }
 
+	onNewBulletShotted() {
+		this.setState({living: false})
+		BotActions.imKilled();
+	}
+
 	render() {
 		return (
 			<div className="scene">

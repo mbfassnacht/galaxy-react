@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import BotActions from '../../actions/viewActions/botActions';
+import "./../../../assets/images/blue-bot.png";
+import "./../../../assets/images/red-bot.png";
+import "./../../../assets/images/green-bot.png";
 
 class Bot extends React.Component {
 

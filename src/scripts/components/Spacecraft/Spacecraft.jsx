@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "./../../../assets/images/spacecraft.png";
+import SpacecraftActions from '../../actions/viewActions/spacecraftActions';
 
 class Spacecraft extends React.Component {
 
@@ -49,7 +51,9 @@ class Spacecraft extends React.Component {
 	}
 
 	shot(e) {
-
+		SpacecraftActions.bulletShotted({
+			x: this.state.position.left
+		});
 	}
 
 	render() {
@@ -62,7 +66,7 @@ class Spacecraft extends React.Component {
 
 Spacecraft.defaultProps = {
 	velocity: 40,
-	size: 40
+	size: 60
 };
 
 export default Spacecraft;
