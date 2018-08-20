@@ -4,7 +4,8 @@ import assign from 'object-assign';
 
 var difficultyConfig = {
     EASY: {
-        velocity: 20,
+        velocity: 10,
+        moveForward: 10,
         bots: {
             green: 2,
             red: 10,
@@ -12,7 +13,8 @@ var difficultyConfig = {
         }
     },
     NORMAL: {
-        velocity: 30,
+        velocity: 20,
+        moveForward: 5,
         bots: {
             green: 4,
             red: 16,
@@ -21,6 +23,7 @@ var difficultyConfig = {
     },
     HARD: {
         velocity: 50,
+        moveForward: 3,
         bots: {
             green: 6,
             red: 16,
@@ -33,7 +36,8 @@ var GalaxyConfigStatus = {
     difficulty: "NORMAL",
     velocity: 0,
     bots: {},
-    set: false
+    set: false,
+    moveForward: 0
 };
 
 var GalaxyConfigStore = assign({}, EventEmitter.prototype, {
@@ -62,6 +66,7 @@ AppDispatcher.register(function(action) {
             let difficulty = action.difficulty.value;
             GalaxyConfigStatus.difficulty = action.difficulty.value;
             GalaxyConfigStatus.velocity = difficultyConfig[action.difficulty.value].velocity;
+            GalaxyConfigStatus.moveForward = difficultyConfig[action.difficulty.value].moveForward;
             GalaxyConfigStatus.bots = difficultyConfig[action.difficulty.value].bots;
             GalaxyConfigStatus.set = true;
             GalaxyConfigStore.emitChange();

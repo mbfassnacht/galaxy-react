@@ -17,12 +17,23 @@ class BotsArmy extends React.Component {
         super(props);
 		var config = getConfig();
 		var bots = config.bots;
+		var moveForward = config.moveForward;
 		var velocity = config.velocity;
-		this.state = { velocity: velocity, bots: bots, moving: "left", position: {left: (window.innerWidth / 2 - this.props.size / 2) } };
+		this.state = {
+			moveForward: moveForward,
+			velocity: velocity,
+			iteration: 0,
+			bots: bots,
+			moving: "left",
+			position: {
+				left: (window.innerWidth / 2 - this.props.size / 2),
+				top: 0
+			}
+		};
     }
 
 	componentDidMount() {
-		this.moveInterval = setInterval(this.move.bind(this), 100);
+		this.moveInterval = setInterval(this.move.bind(this), 50);
 	}
 
 	componentWillUnmount() {
@@ -41,34 +52,56 @@ class BotsArmy extends React.Component {
 		var currentLeft = this.state.position.left;
 
 		var left = Math.max(currentLeft - this.state.velocity, 0);
+		var moving = "left";
+		var iteration = this.state.iteration;
+		var top = this.state.position.top;
 
 		if (left === 0 ) {
-			this.setState({
-				position: {left: left }, moving: "right"
-		    });
-		} else {
-			this.setState({
-				position: {left:  left}, moving: "left"
-		    });
+			moving = "right";
+			iteration++;
 		}
 
+		if (iteration == this.state.moveForward ) {
+			top += 20;
+			iteration = 0;
+		}
+
+		this.setState({
+			iteration: iteration,
+			position: {
+				left:  left,
+				top: top
+			},
+			moving: moving
+		});
 	}
 
 	moveRight() {
 		var currentLeft = this.state.position.left;
-
 		var left = Math.min(currentLeft + this.state.velocity, window.innerWidth - this.props.size);
+		var moving = "right";
+		var iteration = this.state.iteration;
+		var top = this.state.position.top;
+
 
 		if (left === window.innerWidth - this.props.size ) {
-			this.setState({
-				position: {left: left }, moving: "left"
-			});
-		} else {
-			this.setState({
-				position: {left:  left}, moving: "right"
-			});
+			moving = "left";
+			iteration++;
 		}
 
+		if (iteration == this.state.moveForward ) {
+			top += 20;
+			iteration = 0;
+		}
+
+		this.setState({
+			iteration: iteration,
+			position: {
+				left:  left,
+				top: top
+			},
+			moving: moving
+		});
 	}
 
 	createBotsRow(amount, type) {

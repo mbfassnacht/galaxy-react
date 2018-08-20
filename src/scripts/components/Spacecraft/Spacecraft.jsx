@@ -7,7 +7,7 @@ class Spacecraft extends React.Component {
 
 	constructor(props) {
         super(props);
-		this.state = { position: {bottom: 0, left: (screen.width / 2 - this.props.size / 2) } };
+		this.state = { position: {bottom: 0, left: (window.innerWidth / 2 - this.props.size / 2) } };
 
     }
 
@@ -18,17 +18,14 @@ class Spacecraft extends React.Component {
 	handleKeyDown(e) {
 		if (e.keyCode === 37) {
 			this.moveLeft(e);
-			return;
 		}
 
 		if (e.keyCode === 39) {
 			this.moveRight(e);
-			return;
 		}
 
 		if (e.keyCode === 32) {
 			this.shot(e);
-			return;
 		}
 	}
 
