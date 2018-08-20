@@ -1,20 +1,21 @@
 .bot {
     background-size: contain;
+    margin: 5px;
+
+    &.green {
+        background-image: url('../../assets/images/green-bot.png');
+        width: 60px;
+        height: 60px;
+    }
 
     &.red {
-        background-image: url('../../assets/images/spacecraft.png');
+        background-image: url('../../assets/images/red-bot.png');
         width: 60px;
         height: 60px;
     }
 
     &.blue {
-        background-image: url('../../assets/images/spacecraft.png');
-        width: 60px;
-        height: 60px;
-    }
-
-    &.green {
-        background-image: url('../../assets/images/spacecraft.png');
+        background-image: url('../../assets/images/blue-bot.png');
         width: 60px;
         height: 60px;
     }

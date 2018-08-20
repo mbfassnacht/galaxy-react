@@ -19,7 +19,7 @@ class Bot extends React.Component {
 
 	render() {
 		return (
-			<div className="bot">
+			<div className={'bot ' + this.props.type}>
 			</div>
 		);
 	}

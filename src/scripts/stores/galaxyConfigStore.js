@@ -4,23 +4,36 @@ import assign from 'object-assign';
 
 var difficultyConfig = {
     EASY: {
-        velocity: 500,
-        bots: 20
+        velocity: 20,
+        bots: {
+            green: 2,
+            red: 10,
+            blue: 16
+        }
     },
     NORMAL: {
-        velocity: 100,
-        bots: 40
+        velocity: 30,
+        bots: {
+            green: 4,
+            red: 16,
+            blue: 32
+        }
     },
     HARD: {
-        velocity: 200,
-        bots: 50
+        velocity: 50,
+        bots: {
+            green: 6,
+            red: 16,
+            blue: 40
+        }
     }
 };
 
 var GalaxyConfigStatus = {
     difficulty: "NORMAL",
     velocity: 0,
-    bots: 0
+    bots: {},
+    set: false
 };
 
 var GalaxyConfigStore = assign({}, EventEmitter.prototype, {
@@ -37,8 +50,8 @@ var GalaxyConfigStore = assign({}, EventEmitter.prototype, {
         this.removeListener('change', callback);
     },
 
-    getStatus: function() {
-        return gameStatus;
+    getConfig: function() {
+        return GalaxyConfigStatus;
     }
 });
 
@@ -50,6 +63,7 @@ AppDispatcher.register(function(action) {
             GalaxyConfigStatus.difficulty = action.difficulty.value;
             GalaxyConfigStatus.velocity = difficultyConfig[action.difficulty.value].velocity;
             GalaxyConfigStatus.bots = difficultyConfig[action.difficulty.value].bots;
+            GalaxyConfigStatus.set = true;
             GalaxyConfigStore.emitChange();
             break;
         default:

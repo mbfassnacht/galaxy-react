@@ -1,4 +1,7 @@
 .start-screen {
+    height: calc(100% - 50px);
+    padding-top: 50px;
+    
     .item {
         margin: 10px 0px;
     }

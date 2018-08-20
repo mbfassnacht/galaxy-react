@@ -1,0 +1,11 @@
+.bots-army {
+    position: absolute;
+    width: 800px;
+
+    .bots-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
